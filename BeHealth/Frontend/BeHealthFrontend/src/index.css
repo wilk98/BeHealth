@@ -1,3 +1,18 @@
+:root {
+    --bh-text-dark: #303030;
+    --bh-text-dark-gray: #606060;
+    --bh-text-gray: #BEBEBE;
+    --bh-text-green: #48B373;
+    --bh-text-white: #FFFFFF;
+
+    --bh-purple: #7B86E6;
+    --bh-bg-purple: #DEE1F9;
+
+    --bh-bg-green: #BDF3D2;
+    --bh-bg-main: #F5F6FF;
+}
+
+
 * {
     font-family: 'Inter', sans-serif;
     font-family: 'Poppins', sans-serif;
