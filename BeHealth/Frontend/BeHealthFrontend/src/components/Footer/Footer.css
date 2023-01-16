@@ -1,0 +1,58 @@
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 20%;
+	width: 100%;
+	background-color: #dee1f9;
+	color: black;
+}
+
+img {
+	margin-left: 1px;
+	margin-right: 10px;
+}
+
+.contact {
+	position: relative;
+	margin-top: 2%;
+	margin-left: 10%;
+	display: inline-block;
+}
+
+.business {
+	position: relative;
+	margin-top: 2%;
+	margin-left: 20%;
+	display: inline-block;
+}
+
+.client {
+	position: relative;
+	margin-top: 2%;
+	margin-left: 20%;
+	display: inline-block;
+}
+
+.policy {
+	position: relative;
+	margin-top: 2%;
+	margin-left: 20%;
+	display: inline-block;
+	bottom: 60px;
+}
+
+.title {
+	font-weight: bold;
+	font-size: medium;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+p {
+	padding-bottom: 5px;
+}
+
+.copyright {
+	text-align: center;
+}
