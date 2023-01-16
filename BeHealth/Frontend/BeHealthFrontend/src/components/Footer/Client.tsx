@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Client() {
 	return (
 		<div className="client">
@@ -5,7 +7,7 @@ function Client() {
 			<p>Cennik usług</p>
 			<p>Kategorie</p>
 			<p>Prześlij opinię</p>
-			<p>Umów wizytę</p>
+			<Link to="/arange-visit">Umów wizytę</Link>
 		</div>
 	);
 }
