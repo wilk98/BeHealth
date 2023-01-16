@@ -16,8 +16,14 @@
 * {
     font-family: 'Inter', sans-serif;
     font-family: 'Poppins', sans-serif;
+    
+    color: var(--bh-text-dark);
 }
 
 body {
     margin: 0;
+}
+
+.purple {
+    color: var(--bh-purple);
 }
