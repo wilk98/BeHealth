@@ -1,0 +1,37 @@
+nav {
+    display: flex;
+    align-items: center;
+
+    margin-block-start: 28px;
+    padding: 17px 85px;
+}
+
+/* Logo */
+nav p {
+    margin-inline-end: 125px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: 25px;
+
+    font-weight: 500;
+    list-style: none;
+
+    margin-inline-end: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.login-links {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+    font-weight: 600;
+}
