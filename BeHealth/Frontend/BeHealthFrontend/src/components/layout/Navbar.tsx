@@ -1,5 +1,5 @@
 import { Logo } from "./Logo"
-import { PrimaryButton } from "./PrimaryButton"
+import { PrimaryButton } from "../ui/PrimaryButton"
 import './Navbar.css'
 
 export const Navbar = () => {
