@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./App.css";
 import Footer from "./components/layout/Footer/Footer";
 import { Routes, Route } from "react-router-dom";
@@ -13,17 +12,6 @@ function App() {
 			<Footer />
 		</div>
 	);
-=======
-import { Visits } from './pages/Visits'
-import './App.css'
-
-function App() {
-  return (
-    <div className="App">
-      <Visits />
-    </div>
-  )
->>>>>>> 9769e9c (show visits page, for testing)
 }
 
 export default App;

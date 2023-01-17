@@ -2,6 +2,8 @@ nav {
     display: flex;
     align-items: center;
 
+    position: relative;
+
     margin-block-start: 28px;
     padding: 17px 85px;
 }
@@ -9,6 +11,16 @@ nav {
 /* Logo */
 nav p {
     margin-inline-end: 125px;
+}
+
+.nav_container {
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+}
+
+.nav_container ul {
+    margin-inline-end: auto;
 }
 
 ul {
@@ -20,8 +32,6 @@ ul {
 
     font-weight: 500;
     list-style: none;
-
-    margin-inline-end: auto;
 }
 
 a {
@@ -34,4 +44,118 @@ a {
 
     gap: 28px;
     font-weight: 600;
+}
+
+.navbar-menu svg {
+    cursor: pointer;
+}
+
+.navbar-menu {
+    display: none;
+}
+
+.navbar-menu ul {
+    flex-direction: column;
+}
+
+.navbar-menu ul li {
+    text-align: right;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: column;
+
+    /* width: 100%; */
+    position: relative;
+}
+
+.navbar-menu_container {
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    top: 50px;
+}
+
+.navbar-menu_container ul {
+    margin-block-end: 16px;
+}
+
+
+.navbar-menu {
+    display: none;
+}
+
+@media screen and (max-width: 550px) {
+   .nav_container {
+    display: none;
+   }
+
+    .navbar-menu .login-links {
+        display: flex !important;
+        margin-inline: initial;
+    }
+    .navbar-menu {
+        display: flex;
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+    nav {
+        align-items: flex-start;
+        padding: 17px 17px;
+    }
+
+    nav a {
+        margin-inline-end: auto;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+   .nav_container ul {
+    display: none;
+   }
+
+   .login-links {
+    margin-inline-start: auto;
+    margin-inline-end: 1rem;
+    width: max-content;
+   }
+
+    .navbar-menu {
+        display: flex;
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+    .navbar-menu .login-links {
+        display: none;
+    }
+
+    nav {
+        align-items: center;
+        padding: 17px 17px;
+    }
+
+    nav a {
+        margin-inline-end: auto;
+    }
+}
+
+.drop-down {
+    transform-origin: top;
+    animation: drop-down 300ms cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+}
+
+@keyframes drop-down {
+    0% {
+        transform: scaleY(0)
+    }
+    70% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
 }
