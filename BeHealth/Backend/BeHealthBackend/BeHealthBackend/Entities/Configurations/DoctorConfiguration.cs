@@ -9,6 +9,9 @@ namespace BeHealthBackend.Entities.Configurations
         {
             builder
                 .Property(d => d.Created).HasDefaultValueSql("getutcdate()");
+
+            builder.HasMany(d => d.Patients)
+                .WithMany(p => p.Doctors);
         }
     }
 }
