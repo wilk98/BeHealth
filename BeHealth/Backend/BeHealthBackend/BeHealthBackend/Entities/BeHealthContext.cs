@@ -10,5 +10,8 @@ namespace BeHealthBackend.Entities
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visit> Visits { get; set; }
 
+        public BeHealthContext(DbContextOptions<BeHealthContext> options) : base(options)
+        {
+        }
     }
 }
