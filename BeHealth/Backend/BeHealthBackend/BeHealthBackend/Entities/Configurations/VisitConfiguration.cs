@@ -7,6 +7,9 @@ namespace BeHealthBackend.Entities.Configurations
     {
         public void Configure(EntityTypeBuilder<Visit> builder)
         {
+            builder.HasOne(v => v.Patient)
+                .WithMany(p => p.Visits)
+                .HasForeignKey(v => v.PatientId);
         }
     }
 }
