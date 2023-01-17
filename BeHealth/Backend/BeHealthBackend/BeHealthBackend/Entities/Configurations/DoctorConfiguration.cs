@@ -12,6 +12,8 @@ namespace BeHealthBackend.Entities.Configurations
 
             builder.HasMany(d => d.Patients)
                 .WithMany(p => p.Doctors);
+
+            builder.Property(a => a.PhoneNumber).HasColumnType("varchar(9)");
         }
     }
 }

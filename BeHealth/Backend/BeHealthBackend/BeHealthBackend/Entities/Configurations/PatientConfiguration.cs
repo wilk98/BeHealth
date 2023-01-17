@@ -9,6 +9,8 @@ namespace BeHealthBackend.Entities.Configurations
         {
             builder
                 .Property(p => p.Created).HasDefaultValueSql("getutcdate()");
+
+            builder.Property(a => a.PhoneNumber).HasColumnType("varchar(9)");
         }
     }
 }

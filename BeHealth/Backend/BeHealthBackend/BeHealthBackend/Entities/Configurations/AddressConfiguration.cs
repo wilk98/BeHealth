@@ -18,6 +18,8 @@ namespace BeHealthBackend.Entities.Configurations
             builder.HasOne(p => p.Patient)
                 .WithOne(a => a.Address)
                 .HasForeignKey<Patient>(p => p.AddressId);
+
+            builder.Property(a => a.PostalCode).HasColumnType("varchar(6)");
         }
     }
 }
