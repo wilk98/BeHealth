@@ -1,7 +1,7 @@
 import Logo from "../Logo";
 import fb from "../../../assets/images/fb.jpg";
-import insta from "../../../assets/insta.jpg";
-import twitter from "../../../assets/twitter.jpg";
+import insta from "../../../assets/images/insta.jpg";
+import twitter from "../../../assets/images/twitter.jpg";
 
 function Contact() {
 	return (
