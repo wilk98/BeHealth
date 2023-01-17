@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual Doctor Doctor { get; set; }
-        public DateTime VisiDate { get; set; }
+        public DateTime VisitDate { get; set; }
     }
 }
