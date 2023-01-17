@@ -10,7 +10,7 @@ nav {
 
 /* Logo */
 nav p {
-    margin-inline-end: 125px;
+    margin-inline-end: 230px;
 }
 
 .nav_container {
@@ -23,7 +23,7 @@ nav p {
     margin-inline-end: auto;
 }
 
-ul {
+nav ul {
     margin: 0;
     padding: 0;
 
@@ -34,7 +34,7 @@ ul {
     list-style: none;
 }
 
-a {
+nav a {
     text-decoration: none;
 }
 
@@ -112,7 +112,14 @@ a {
     }
 }
 
-@media screen and (max-width: 1050px) {
+
+@media screen and (max-width: 750px) {
+    nav {
+        padding: 17px 17px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
    .nav_container ul {
     display: none;
    }
@@ -135,7 +142,7 @@ a {
 
     nav {
         align-items: center;
-        padding: 17px 17px;
+        /* padding: 17px 17px; */
     }
 
     nav a {
