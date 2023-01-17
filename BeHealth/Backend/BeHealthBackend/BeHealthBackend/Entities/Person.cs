@@ -8,6 +8,6 @@
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public virtual Address Address { get; set; }
-        public DateTime Created { get; } = DateTime.Now;
+        public DateTime Created { get; }
     }
 }
