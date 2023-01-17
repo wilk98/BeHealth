@@ -6,7 +6,7 @@ interface Logo {
 
 export const Logo = ({ fontSize = 20 }: Logo) => {
 	return (
-		<p style={{ fontSize: fontSize }}>
+		<p className="logo" style={{ fontSize: fontSize }}>
 			<b className="purple">Be</b>Health
 		</p>
 	);

@@ -1,8 +1,8 @@
-p {
+p.logo {
     font-weight: 500;
     margin: 0;
 }
 
-b.purple {
+p.logo b.purple {
     color: #5A67E0;
 }

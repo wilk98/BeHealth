@@ -8,8 +8,7 @@ nav {
     padding: 17px 85px;
 }
 
-/* Logo */
-nav p {
+nav p.logo {
     margin-inline-end: 230px;
 }
 

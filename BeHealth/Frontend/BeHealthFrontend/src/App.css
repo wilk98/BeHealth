@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.container aside {
+    transform: translateY(-135px);
+}
+
+.container aside.hidden + main {
+    margin-inline-start: -300px;
+}
+
+aside {
+    transition: transform 650ms ease;
+}
+
+.container main {
+    flex-grow: 1;
+    transition: margin 650ms ease;
+}
+
+nav {
+    grid-row: 1;
+}
+
+.footer {
+    grid-row: 3;
+}

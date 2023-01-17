@@ -1,25 +1,30 @@
 import './Sidebar.css'
 import {  FaRegCalendar, FaRegClipboard, FaRegUser, IoSettingsSharp, FiMessageSquare, GiHealthNormal } from 'react-icons/all'
 import { useState } from 'react'
+import { Logo } from './Logo';
+import { HamburgerButton } from '../ui/HamburgerButton';
 
-export const Sidebar = () => {
+interface Sidebar {
+  isOpen: boolean;
+  toggle: () => void;
+}
+
+export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
   const [selected, setSelected] = useState(0)
 
-  const links = ["Kalendarz" , "Nadchodzące wizyty", "Profil", "Wiadomości", "Pacjenci", "Ustawienia"]
-  const icons = [<FaRegCalendar />, <FaRegClipboard />, <FaRegUser />, <FiMessageSquare />, <GiHealthNormal />, <IoSettingsSharp />  ]
-
-  const linkClass = (selected:number, i: number, collectionLength: number) => {
-    let className = selected === i ? 'selected ' : ''
-    className += i === collectionLength - 1 ? 'last-item' : ''
-    return className;
-  }
+  const links = ["Kalendarz" , "Nadchodzące wizyty", "Profil", "Wiadomości", "Pacjenci","Ustawienia"]
+  const icons = [<FaRegCalendar />, <FaRegClipboard />, <FaRegUser />, <FiMessageSquare />, <GiHealthNormal />, <IoSettingsSharp />]
 
   const linkElements = links.map((link, i) => (
-    <li onClick={() => setSelected(i)}  className={linkClass(selected, i, links.length)}>{icons[i]} {link}</li>
+    <li onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>{icons[i]} {link}</li>
   ))
 
   return (
-    <aside>
+    <aside className={!isOpen ? 'hidden' : ''}>
+      <div className='controls'>
+        <Logo />
+        <HamburgerButton isOpen={isOpen} onClick={toggle} />
+      </div>
       <ul>
         {linkElements}
       </ul>
