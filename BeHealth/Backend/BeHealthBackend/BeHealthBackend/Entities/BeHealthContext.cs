@@ -13,5 +13,10 @@ namespace BeHealthBackend.Entities
         public BeHealthContext(DbContextOptions<BeHealthContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+        }
     }
 }
