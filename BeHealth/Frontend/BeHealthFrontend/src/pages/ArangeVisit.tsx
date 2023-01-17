@@ -2,9 +2,30 @@ import "./ArangeVisit.css";
 
 function ArangeVisit() {
 	return (
-		<div className="ArangeVisit">
+		<main className="ArangeVisit">
 			<h1>TEST</h1>
-		</div>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+			<h1>TEST</h1>
+		</main>
 	);
 }
 
