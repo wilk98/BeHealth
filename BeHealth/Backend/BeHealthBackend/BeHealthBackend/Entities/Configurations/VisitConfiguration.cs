@@ -10,6 +10,10 @@ namespace BeHealthBackend.Entities.Configurations
             builder.HasOne(v => v.Patient)
                 .WithMany(p => p.Visits)
                 .HasForeignKey(v => v.PatientId);
+
+            builder.HasOne(v => v.Doctor)
+                .WithMany(p => p.Visits)
+                .HasForeignKey(v => v.DoctorId);
         }
     }
 }
