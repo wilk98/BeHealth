@@ -7,13 +7,17 @@ namespace BeHealthBackend.Entities.Configurations
     {
         public void Configure(EntityTypeBuilder<Address> builder)
         {
-            builder.HasOne(p => p.Person)
-                .WithOne(a => a.Address)
-                .HasForeignKey<Person>(p => p.AddressId);
-
             builder.HasOne(c => c.Clinic)
                 .WithOne(a => a.Address)
                 .HasForeignKey<Clinic>(c => c.AddressId);
+
+            builder.HasOne(p => p.Doctor)
+                .WithOne(a => a.Address)
+                .HasForeignKey<Doctor>(p => p.AddressId);
+
+            builder.HasOne(p => p.Patient)
+                .WithOne(a => a.Address)
+                .HasForeignKey<Patient>(p => p.AddressId);
         }
     }
 }
