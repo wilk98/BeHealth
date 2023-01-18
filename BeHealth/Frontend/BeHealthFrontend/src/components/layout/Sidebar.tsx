@@ -3,6 +3,7 @@ import {  FaRegCalendar, FaRegClipboard, FaRegUser, IoSettingsSharp, FiMessageSq
 import { useState } from 'react'
 import { Logo } from './Logo';
 import { HamburgerButton } from '../ui/HamburgerButton';
+import { Link, LinkProps } from 'react-router-dom';
 
 interface Sidebar {
   isOpen: boolean;
@@ -12,11 +13,49 @@ interface Sidebar {
 export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
   const [selected, setSelected] = useState(0)
 
-  const links = ["Kalendarz" , "Nadchodzące wizyty", "Profil", "Wiadomości", "Pacjenci","Ustawienia"]
-  const icons = [<FaRegCalendar />, <FaRegClipboard />, <FaRegUser />, <FiMessageSquare />, <GiHealthNormal />, <IoSettingsSharp />]
+  interface Link {
+    name: string,
+    link: string,
+    icon: JSX.Element,
+  }
+
+  const links: Array<Link> = [
+    {
+      name: "Kalendarz",
+      link: "/",
+      icon: <FaRegCalendar />,
+    },
+    {
+      name: "Nadchodzące wizyty",
+      link: "/visits",
+      icon: <FaRegClipboard />,
+    },
+    {
+      name: "Profil",
+      link: "/",
+      icon: <FaRegUser />,
+    },
+    {
+      name: "Wiadomości",
+      link: "/",
+      icon: <FiMessageSquare />,
+    },
+    {
+      name: "Pacjenci",
+      link: "/",
+      icon: <GiHealthNormal />,
+    },
+    {
+      name: "Ustawienia",
+      link: "/",
+      icon: <IoSettingsSharp />,
+    },
+  ]
 
   const linkElements = links.map((link, i) => (
-    <li onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>{icons[i]} {link}</li>
+    <li key={link.name} onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>
+      <Link to={link.link}>{link.icon} {link.name}</Link>
+    </li>
   ))
 
   return (

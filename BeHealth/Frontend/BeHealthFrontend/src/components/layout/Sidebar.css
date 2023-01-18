@@ -18,11 +18,15 @@ aside ul {
     width: fit-content;
 }
 
-aside li {
+aside li a {
     display: flex;
     align-items: center;
     cursor: pointer;
     gap: 10px;
+}
+
+aside li a {
+    text-decoration: none;
 }
 
 aside li.selected > svg {
