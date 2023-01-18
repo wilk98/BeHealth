@@ -6,9 +6,9 @@
   background-size: cover;
   margin: 15px;
   opacity: 1;
-  position: absolute;
-  top: 230px;
-  left: 55px;
+  position: relative;
+  top: 0px;
+  left: 0px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -18,7 +18,7 @@
 .specialization-text {
     width: 151px;
   color: rgba(48,48,48,1);
-  position: absolute;
+  position: relative;
   top: -50px;
   left: 18px;
   font-family: Poppins;
@@ -37,7 +37,7 @@
   background-size: cover;
   margin: 15px;
   opacity: 1;
-  position: relative;
+  position: absolute;
   top: 0px;
   left: 0px;
   overflow: hidden;
