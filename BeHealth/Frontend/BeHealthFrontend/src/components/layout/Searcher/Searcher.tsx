@@ -4,12 +4,12 @@ import Specialization from "./Specialization";
 
 function Searcher() {
 	return (
-		<div className="searcher">
+		<main className="searcher">
 			<Categories />
 			<Search />
 			<Specialization/>
 
-		</div>
+		</main>
 	);
 }
 
