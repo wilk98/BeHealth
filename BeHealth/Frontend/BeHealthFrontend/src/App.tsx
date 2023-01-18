@@ -5,6 +5,7 @@ import ArangeVisit from "./pages/ArangeVisit";
 import { Navbar } from "./components/layout/Navbar";
 import { Sidebar } from "./components/layout/Sidebar";
 import { useState } from "react";
+import CategoriesSearch from "./pages/CategoriesSearch";
 
 function App() {
 	const [openSidebar, setOpenSidebar] = useState(true)
@@ -17,6 +18,7 @@ function App() {
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
 				<Routes>
 					<Route path="/arange-visit" element={<ArangeVisit />} />
+					<Route path="/categories-search" element={<CategoriesSearch />} />
 				</Routes>
 			</div>
 			<Footer />
