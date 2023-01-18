@@ -7,10 +7,12 @@ import Policy from "./Policy";
 function Footer() {
 	return (
 		<div className="footer">
-			<Contact />
-			<Business />
-			<Client />
-			<Policy />
+			<div className="row">
+				<Contact />
+				<Business />
+				<Client />
+				<Policy />
+			</div>
 			<p className="copyright">
 				Copyright &copy; 2023 <br /> by Andrii, Maciej & Piotr
 			</p>

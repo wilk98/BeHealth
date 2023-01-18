@@ -1,54 +1,40 @@
 .footer {
-	width: 100%;
-	background-color: #dee1f9;
-	color: black;
+	background-color: var(--bh-bg-purple);
+	padding: 90px 0px 0px 100px;
 }
 
-img {
-	margin-left: 1px;
-	margin-right: 10px;
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 115px;
 }
 
-.contact {
-	position: relative;
-	margin-top: 2%;
-	margin-left: 10%;
-	display: inline-block;
+.footer p.logo {
+	color: initial;
 }
 
-.business {
-	position: relative;
-	margin-top: 2%;
-	margin-left: 20%;
-	display: inline-block;
+.footer p, .footer a {
+	color: var(--bh-text-dark-gray);
 }
 
-.client {
-	position: relative;
-	margin-top: 2%;
-	margin-left: 20%;
-	display: inline-block;
-}
-
-.policy {
-	position: relative;
-	margin-top: 2%;
-	margin-left: 20%;
-	display: inline-block;
-	bottom: 60px;
-}
-
-.title {
-	font-weight: bold;
-	font-size: medium;
+.footer .title {
+	color: var(--bh-text-dark);
+	font-weight: 600;
+	font-size: 24px;
 	margin-bottom: 10px;
-	position: relative;
 }
 
-p {
-	padding-bottom: 5px;
+.footer .contact {
+	margin-inline-end: 240px;
 }
 
-.copyright {
+.footer .contact .social-media {
+	margin-block-start: 15px;
+	display: flex;
+	gap: 10px;
+}
+
+.footer .copyright {
 	text-align: center;
+	margin-block-start: 20px;
 }

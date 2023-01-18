@@ -36,7 +36,6 @@ body {
 
 #root {
     display: grid;
-    grid-template-rows: 135px auto 300px;
-
+    grid-template-rows: 135px auto minmax(300px, auto);
     min-height: 100vh;
 }

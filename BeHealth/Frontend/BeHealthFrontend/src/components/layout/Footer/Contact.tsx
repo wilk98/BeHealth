@@ -10,9 +10,11 @@ function Contact() {
 			<p>Adres: ul. XYZ</p>
 			<p>Miasto: ABC</p>
 			<p>XXX-XXX-XXX</p>
-			<img src={fb} className="fb" alt="facebook logo" />
-			<img src={insta} className="insta" alt="instagram logo" />
-			<img src={twitter} className="twitter" alt="twitter logo" />
+			<div className="social-media">
+				<img src={fb} className="fb" alt="facebook logo" />
+				<img src={insta} className="insta" alt="instagram logo" />
+				<img src={twitter} className="twitter" alt="twitter logo" />
+			</div>
 		</div>
 	);
 }
