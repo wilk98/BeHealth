@@ -2,11 +2,15 @@
 {
     public enum Specialist
     {
-        Rheumatologist,
-        Oculist,
-        Neurologist,
-        Cardiologist,
+        Gastrologist,
+        Hepatologist,
         Urologist,
-        Gynecologist
+        Gynecologist,
+        Cardiologist,
+        Neurologist,
+        Orthopaedist,
+        Pulmonologist,
+        Rheumatologist,
+        Oculist
     }
 }
