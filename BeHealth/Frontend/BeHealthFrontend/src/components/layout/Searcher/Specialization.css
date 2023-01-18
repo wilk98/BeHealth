@@ -43,12 +43,12 @@
   overflow: hidden;
 }
 
-.gastrolog-text {
+.gastrolog-text, .hepatolog-text, .urolog-text , .ginekolog-text, .kardiolog-text, .neurolog-text, .ortopeda-text, .pulmonolog-text {
   width: 79px;
   color: rgba(48,48,48,1);
   position: absolute;
   top: 99px;
-  left: 38px;
+  left: 36px;
   font-family: Poppins;
   font-weight: Regular;
   font-size: 16px;
@@ -70,31 +70,9 @@
 }
 
 .hepatolog {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 169px;
-    overflow: hidden;
   }
 
-  .hepatolog-text {
-    width: 84px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 100px;
-    left: 35px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
-  }
   .hepatolog-image {
     width: 74px;
     height: 53px;
@@ -110,17 +88,7 @@
   }
 
   .urolog {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 338px;
-    overflow: hidden;
   }
 
   .urolog-image {
@@ -137,43 +105,12 @@
     overflow: hidden;
   }
   .urolog-text {
-    width: 52px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 102px;
     left: 51px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
   }
   .ginekolog {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 507px;
-    overflow: hidden;
   }
 
-  .ginekolog-text {
-    width: 80px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 102px;
-    left: 36px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
-  }
   .ginekolog-image {
     width: 77px;
     height: 62px;
@@ -188,17 +125,7 @@
     overflow: hidden;
   }
   .kardiolog {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 676px;
-    overflow: hidden;
   }
 
   .kardiolog-image {
@@ -214,30 +141,9 @@
     left: 54px;
     overflow: hidden;
   }
-  .kardiolog-text {
-    width: 77px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 101px;
-    left: 38px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
-  }
+
   .neurolog {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 845px;
-    overflow: hidden;
   }
 
   .neurolog-image {
@@ -253,44 +159,10 @@
     left: 41px;
     overflow: hidden;
   }
-  .neurolog-text {
-    width: 73px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 100px;
-    left: 40px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
-  }
   .ortopeda {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 1014px;
-    overflow: hidden;
   }
 
-  .ortopeda-text {
-    width: 77px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 99px;
-    left: 38px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
-  }
   .ortopeda-image {
     width: 60px;
     height: 55px;
@@ -305,30 +177,11 @@
     overflow: hidden;
   }
   .pulmonolog {
-    width: 154px;
-    height: 154px;
-    background: url("../../../assets/images/specialization-rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
     left: 1183px;
-    overflow: hidden;
   }
 
   .pulmonolog-text {
-    width: 96px;
-    color: rgba(48,48,48,1);
-    position: absolute;
-    top: 99px;
     left: 29px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
   }
   .pulmonolog-image {
     width: 65px;
