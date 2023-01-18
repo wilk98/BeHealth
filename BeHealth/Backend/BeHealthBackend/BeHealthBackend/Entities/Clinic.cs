@@ -2,7 +2,7 @@
 {
     public class Clinic
     {
-        public int ClinicId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public Guid AddressId { get; set; }
         public virtual Address Address { get; set; }
