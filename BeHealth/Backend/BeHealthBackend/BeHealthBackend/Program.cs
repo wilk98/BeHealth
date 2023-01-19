@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
-        .UseSqlServer(builder.Configuration.GetConnectionString("BeHeathConnectionString")));
+        .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
 
 var app = builder.Build();
 
