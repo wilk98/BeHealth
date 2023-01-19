@@ -1,4 +1,7 @@
 using BeHealthBackend.DataAccess.DbContexts;
+using BeHealthBackend.DataAccess.Repositories;
+using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
+builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
