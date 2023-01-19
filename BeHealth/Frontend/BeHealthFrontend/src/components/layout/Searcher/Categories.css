@@ -18,11 +18,12 @@
   .categories_text{
     width: 97px;
     color: rgba(255,255,255,1);
-    top: 7px;
-    left: 39px;
+    top: 3px;
+    left: -2px;
     font-family: Poppins;
     font-weight: Regular;
     font-size: 20px;
     opacity: 1;
+    position:relative;
     text-align: left;
   }

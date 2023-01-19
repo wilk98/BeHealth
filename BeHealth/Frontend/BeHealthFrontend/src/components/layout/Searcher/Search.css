@@ -1,26 +1,9 @@
 .search {
     width: 642px;
     height: 45px;
-    background-image: url("../../../assets/images/search_rectangle.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
     position: relative;
     top: -70px;
     left: 250px;
-    overflow: hidden;
-  }
-
-  .search_text {
-    width: 63px;
-    color: rgba(184,184,184,1);
-    position: relative;
-    top: 7px;
-    left: 50px;
-    font-family: Poppins;
-    font-weight: Regular;
-    font-size: 20px;
-    opacity: 1;
-    text-align: left;
+    border-radius: 10px;
+    border-color: lightgray;
   }
