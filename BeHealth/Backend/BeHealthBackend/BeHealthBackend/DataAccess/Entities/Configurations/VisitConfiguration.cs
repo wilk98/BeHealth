@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BeHealthBackend.Entities.Configurations
+namespace BeHealthBackend.DataAccess.Entities.Configurations
 {
     public class VisitConfiguration : IEntityTypeConfiguration<Visit>
     {

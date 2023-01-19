@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.Entities
+﻿namespace BeHealthBackend.DataAccess.Entities
 {
     public class Visit
     {

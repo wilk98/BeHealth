@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BeHealthBackend.Entities.Configurations
+namespace BeHealthBackend.DataAccess.Entities.Configurations
 {
     public class ClinicConfiguration : IEntityTypeConfiguration<Clinic>
     {
@@ -19,7 +19,7 @@ namespace BeHealthBackend.Entities.Configurations
                         .HasForeignKey(cp => cp.ClinicId),
                     cp =>
                     {
-                        cp.HasKey(x => new {x.PatientId, x.ClinicId });
+                        cp.HasKey(x => new { x.PatientId, x.ClinicId });
                     }
                 );
 

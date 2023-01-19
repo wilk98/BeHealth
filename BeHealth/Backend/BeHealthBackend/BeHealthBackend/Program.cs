@@ -1,4 +1,4 @@
-using BeHealthBackend.Entities;
+using BeHealthBackend.DataAccess.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
