@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeHealthBackend.Migrations
 {
     [DbContext(typeof(BeHealthContext))]
-    [Migration("20230118220944_Init")]
+    [Migration("20230119084350_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
