@@ -9,7 +9,8 @@ namespace BeHealthBackend.Entities.Configurations
         {
             builder.HasOne(v => v.Patient)
                 .WithMany(p => p.Visits)
-                .HasForeignKey(v => v.PatientId);
+                .HasForeignKey(v => v.PatientId)
+                .OnDelete(DeleteBehavior.ClientCascade);
 
             builder.HasOne(v => v.Doctor)
                 .WithMany(p => p.Visits)
