@@ -19,6 +19,19 @@ builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
         .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
+var devCorsPolicy = "devCorsPolicy";
+builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policyBuilder =>
+            {
+                policyBuilder
+                    .WithOrigins("http://localhost:5173")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .WithExposedHeaders("X-Pagination");
+            });
+        });
 
 var app = builder.Build();
 
@@ -32,6 +45,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors();
 app.MapControllers();
 
 using var scope = app.Services.CreateScope();

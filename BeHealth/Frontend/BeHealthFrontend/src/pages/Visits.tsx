@@ -1,7 +1,23 @@
 import './Visits.css'
 import { BiMessageSquare, BiCheck, HiXMark } from "react-icons/all"
+import { useEffect, useState } from 'react';
 
 export const Visits = () => {
+
+  const [visits, setVisits] = useState<Array<Visit>>([])
+  useEffect(() => {
+    (async () => {
+      const data = await fetch("https://localhost:7060/api/visits", {
+        headers: {
+        'Content-Type': 'application/json',
+        }
+      }
+      );
+      const json:Array<Visit> = await data.json();
+      setVisits(json);
+    })();
+  }, [])
+    
 
   function groupBy<T>(list: Array<T>, keyGetter: (arg0: T) => any) {
     const map = new Map();
@@ -23,32 +39,6 @@ export const Visits = () => {
     patient: string;
     duration: number;
   }
-  const data: Array<Visit> = [
-    {
-      startDate: 1672570800,
-      treatment: "Konsultacja ortopedyczna + USG",
-      patient: "Maryna Wanessa",
-      duration: 65
-    },
-    {
-      startDate: 1672575000,
-      treatment: "Konsultacja reumatologiczna",
-      patient: "Jan Koźmiński",
-      duration: 60
-    },
-    {
-      startDate: 1672579800,
-      treatment: "Terapia osoczem bogatym w czynniki wzrostu- PRP",
-      patient: "Ludomir Czerwońska",
-      duration: 45
-    },
-    {
-      startDate: 1672662600,
-      treatment: "Terapia Orthokine",
-      patient: "Wilhelm Sosnowski",
-      duration: 60
-    },
-  ]
 
   const monthNames: Array<string> = [
     "Stycznia",
@@ -73,7 +63,7 @@ export const Visits = () => {
     return `${getHumanTime(startDate.getHours(), startDate.getMinutes())} - ${getHumanTime(toDate.getHours(), toDate.getMinutes())}`
   };
 
-  const groupped = groupBy<Visit>(data, (v) => dateToHuman(getDate(v.startDate)))
+  const groupped = groupBy<Visit>(visits, (v) => dateToHuman(getDate(v.startDate)))
   const cards = Array<JSX.Element>();
   groupped.forEach((cardsData: Array<Visit>, date) => {
     cards.push(
