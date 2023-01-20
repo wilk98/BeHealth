@@ -34,7 +34,7 @@ public class VisitsController : ControllerBase
                 Duration = v.Duration,
                 Patient = $"{v.Patient.FirstName} {v.Patient.LastName}",
                 Treatment = v.Name,
-                StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeMilliseconds(),
+                StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
             });
         return Ok(visitsDTO);
     }
