@@ -1,5 +1,6 @@
 ﻿using BeHealthBackend.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace BeHealthBackend.DataAccess.DbContexts
 {
@@ -12,17 +13,6 @@ namespace BeHealthBackend.DataAccess.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
-            modelBuilder.Entity<Visit>().HasData(new Visit
-            {
-                Doctor = null,
-                DoctorId = Guid.NewGuid(),
-                Id = 1,
-                Name = "Test visit",
-                Patient = null,
-                PatientId = Guid.NewGuid(),
-                VisitDate = new DateTime()
-            });
         }
     }
 }

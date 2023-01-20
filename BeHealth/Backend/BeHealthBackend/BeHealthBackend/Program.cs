@@ -1,12 +1,13 @@
-using BeHealthBackend.DataAccess.DbContexts;
+﻿using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,7 +17,7 @@ builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
-        .UseSqlServer(builder.Configuration.GetConnectionString("BeHeathConnectionString")));
+        .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
 
 var app = builder.Build();
 

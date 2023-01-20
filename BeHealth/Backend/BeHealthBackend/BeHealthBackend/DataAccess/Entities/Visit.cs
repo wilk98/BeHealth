@@ -9,5 +9,6 @@
         public Guid DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
         public DateTime VisitDate { get; set; }
+        public int Duration { get; set; }
     }
 }

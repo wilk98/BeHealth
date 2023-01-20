@@ -27,6 +27,16 @@ namespace BeHealthBackend.DataAccess.Entities.Configurations
                         dp.HasKey(x => new { x.PatientId, x.DoctorId });
                     }
                 );
+            builder.HasData(new Doctor
+            {
+                Id = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
+                AddressId = new Guid("9030a7cf-dcbc-492a-af58-114be534139c"),
+                FirstName = "Eugeniusz",
+                LastName = "Kamiński",
+                Email = "EugeniuszKaminski@dayrep.com",
+                PhoneNumber = "519439105",
+                Specialist = Specialist.Oculist,
+            });
         }
     }
 }
