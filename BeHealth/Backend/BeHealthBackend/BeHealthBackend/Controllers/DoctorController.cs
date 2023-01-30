@@ -18,17 +18,13 @@ public class DoctorController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<DoctorDto>> GetAllDoctors()
     {
-        var doctors = _doctorService.GetAll();
-
-        return await doctors;
+        return await _doctorService.GetAll();
     }
 
     [HttpGet("{id}")]
     public async Task<DoctorDto> GetDoctorById([FromRoute] int id)
     {
-        var doctor = _doctorService.GetById(id);
-
-        return await doctor;
+        return await _doctorService.GetById(id);
     }
 
     [HttpPost]
@@ -36,6 +32,12 @@ public class DoctorController : ControllerBase
     {
         if (!ModelState.IsValid) BadRequest(ModelState);
         return await _doctorService.Create(dto);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<Doctor?> DeleteDoctorById([FromRoute] int id)
+    {
+        return await _doctorService.Delete(id);
     }
 }
 
