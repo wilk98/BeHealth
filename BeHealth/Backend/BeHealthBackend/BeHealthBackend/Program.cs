@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DataAccess.DbContexts;
+﻿using System.Reflection;
+using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using CityInfo.API.DataAccess.Repositories;
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
 builder.Services.AddScoped<IVisitRepository, VisitRepository>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
