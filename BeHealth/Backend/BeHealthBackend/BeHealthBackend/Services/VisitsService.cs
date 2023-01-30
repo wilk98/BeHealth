@@ -32,7 +32,7 @@ public class VisitsService : IVisitsService
         return true;
     }
 
-    public async Task<IEnumerable<VisitDTO>> GetVisitsByDoctorIdAsync(Guid id)
+    public async Task<IEnumerable<VisitDTO>> GetVisitsByDoctorIdAsync(int id)
     {
         var visits = await _unitOfWork.VisitRepository.GetAllAsync(
             filter: v => v.DoctorId.Equals(id),

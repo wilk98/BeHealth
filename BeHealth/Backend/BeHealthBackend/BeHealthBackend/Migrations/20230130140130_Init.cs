@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeHealthBackend.Migrations
 {
-    public partial class inital : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace BeHealthBackend.Migrations
                 name: "Address",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "varchar(6)", nullable: false)
@@ -30,7 +31,7 @@ namespace BeHealthBackend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AddressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,13 +48,14 @@ namespace BeHealthBackend.Migrations
                 name: "Doctor",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Specialist = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "varchar(9)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
                 },
                 constraints: table =>
@@ -71,13 +73,14 @@ namespace BeHealthBackend.Migrations
                 name: "Patient",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Pesel = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "varchar(9)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
                 },
                 constraints: table =>
@@ -95,7 +98,7 @@ namespace BeHealthBackend.Migrations
                 name: "ClinicDoctor",
                 columns: table => new
                 {
-                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     ClinicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -118,7 +121,7 @@ namespace BeHealthBackend.Migrations
                 name: "ClinicPatient",
                 columns: table => new
                 {
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: false),
                     ClinicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -141,8 +144,8 @@ namespace BeHealthBackend.Migrations
                 name: "DoctorPatient",
                 columns: table => new
                 {
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -167,10 +170,11 @@ namespace BeHealthBackend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     VisitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Duration = table.Column<int>(type: "int", nullable: false)
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Confirmed = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -193,36 +197,36 @@ namespace BeHealthBackend.Migrations
                 columns: new[] { "Id", "City", "PostalCode", "Street" },
                 values: new object[,]
                 {
-                    { new Guid("29d60fbf-2e9d-4cb1-b183-2392378941af"), "Warszawa", "01-401", " ul. Górczewska 82" },
-                    { new Guid("3d4f37e9-4d2e-4a86-9b2f-679fcbd103a9"), "Łódź", "91-503", "ul. Górczewska 82" },
-                    { new Guid("69d34af1-2911-4721-a9c7-815a3ad63ecd"), "Gdańsk", "80-680", "ul. Nadwiślańska 112" },
-                    { new Guid("9030a7cf-dcbc-492a-af58-114be534139c"), "Gdynia", "81-515", "ul. Kasztanowa 113" }
+                    { 1, "Gdańsk", "80-680", "ul. Nadwiślańska 112" },
+                    { 2, "Gdynia", "81-515", "ul. Kasztanowa 113" },
+                    { 3, "Warszawa", "01-401", " ul. Górczewska 82" },
+                    { 4, "Łódź", "91-503", "ul. Górczewska 82" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Doctor",
                 columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "PhoneNumber", "Specialist" },
-                values: new object[] { new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"), new Guid("9030a7cf-dcbc-492a-af58-114be534139c"), "EugeniuszKaminski@dayrep.com", "Eugeniusz", "Kamiński", "519439105", 9 });
+                values: new object[] { 1, 1, "EugeniuszKaminski@dayrep.com", "Eugeniusz", "Kamiński", "519439105", 9 });
 
             migrationBuilder.InsertData(
                 table: "Patient",
                 columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "Pesel", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { new Guid("1ef9d268-e925-483d-b854-6ed17ba81f81"), new Guid("69d34af1-2911-4721-a9c7-815a3ad63ecd"), "AdelajdaZielinska@teleworm.us", "Adelajda", "Zielinska", 380923623, "692435107" },
-                    { new Guid("2f9343e6-667c-4f86-9f10-86019aed7c62"), new Guid("3d4f37e9-4d2e-4a86-9b2f-679fcbd103a9"), "JakubGrabowski@rhyta.com", "Jakub", "Grabowski", 500501563, "531556254" },
-                    { new Guid("a3fbe5f5-11bf-41f2-9aa0-578720514df3"), new Guid("29d60fbf-2e9d-4cb1-b183-2392378941af"), "WitoldKwiatkowski@armyspy.com", "Witołd", "Kwiatkowski", 990819957, "784251125    " }
+                    { 1, 2, "AdelajdaZielinska@teleworm.us", "Adelajda", "Zielinska", 380923623, "692435107" },
+                    { 2, 3, "WitoldKwiatkowski@armyspy.com", "Witołd", "Kwiatkowski", 990819957, "784251125    " },
+                    { 3, 4, "JakubGrabowski@rhyta.com", "Jakub", "Grabowski", 500501563, "531556254" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Visit",
-                columns: new[] { "Id", "DoctorId", "Duration", "Name", "PatientId", "VisitDate" },
+                columns: new[] { "Id", "Confirmed", "DoctorId", "Duration", "Name", "PatientId", "VisitDate" },
                 values: new object[,]
                 {
-                    { -4, new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"), 60, "Terapia Orthokine", new Guid("1ef9d268-e925-483d-b854-6ed17ba81f81"), new DateTime(2023, 1, 2, 12, 30, 0, 0, DateTimeKind.Utc) },
-                    { -3, new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"), 45, "Terapia osoczem bogatym w czynniki wzrostu- PRP", new Guid("2f9343e6-667c-4f86-9f10-86019aed7c62"), new DateTime(2023, 1, 1, 13, 30, 0, 0, DateTimeKind.Utc) },
-                    { -2, new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"), 60, "Konsultacja reumatologiczna", new Guid("a3fbe5f5-11bf-41f2-9aa0-578720514df3"), new DateTime(2023, 1, 1, 12, 10, 0, 0, DateTimeKind.Utc) },
-                    { -1, new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"), 65, "Konsultacja ortopedyczna + USG", new Guid("1ef9d268-e925-483d-b854-6ed17ba81f81"), new DateTime(2023, 1, 1, 11, 0, 0, 0, DateTimeKind.Utc) }
+                    { -4, null, 1, 60, "Terapia Orthokine", 3, new DateTime(2023, 1, 2, 12, 30, 0, 0, DateTimeKind.Utc) },
+                    { -3, null, 1, 45, "Terapia osoczem bogatym w czynniki wzrostu- PRP", 2, new DateTime(2023, 1, 1, 13, 30, 0, 0, DateTimeKind.Utc) },
+                    { -2, null, 1, 60, "Konsultacja reumatologiczna", 1, new DateTime(2023, 1, 1, 12, 10, 0, 0, DateTimeKind.Utc) },
+                    { -1, null, 1, 65, "Konsultacja ortopedyczna + USG", 1, new DateTime(2023, 1, 1, 11, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.CreateIndex(

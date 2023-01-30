@@ -75,7 +75,7 @@ const VisitCard = ({ id, treatment, patient, time, confirmed, setConfirmationSta
 
 export const Visits = () => {
 
-  const doctorId = "25A4CBB5-B31C-40B6-A536-396ABDC1833D";
+  const doctorId = "1";
   const [visits, setVisits] = useState<Array<Visit>>([])
   const setVisitConfirmationStatus = (id: string, status: boolean) => {
     setVisits(prevVisits => prevVisits.map(visit => {

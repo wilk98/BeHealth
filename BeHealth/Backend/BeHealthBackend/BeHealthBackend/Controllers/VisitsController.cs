@@ -16,7 +16,7 @@ public class VisitsController : ControllerBase
     }
 
     [HttpGet("{doctorId}")]
-    public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor(Guid doctorId)
+    public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor(int doctorId)
     {
         var visits = _visitsService.GetVisitsByDoctorIdAsync(doctorId);
         return await visits;

@@ -6,5 +6,5 @@ public interface IVisitsService
 {
     Task<bool> DeclineVisit(int visitId);
     Task<bool> AcceptVisit(int visitId);
-    Task<IEnumerable<VisitDTO>> GetVisitsByDoctorIdAsync(Guid id);
+    Task<IEnumerable<VisitDTO>> GetVisitsByDoctorIdAsync(int id);
 }
