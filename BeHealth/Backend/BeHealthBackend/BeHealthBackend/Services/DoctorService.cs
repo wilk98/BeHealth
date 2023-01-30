@@ -42,6 +42,22 @@ public class DoctorService : IDoctorService
         return doctor;
     }
 
+    public async Task<Doctor?> Update(int id, UpdateDoctorDto dto)
+    {
+        var doctor = await _unitOfWork.DoctorRepository
+            .GetAsync(id);
+
+        if (doctor != null)
+        {
+            doctor.FirstName = dto.FirstName;
+            doctor.LastName = dto.LastName;
+            doctor.PhoneNumber = dto.PhoneNumber;
+            doctor.Email = dto.Email;
+            await _unitOfWork.SaveAsync();
+        }
+        return doctor;
+    }
+
     public async Task<Doctor?> Delete(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository

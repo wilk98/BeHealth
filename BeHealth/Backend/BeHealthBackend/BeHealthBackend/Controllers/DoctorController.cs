@@ -34,6 +34,14 @@ public class DoctorController : ControllerBase
         return await _doctorService.Create(dto);
     }
 
+    [HttpPut("{id}")]
+    public async Task<Doctor?> UpdateDoctor([FromRoute] int id, [FromBody] UpdateDoctorDto dto)
+    {
+        if (!ModelState.IsValid) BadRequest(ModelState);
+        return await _doctorService.Update(id, dto);
+    }
+
+
     [HttpDelete("{id}")]
     public async Task<Doctor?> DeleteDoctorById([FromRoute] int id)
     {
