@@ -5,6 +5,7 @@ using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using BeHealthBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
 builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddScoped<IDoctorService, DoctorService>();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
