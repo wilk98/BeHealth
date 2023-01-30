@@ -37,10 +37,11 @@ const VisitCard = ({ treatment, patient, time}:Card ) => {
 
 export const Visits = () => {
 
+  const doctorId = "25A4CBB5-B31C-40B6-A536-396ABDC1833D";
   const [visits, setVisits] = useState<Array<Visit>>([])
   useEffect(() => {
     (async () => {
-      const data = await fetch("https://localhost:7060/api/visits", {
+      const data = await fetch(`https://localhost:44319/api/visits/${doctorId}`, {
         headers: {
           'Content-Type': 'application/json',
         }
@@ -64,14 +65,14 @@ export const Visits = () => {
   const cards = Array<JSX.Element>();
   groupped.forEach((cardsData: Array<Visit>, date) => {
     cards.push(
-      <>
+      <article key={date}>
         <h3 className="day-group">{date}</h3>
         {
           cardsData.map(card => (
             <VisitCard key={card.id} {...card} time={getTimeSpan(getDate(card.startDate), card.duration)} />
           ))
         }
-      </>
+      </article>
     )
   })
 

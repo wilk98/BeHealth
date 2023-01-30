@@ -1,6 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using BeHealthBackend.Services;
 using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -14,11 +15,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
 builder.Services.AddScoped<IVisitRepository, VisitRepository>();
+builder.Services.AddScoped<IVisitsService, VisitsService>();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
         .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
-var devCorsPolicy = "devCorsPolicy";
 builder.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(policyBuilder =>
