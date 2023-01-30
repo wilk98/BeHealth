@@ -2,6 +2,7 @@
 using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using BeHealthBackend.Services;
 using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -9,7 +10,6 @@ using BeHealthBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Czy to jest potrzebne? Vizyta podciąga pacjenta, który ma tą wizytę w liście wizyt
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,13 +17,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
 builder.Services.AddScoped<IVisitRepository, VisitRepository>();
+builder.Services.AddScoped<IVisitsService, VisitsService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
         .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
-var devCorsPolicy = "devCorsPolicy";
 builder.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(policyBuilder =>

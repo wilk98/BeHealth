@@ -63,6 +63,25 @@ main.visits .info .buttons>div {
     cursor: pointer;
 }
 
+main.visits .info .buttons .confirmation-status {
+    width: inherit;
+    animation-name: fade-in-left;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    animation-direction: forward;
+}
+
+@keyframes fade-in-left {
+    0% {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 main.visits .info .buttons>div:hover {
     filter: brightness(0.8);
 }
