@@ -21,4 +21,16 @@ public class VisitsController : ControllerBase
         var visits = _visitsService.GetVisitsByDoctorIdAsync(doctorId);
         return await visits;
     }
+    [HttpPost("api/visits/{visitId}/decline")]
+    public async Task<bool> DeclineVisit(int visitId)
+    {
+        return await _visitsService.DeclineVisit(visitId);
+    }
+
+
+    [HttpPost("api/visits/{visitId}/accept")]
+    public async Task<bool> AcceptVisit(int visitId)
+    {
+        return await _visitsService.AcceptVisit(visitId);
+    }
 }

@@ -4,6 +4,7 @@ using BeHealthBackend.DataAccess.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeHealthBackend.Migrations
 {
     [DbContext(typeof(BeHealthContext))]
-    partial class BeHealthContextModelSnapshot : ModelSnapshot
+    [Migration("20230130101743_TrackVisitConfirmationStatus")]
+    partial class TrackVisitConfirmationStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -281,7 +283,7 @@ namespace BeHealthBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool?>("Confirmed")
+                    b.Property<bool>("Confirmed")
                         .HasColumnType("bit");
 
                     b.Property<Guid>("DoctorId")
@@ -312,6 +314,7 @@ namespace BeHealthBackend.Migrations
                         new
                         {
                             Id = -1,
+                            Confirmed = false,
                             DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
                             Duration = 65,
                             Name = "Konsultacja ortopedyczna + USG",
@@ -321,6 +324,7 @@ namespace BeHealthBackend.Migrations
                         new
                         {
                             Id = -2,
+                            Confirmed = false,
                             DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
                             Duration = 60,
                             Name = "Konsultacja reumatologiczna",
@@ -330,6 +334,7 @@ namespace BeHealthBackend.Migrations
                         new
                         {
                             Id = -3,
+                            Confirmed = false,
                             DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
                             Duration = 45,
                             Name = "Terapia osoczem bogatym w czynniki wzrostu- PRP",
@@ -339,6 +344,7 @@ namespace BeHealthBackend.Migrations
                         new
                         {
                             Id = -4,
+                            Confirmed = false,
                             DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
                             Duration = 60,
                             Name = "Terapia Orthokine",

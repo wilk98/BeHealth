@@ -12,6 +12,26 @@ public class VisitsService : IVisitsService
         _unitOfWork = unitOfWork;
     }
 
+    public async Task<bool> AcceptVisit(int visitId)
+    {
+        var visit = await _unitOfWork.VisitRepository.GetAsync(visitId);
+        if (visit == null) return false;
+
+        visit.Confirmed = true;
+        await _unitOfWork.SaveAsync();
+        return true;
+    }
+
+    public async Task<bool> DeclineVisit(int visitId)
+    {
+        var visit = await _unitOfWork.VisitRepository.GetAsync(visitId);
+        if (visit == null) return false;
+
+        visit.Confirmed = false;
+        await _unitOfWork.SaveAsync();
+        return true;
+    }
+
     public async Task<IEnumerable<VisitDTO>> GetVisitsByDoctorIdAsync(Guid id)
     {
         var visits = await _unitOfWork.VisitRepository.GetAllAsync(
