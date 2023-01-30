@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DataAccess.Repositories.Interfaces;
+﻿using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DTOs;
+using BeHealthBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
@@ -9,48 +8,34 @@ namespace BeHealthBackend.Controllers;
 [ApiController, Route("/api/doctors")]
 public class DoctorController : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
+    private readonly IDoctorService _doctorService;
 
-    public DoctorController(IUnitOfWork unitOfWork, IMapper mapper)
+    public DoctorController(IDoctorService doctorService)
     {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
+        _doctorService = doctorService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IEnumerable<DoctorDto>> GetAllDoctors()
     {
-        var doctors = await _unitOfWork.DoctorRepository
-            .GetAllAsync(includeProperties: "Address");
+        var doctors = _doctorService.GetAll();
 
-        var doctorsDtos = _mapper.Map<List<DoctorDto>>(doctors);
-
-        return Ok(doctorsDtos);
+        return await doctors;
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetDoctor([FromRoute] int id)
+    public async Task<DoctorDto> GetDoctorById([FromRoute] int id)
     {
-        var doctor = await _unitOfWork.DoctorRepository
-            .GetAsync(d=>d.Id == id, includeProperties: "Address");
+        var doctor = _doctorService.GetById(id);
 
-        if (doctor is null) return NotFound();
-
-        var doctorDto = _mapper.Map<DoctorDto>(doctor);
-
-        return Ok(doctorDto);
+        return await doctor;
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddDoctorAsync([FromBody] CreateDoctorDto dto)
+    public async Task<Doctor> AddDoctorAsync([FromBody] CreateDoctorDto dto)
     {
         if (!ModelState.IsValid) BadRequest(ModelState);
-        var doctor = _mapper.Map<Doctor>(dto);
-        await _unitOfWork.DoctorRepository.AddAsync(doctor);
-        await _unitOfWork.SaveAsync();
-
-        return Created($"/api/doctors/{doctor.Id}", null);
+        return await _doctorService.Create(dto);
     }
 }
 
