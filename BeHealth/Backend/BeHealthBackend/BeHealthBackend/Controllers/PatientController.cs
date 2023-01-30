@@ -21,7 +21,7 @@ public class PatientController : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var patients = await _unitOfWork.PatientRepository
-            .GetAllAsync();
+            .GetAllAsync(includeProperties: "Address");
 
         var patientsDtos = _mapper.Map<List<PatientDto>>(patients);
 
@@ -32,7 +32,7 @@ public class PatientController : ControllerBase
     public async Task<IActionResult> GetDoctor([FromRoute] int id)
     {
         var patient = await _unitOfWork.PatientRepository
-            .GetAsync(id);
+            .GetAsync(p => p.Id == id, includeProperties: "Address");
 
         if (patient is null) return NotFound();
 
