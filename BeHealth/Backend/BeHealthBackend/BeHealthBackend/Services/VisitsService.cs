@@ -45,6 +45,7 @@ public class VisitsService : IVisitsService
                 PatientId = v.PatientId,
                 Patient = $"{v.Patient.FirstName} {v.Patient.LastName}",
                 Treatment = v.Name,
+                Confirmed = v.Confirmed,
                 StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
             }
         );

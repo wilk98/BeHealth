@@ -8,5 +8,6 @@
         public string? Patient { get; init; }
         public Guid? PatientId { get; init; }
         public int Duration { get; set; }
+        public bool? Confirmed { get; set; }
     }
 }

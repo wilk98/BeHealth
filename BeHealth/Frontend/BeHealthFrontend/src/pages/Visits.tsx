@@ -4,13 +4,61 @@ import { BiMessageSquare, BiCheck, HiXMark } from "react-icons/all"
 import { useEffect, useState } from 'react';
 import { dateToHuman, getDate, getTimeSpan } from '../utils/calendar';
 
+interface Buttons {
+  id: string,
+  confirmed?: boolean,
+  setConfirmationStatus: (arg0: string, arg1: boolean) => void,
+}
+
+const Buttons = ({ id, confirmed, setConfirmationStatus }:Buttons) => {
+  function handleVisitClick(id: string, status: boolean, setConfirmationStatus: (arg0: string, arg1: boolean) => void) {
+    setConfirmationStatus(id, status);
+    fetch(`https://localhost:44319/api/visits/${id}/${status ? 'accept' : 'decline'}`, {
+      method: "POST"
+    });
+  }
+  return (
+    <div className="buttons">
+      {
+        confirmed !== null &&
+        <div className="confirmation-status">
+          <p>{confirmed ? 'Potwierdzono' : 'Anulowano'}</p>
+        </div>
+      }
+      <div className="message">
+        <BiMessageSquare className='' />
+      </div>
+      {
+        ((confirmed === null) || (confirmed === false)) &&
+        (
+          <div className="accept" onClick={() => handleVisitClick(id, true, setConfirmationStatus)}>
+            <BiCheck className='' />
+          </div>
+        )
+      }
+      {
+        ((confirmed === null) || (confirmed === true)) &&
+        (
+          <div className="decline">
+            <HiXMark className='' onClick={() => handleVisitClick(id, false, setConfirmationStatus)} />
+          </div>
+        )
+      }
+    </div>
+  )
+}
+
 interface Card {
+  id: string,
   treatment: string,
   patient: string,
   time: string,
+  confirmed?: boolean,
+  setConfirmationStatus: (arg0: string, arg1: boolean) => void,
 }
 
-const VisitCard = ({ treatment, patient, time}:Card ) => {
+
+const VisitCard = ({ id, treatment, patient, time, confirmed, setConfirmationStatus }: Card) => {
   return (
     <div className="card">
       <div className="title">
@@ -19,17 +67,7 @@ const VisitCard = ({ treatment, patient, time}:Card ) => {
       </div>
       <div className="info">
         <p className="time">{time}</p>
-        <div className="buttons">
-          <div className="message">
-            <BiMessageSquare className='' />
-          </div>
-          <div className="accept">
-            <BiCheck className='' />
-          </div>
-          <div className="decline">
-            <HiXMark className='' />
-          </div>
-        </div>
+        <Buttons id={id} confirmed={confirmed} setConfirmationStatus={setConfirmationStatus} />
       </div>
     </div>
   )
@@ -39,6 +77,16 @@ export const Visits = () => {
 
   const doctorId = "25A4CBB5-B31C-40B6-A536-396ABDC1833D";
   const [visits, setVisits] = useState<Array<Visit>>([])
+  const setVisitConfirmationStatus = (id: string, status: boolean) => {
+    setVisits(prevVisits => prevVisits.map(visit => {
+      return visit.id !== id ? visit : {
+        ...visit,
+        confirmed: status
+      }
+    })
+    )
+  };
+
   useEffect(() => {
     (async () => {
       const data = await fetch(`https://localhost:44319/api/visits/${doctorId}`, {
@@ -48,16 +96,18 @@ export const Visits = () => {
       }
       );
       const json: Array<Visit> = await data.json();
+      console.log(json)
       setVisits(json);
     })();
   }, [])
 
   interface Visit {
-    id: number,
-    startDate: number;
-    treatment: string;
-    patient: string;
-    duration: number;
+    id: string,
+    startDate: number,
+    treatment: string,
+    patient: string,
+    duration: number,
+    confirmed?: boolean,
   }
 
 
@@ -68,9 +118,10 @@ export const Visits = () => {
       <article key={date}>
         <h3 className="day-group">{date}</h3>
         {
-          cardsData.map(card => (
-            <VisitCard key={card.id} {...card} time={getTimeSpan(getDate(card.startDate), card.duration)} />
-          ))
+          cardsData.map(card => {
+
+            return (<VisitCard key={card.id} {...card} setConfirmationStatus={setVisitConfirmationStatus} time={getTimeSpan(getDate(card.startDate), card.duration)} />)
+          })
         }
       </article>
     )
