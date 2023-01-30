@@ -3,9 +3,9 @@ using BeHealthBackend.DTOs;
 
 namespace BeHealthBackend.Profile
 {
-    public class DoctorMappingProfile : AutoMapper.Profile
+    public class MappingProfile : AutoMapper.Profile
     {
-        public DoctorMappingProfile()
+        public MappingProfile()
         {
             CreateMap<Doctor, DoctorDto>()
                 .ForMember(dto => dto.City, d => d.MapFrom(c => c.Address.City))
