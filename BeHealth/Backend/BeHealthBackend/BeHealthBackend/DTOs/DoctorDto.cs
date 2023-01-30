@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using BeHealthBackend.DataAccess.Entities;
 
 namespace BeHealthBackend.DTOs
 {
@@ -7,7 +8,9 @@ namespace BeHealthBackend.DTOs
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [Phone]
         public string PhoneNumber { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
