@@ -45,13 +45,12 @@ public class DoctorController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddDoctorAsync([FromBody] CreateDoctorDto dto)
     {
-        var doctorMapping = _mapper.Map<Doctor>(dto);
-
-        await _unitOfWork.DoctorRepository.AddAsync(doctorMapping);
-
+        if (!ModelState.IsValid) BadRequest(ModelState);
+        var doctor = _mapper.Map<Doctor>(dto);
+        await _unitOfWork.DoctorRepository.AddAsync(doctor);
         await _unitOfWork.SaveAsync();
 
-        return Created($"/api/doctors/{doctorMapping.Id}", null);
+        return Created($"/api/doctors/{doctor.Id}", null);
     }
 }
 
