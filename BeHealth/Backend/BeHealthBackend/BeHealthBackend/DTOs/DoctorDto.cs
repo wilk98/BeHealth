@@ -13,6 +13,5 @@ namespace BeHealthBackend.DTOs
         public string Street { get; set; }
         public string PostalCode { get; set; }
         public Specialist Specialist { get; set; }
-        public List<PatientDto> Patients { get; set; }
     }
 }
