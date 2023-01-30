@@ -15,20 +15,20 @@ public class VisitsController : ControllerBase
         _visitsService = visitsService;
     }
 
-    [HttpGet("/api/visits/{doctorId}")]
+    [HttpGet("{doctorId}")]
     public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor(Guid doctorId)
     {
         var visits = _visitsService.GetVisitsByDoctorIdAsync(doctorId);
         return await visits;
     }
-    [HttpPost("api/visits/{visitId}/decline")]
+    [HttpPost("{visitId}/decline")]
     public async Task<bool> DeclineVisit(int visitId)
     {
         return await _visitsService.DeclineVisit(visitId);
     }
 
 
-    [HttpPost("api/visits/{visitId}/accept")]
+    [HttpPost("{visitId}/accept")]
     public async Task<bool> AcceptVisit(int visitId)
     {
         return await _visitsService.AcceptVisit(visitId);
