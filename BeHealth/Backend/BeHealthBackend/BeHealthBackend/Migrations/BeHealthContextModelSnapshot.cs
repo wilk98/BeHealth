@@ -24,9 +24,11 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Address", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -47,28 +49,28 @@ namespace BeHealthBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("69d34af1-2911-4721-a9c7-815a3ad63ecd"),
+                            Id = 1,
                             City = "Gdańsk",
                             PostalCode = "80-680",
                             Street = "ul. Nadwiślańska 112"
                         },
                         new
                         {
-                            Id = new Guid("9030a7cf-dcbc-492a-af58-114be534139c"),
+                            Id = 2,
                             City = "Gdynia",
                             PostalCode = "81-515",
                             Street = "ul. Kasztanowa 113"
                         },
                         new
                         {
-                            Id = new Guid("29d60fbf-2e9d-4cb1-b183-2392378941af"),
+                            Id = 3,
                             City = "Warszawa",
                             PostalCode = "01-401",
                             Street = " ul. Górczewska 82"
                         },
                         new
                         {
-                            Id = new Guid("3d4f37e9-4d2e-4a86-9b2f-679fcbd103a9"),
+                            Id = 4,
                             City = "Łódź",
                             PostalCode = "91-503",
                             Street = "ul. Górczewska 82"
@@ -83,8 +85,8 @@ namespace BeHealthBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -100,8 +102,8 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.ClinicDoctor", b =>
                 {
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ClinicId")
                         .HasColumnType("int");
@@ -115,8 +117,8 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.ClinicPatient", b =>
                 {
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ClinicId")
                         .HasColumnType("int");
@@ -130,12 +132,14 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Doctor", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
@@ -171,8 +175,8 @@ namespace BeHealthBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
-                            AddressId = new Guid("9030a7cf-dcbc-492a-af58-114be534139c"),
+                            Id = 1,
+                            AddressId = 1,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "EugeniuszKaminski@dayrep.com",
                             FirstName = "Eugeniusz",
@@ -184,11 +188,11 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.DoctorPatient", b =>
                 {
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.HasKey("PatientId", "DoctorId");
 
@@ -199,12 +203,14 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Patient", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
@@ -240,8 +246,8 @@ namespace BeHealthBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ef9d268-e925-483d-b854-6ed17ba81f81"),
-                            AddressId = new Guid("69d34af1-2911-4721-a9c7-815a3ad63ecd"),
+                            Id = 1,
+                            AddressId = 2,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "AdelajdaZielinska@teleworm.us",
                             FirstName = "Adelajda",
@@ -251,8 +257,8 @@ namespace BeHealthBackend.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a3fbe5f5-11bf-41f2-9aa0-578720514df3"),
-                            AddressId = new Guid("29d60fbf-2e9d-4cb1-b183-2392378941af"),
+                            Id = 2,
+                            AddressId = 3,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "WitoldKwiatkowski@armyspy.com",
                             FirstName = "Witołd",
@@ -262,8 +268,8 @@ namespace BeHealthBackend.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2f9343e6-667c-4f86-9f10-86019aed7c62"),
-                            AddressId = new Guid("3d4f37e9-4d2e-4a86-9b2f-679fcbd103a9"),
+                            Id = 3,
+                            AddressId = 4,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "JakubGrabowski@rhyta.com",
                             FirstName = "Jakub",
@@ -281,8 +287,8 @@ namespace BeHealthBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
@@ -291,8 +297,8 @@ namespace BeHealthBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("VisitDate")
                         .HasColumnType("datetime2");
@@ -309,37 +315,37 @@ namespace BeHealthBackend.Migrations
                         new
                         {
                             Id = -1,
-                            DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
+                            DoctorId = 1,
                             Duration = 65,
                             Name = "Konsultacja ortopedyczna + USG",
-                            PatientId = new Guid("1ef9d268-e925-483d-b854-6ed17ba81f81"),
+                            PatientId = 1,
                             VisitDate = new DateTime(2023, 1, 1, 11, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = -2,
-                            DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
+                            DoctorId = 1,
                             Duration = 60,
                             Name = "Konsultacja reumatologiczna",
-                            PatientId = new Guid("a3fbe5f5-11bf-41f2-9aa0-578720514df3"),
+                            PatientId = 1,
                             VisitDate = new DateTime(2023, 1, 1, 12, 10, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = -3,
-                            DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
+                            DoctorId = 1,
                             Duration = 45,
                             Name = "Terapia osoczem bogatym w czynniki wzrostu- PRP",
-                            PatientId = new Guid("2f9343e6-667c-4f86-9f10-86019aed7c62"),
+                            PatientId = 2,
                             VisitDate = new DateTime(2023, 1, 1, 13, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = -4,
-                            DoctorId = new Guid("25a4cbb5-b31c-40b6-a536-396abdc1833d"),
+                            DoctorId = 1,
                             Duration = 60,
                             Name = "Terapia Orthokine",
-                            PatientId = new Guid("1ef9d268-e925-483d-b854-6ed17ba81f81"),
+                            PatientId = 3,
                             VisitDate = new DateTime(2023, 1, 2, 12, 30, 0, 0, DateTimeKind.Utc)
                         });
                 });
