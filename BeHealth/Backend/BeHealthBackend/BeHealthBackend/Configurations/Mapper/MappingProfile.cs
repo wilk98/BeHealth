@@ -1,7 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs.Doctor;
-using BeHealthBackend.DTOs.Patient;
-using BeHealthBackend.DTOs.Visit;
+using BeHealthBackend.DTOs.DoctorDtoFolder;
+using BeHealthBackend.DTOs.PatientDtoFolder;
+using BeHealthBackend.DTOs.VisitDtoFolder;
 
 namespace BeHealthBackend.Configurations.Mapper
 {

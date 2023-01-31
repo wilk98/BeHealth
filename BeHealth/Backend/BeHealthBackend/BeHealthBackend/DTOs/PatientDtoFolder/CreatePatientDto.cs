@@ -1,7 +1,7 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using BeHealthBackend.DataAccess.Entities;
 
-namespace BeHealthBackend.DTOs.Patient;
+namespace BeHealthBackend.DTOs.PatientDtoFolder;
 public class CreatePatientDto
 {
     public string FirstName { get; set; }

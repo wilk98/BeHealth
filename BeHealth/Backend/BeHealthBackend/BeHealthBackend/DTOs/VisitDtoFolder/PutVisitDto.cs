@@ -1,6 +1,4 @@
-﻿using AutoMapper.Configuration.Conventions;
-
-namespace BeHealthBackend.DTOs.Visit
+﻿namespace BeHealthBackend.DTOs.VisitDtoFolder
 {
     public class PutVisitDto
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BeHealthBackend.DataAccess.Entities;
 
-namespace BeHealthBackend.DTOs.Doctor
+namespace BeHealthBackend.DTOs.DoctorDtoFolder
 {
     public class CreateDoctorDto
     {

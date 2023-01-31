@@ -1,6 +1,6 @@
-﻿using BeHealthBackend.DTOs.Doctor;
+﻿using BeHealthBackend.DTOs.DoctorDtoFolder;
 
-namespace BeHealthBackend.Services.Doctor;
+namespace BeHealthBackend.Services.DoctorServices;
 public interface IDoctorService
 {
     Task<IEnumerable<DoctorDto>> GetAll();

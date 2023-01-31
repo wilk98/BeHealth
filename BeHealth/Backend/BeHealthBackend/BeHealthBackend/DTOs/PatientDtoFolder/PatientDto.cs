@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using BeHealthBackend.DataAccess.Entities;
 
-namespace BeHealthBackend.DTOs.Doctor
+namespace BeHealthBackend.DTOs.PatientDtoFolder
 {
-    public class DoctorDto
+    public class PatientDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -15,6 +14,6 @@ namespace BeHealthBackend.DTOs.Doctor
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
-        public Specialist Specialist { get; set; }
+        public int Pesel { get; set; }
     }
 }

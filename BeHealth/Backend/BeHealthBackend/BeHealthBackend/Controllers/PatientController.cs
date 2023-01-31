@@ -1,5 +1,5 @@
-﻿using BeHealthBackend.DTOs.Patient;
-using BeHealthBackend.Services.Patient;
+﻿using BeHealthBackend.DTOs.PatientDtoFolder;
+using BeHealthBackend.Services.PatientServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
