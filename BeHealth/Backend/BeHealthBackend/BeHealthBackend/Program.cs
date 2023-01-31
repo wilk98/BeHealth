@@ -6,6 +6,7 @@ using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using BeHealthBackend.Services.Doctor;
+using BeHealthBackend.Services.Patient;
 using BeHealthBackend.Services.Visit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 builder.Services.AddScoped<IVisitsService, VisitsService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
 
 builder.Services.AddDbContext<BeHealthContext>(
     option => option
