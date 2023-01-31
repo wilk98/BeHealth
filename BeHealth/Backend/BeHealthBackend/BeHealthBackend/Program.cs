@@ -2,11 +2,11 @@
 using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.Services;
 using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-
+using BeHealthBackend.Services.Doctor;
+using BeHealthBackend.Services.Visit;
 
 var builder = WebApplication.CreateBuilder(args);
 
