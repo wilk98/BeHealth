@@ -1,5 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs;
+﻿using BeHealthBackend.DTOs;
 using BeHealthBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,36 +15,41 @@ public class DoctorController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<DoctorDto>> GetAllDoctors()
+    public async Task<ActionResult<IEnumerable<DoctorDto>>> GetAllDoctors()
     {
-        return await _doctorService.GetAll();
+        var doctors = await _doctorService.GetAll();
+        return Ok(doctors);
     }
 
     [HttpGet("{id}")]
-    public async Task<DoctorDto> GetDoctorById([FromRoute] int id)
+    public async Task<ActionResult<DoctorDto>> GetDoctorById([FromRoute] int id)
     {
-        return await _doctorService.GetById(id);
+        var doctor = await _doctorService.GetById(id);
+        return Ok(doctor);
     }
 
     [HttpPost]
-    public async Task<Doctor> AddDoctorAsync([FromBody] CreateDoctorDto dto)
+    public async Task<IActionResult> AddDoctorAsync([FromBody] CreateDoctorDto dto)
     {
         if (!ModelState.IsValid) BadRequest(ModelState);
-        return await _doctorService.Create(dto);
+        var (doctorId, doctor) = await _doctorService.Create(dto);
+        return Created($"/api/doctors/{doctorId}", doctor);
     }
 
     [HttpPut("{id}")]
-    public async Task<Doctor?> UpdateDoctor([FromRoute] int id, [FromBody] UpdateDoctorDto dto)
+    public async Task<IActionResult> UpdateDoctor([FromRoute] int id, [FromBody] UpdateDoctorDto dto)
     {
         if (!ModelState.IsValid) BadRequest(ModelState);
-        return await _doctorService.Update(id, dto);
+        await _doctorService.Update(id, dto);
+        return NoContent();
     }
 
 
     [HttpDelete("{id}")]
-    public async Task<Doctor?> DeleteDoctorById([FromRoute] int id)
+    public async Task<IActionResult> DeleteDoctorById([FromRoute] int id)
     {
-        return await _doctorService.Delete(id);
+        await _doctorService.Delete(id);
+        return NoContent();
     }
 }
 

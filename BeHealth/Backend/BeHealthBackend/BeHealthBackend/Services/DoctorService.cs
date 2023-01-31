@@ -2,6 +2,7 @@
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs;
+using BeHealthBackend.Configurations.Exceptions;
 
 namespace BeHealthBackend.Services;
 public class DoctorService : IDoctorService
@@ -34,38 +35,39 @@ public class DoctorService : IDoctorService
         return doctorDto;
     }
 
-    public async Task<Doctor> Create(CreateDoctorDto dto)
+    public async Task<(int, CreateDoctorDto)> Create(CreateDoctorDto dto)
     {
         var doctor = _mapper.Map<Doctor>(dto);
         await _unitOfWork.DoctorRepository.AddAsync(doctor);
         await _unitOfWork.SaveAsync();
-        return doctor;
+        return (doctor.Id, _mapper.Map<CreateDoctorDto>(doctor));
     }
 
-    public async Task<Doctor?> Update(int id, UpdateDoctorDto dto)
+    public async Task Update(int id, UpdateDoctorDto dto)
     {
         var doctor = await _unitOfWork.DoctorRepository
             .GetAsync(id);
 
-        if (doctor != null)
+        if (doctor is null)
         {
-            doctor.FirstName = dto.FirstName;
-            doctor.LastName = dto.LastName;
-            doctor.PhoneNumber = dto.PhoneNumber;
-            doctor.Email = dto.Email;
-            await _unitOfWork.SaveAsync();
+            throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
         }
-        return doctor;
+
+        _mapper.Map(dto, doctor);
+        await _unitOfWork.SaveAsync();
     }
 
-    public async Task<Doctor?> Delete(int id)
+    public async Task Delete(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository
             .GetAsync(id);
 
-        if (doctor != null) _unitOfWork.DoctorRepository.Remove(doctor);
+        if (doctor is null)
+        {
+            throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
+        }
+        _unitOfWork.DoctorRepository.Remove(doctor);
         await _unitOfWork.SaveAsync();
-        return doctor;
     }
 }
 
