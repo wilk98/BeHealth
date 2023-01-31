@@ -1,5 +1,5 @@
-﻿using BeHealthBackend.DTOs.Visit;
-using BeHealthBackend.Services;
+﻿using BeHealthBackend.DTOs.VisitDtoFolder;
+using BeHealthBackend.Services.VisitServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;

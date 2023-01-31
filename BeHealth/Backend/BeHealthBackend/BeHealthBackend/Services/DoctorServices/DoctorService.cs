@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using BeHealthBackend.Configurations.Exceptions;
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs;
-using BeHealthBackend.Configurations.Exceptions;
+using BeHealthBackend.DTOs.DoctorDtoFolder;
 
-namespace BeHealthBackend.Services;
+namespace BeHealthBackend.Services.DoctorServices;
 public class DoctorService : IDoctorService
 {
     private readonly IUnitOfWork _unitOfWork;
