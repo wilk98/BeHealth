@@ -6,7 +6,7 @@ using BeHealthBackend.Services;
 using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using BeHealthBackend.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
