@@ -1,7 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DTOs;
 
-namespace BeHealthBackend.Profile
+namespace BeHealthBackend.Configurations.Mapper
 {
     public class MappingProfile : AutoMapper.Profile
     {
@@ -20,7 +20,9 @@ namespace BeHealthBackend.Profile
             CreateMap<CreateDoctorDto, Doctor>()
                 .ForMember(d => d.Address,
                     c => c.MapFrom(dto => new Address()
-                        { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode }));
+                        { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode })).ReverseMap(); ;
+
+            CreateMap<UpdateDoctorDto, Doctor>();
         }
     }
 }
