@@ -1,6 +1,5 @@
-﻿using AutoMapper;
-using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs;
+﻿using BeHealthBackend.DTOs.Patient;
+using BeHealthBackend.Services.Patient;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
@@ -8,36 +7,47 @@ namespace BeHealthBackend.Controllers;
 [ApiController, Route("/api/patients")]
 public class PatientController : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
+    private readonly IPatientService _patientService;
 
-    public PatientController(IUnitOfWork unitOfWork, IMapper mapper)
+    public PatientController(IPatientService patientService)
     {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
+        _patientService = patientService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<ActionResult<IEnumerable<PatientDto>>> GetAllPatients()
     {
-        var patients = await _unitOfWork.PatientRepository
-            .GetAllAsync(includeProperties: "Address");
-
-        var patientsDtos = _mapper.Map<List<PatientDto>>(patients);
-
-        return Ok(patientsDtos);
+        var patients = await _patientService.GetAll();
+        return Ok(patients);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetDoctor([FromRoute] int id)
+    public async Task<ActionResult<PatientDto>> GetPatientById([FromRoute] int id)
     {
-        var patient = await _unitOfWork.PatientRepository
-            .GetAsync(p => p.Id == id, includeProperties: "Address");
+        var patient = await _patientService.GetById(id);
+        return Ok(patient);
+    }
 
-        if (patient is null) return NotFound();
+    [HttpPost]
+    public async Task<IActionResult> AddPatientAsync([FromBody] CreatePatientDto dto)
+    {
+        if (!ModelState.IsValid) BadRequest(ModelState);
+        var (patientId, patient) = await _patientService.Create(dto);
+        return Created($"/api/patients/{patientId}", patient);
+    }
 
-        var patientDto = _mapper.Map<PatientDto>(patient);
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdatePatient([FromRoute] int id, [FromBody] UpdatePatientDto dto)
+    {
+        if (!ModelState.IsValid) BadRequest(ModelState);
+        await _patientService.Update(id, dto);
+        return NoContent();
+    }
 
-        return Ok(patientDto);
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletePatientById([FromRoute] int id)
+    {
+        await _patientService.Delete(id);
+        return NoContent();
     }
 }
