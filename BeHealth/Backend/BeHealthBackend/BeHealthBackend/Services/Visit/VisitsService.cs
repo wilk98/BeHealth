@@ -3,7 +3,7 @@ using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.Visit;
 
-namespace BeHealthBackend.Services;
+namespace BeHealthBackend.Services.Visit;
 
 public class VisitsService : IVisitsService
 {
@@ -68,15 +68,16 @@ public class VisitsService : IVisitsService
             orderBy: visits => visits.OrderBy(v => v.VisitDate),
             includeProperties: "Patient");
 
-        var visitsDTO = visits.Select(v => new VisitDTO {
-                Id = v.Id,
-                Duration = v.Duration,
-                PatientId = v.PatientId,
-                Patient = $"{v.Patient.FirstName} {v.Patient.LastName}",
-                Treatment = v.Name,
-                Confirmed = v.Confirmed,
-                StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
-            }
+        var visitsDTO = visits.Select(v => new VisitDTO
+        {
+            Id = v.Id,
+            Duration = v.Duration,
+            PatientId = v.PatientId,
+            Patient = $"{v.Patient.FirstName} {v.Patient.LastName}",
+            Treatment = v.Name,
+            Confirmed = v.Confirmed,
+            StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
+        }
         );
 
         return visitsDTO;

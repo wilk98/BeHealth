@@ -1,7 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DTOs.Visit;
 
-namespace BeHealthBackend.Services;
+namespace BeHealthBackend.Services.Visit;
 
 public interface IVisitsService
 {
