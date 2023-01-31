@@ -94,5 +94,10 @@ namespace CityInfo.API.DataAccess.Repositories
         {
             _dbSet.RemoveRange(entities);
         }
+
+        public void SetModified(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+        }
     }
 }

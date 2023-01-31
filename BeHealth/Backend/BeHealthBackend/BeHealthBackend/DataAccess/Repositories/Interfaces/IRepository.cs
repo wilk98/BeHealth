@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using BeHealthBackend.DataAccess.Entities;
+using System.Linq.Expressions;
 
 namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
 
@@ -17,4 +18,5 @@ public interface IRepository<T> where T : class
     void Modify(T entity);
     void Remove(T entity);
     void RemoveRange(IEnumerable<T> entities);
+    void SetModified(T entity);
 }

@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DTOs
+﻿namespace BeHealthBackend.DTOs.Visit
 {
     public class VisitDTO
     {
