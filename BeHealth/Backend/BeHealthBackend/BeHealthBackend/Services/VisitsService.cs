@@ -82,6 +82,11 @@ public class VisitsService : IVisitsService
         return visitsDTO;
     }
 
+    public async Task<IEnumerable<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)
+    {
+        return await _unitOfWork.VisitRepository.GetVisitsForMonth(doctorId, date);
+    }
+
     public async Task<Visit?> PutVisit(int id, PutVisitDto visitDto)
     {
         var doctor = await _unitOfWork.DoctorRepository.GetAsync(visitDto.DoctorId);

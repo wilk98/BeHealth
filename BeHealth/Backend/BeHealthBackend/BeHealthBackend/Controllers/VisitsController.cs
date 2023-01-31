@@ -1,5 +1,5 @@
 ﻿using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs;
+using BeHealthBackend.DTOs.Visit;
 using BeHealthBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +16,17 @@ public class VisitsController : ControllerBase
     }
 
     [HttpGet("{doctorId}")]
-    public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor(int doctorId)
+    public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor([FromRoute]int doctorId)
     {
         var visits = _visitsService.GetVisitsByDoctorIdAsync(doctorId);
         return await visits;
+    }
+
+    [HttpGet("calendar/{doctorId}")]
+    public async Task<IEnumerable<VisitCalendarDto>> GetVisitForMonth([FromRoute]int doctorId, [FromQuery]int year, int month)
+    {
+        var visits = await _visitsService.GetVisitsForMonth(doctorId, new(year, month, 1));
+        return visits;
     }
 
     [HttpPost]

@@ -1,5 +1,6 @@
 ﻿using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DTOs;
+using BeHealthBackend.DTOs.Visit;
 
 namespace BeHealthBackend.Profile
 {
