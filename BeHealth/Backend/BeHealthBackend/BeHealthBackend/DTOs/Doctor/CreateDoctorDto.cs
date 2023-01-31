@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BeHealthBackend.DataAccess.Entities;
 
-namespace BeHealthBackend.DTOs
+namespace BeHealthBackend.DTOs.Doctor
 {
-    public class DoctorDto
+    public class CreateDoctorDto
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [Phone]
