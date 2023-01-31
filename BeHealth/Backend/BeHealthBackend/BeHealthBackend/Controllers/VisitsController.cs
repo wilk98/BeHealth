@@ -21,6 +21,25 @@ public class VisitsController : ControllerBase
         var visits = _visitsService.GetVisitsByDoctorIdAsync(doctorId);
         return await visits;
     }
+
+    [HttpPost]
+    public async Task<int?> AddVisit([FromBody] CreateVisitDto visitDto)
+    {
+        var visit = await _visitsService.AddVisit(visitDto);
+        return visit?.Id;
+    }
+    [HttpPut("{id}")]
+    public async Task<bool> PutVisit([FromRoute]int id, [FromBody]PutVisitDto visitDto)
+    {
+        var visit = await _visitsService.PutVisit(id, visitDto);
+        return visit != null;
+    }
+    [HttpDelete("{id}")]
+    public async Task DeleteVisit([FromRoute]int id)
+    {
+        await _visitsService.DeleteVisit(id);
+    }
+
     [HttpPost("{visitId}/decline")]
     public async Task<bool> DeclineVisit(int visitId)
     {

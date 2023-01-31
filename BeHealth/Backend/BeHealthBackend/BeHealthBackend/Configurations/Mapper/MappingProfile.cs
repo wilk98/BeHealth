@@ -23,6 +23,10 @@ namespace BeHealthBackend.Configurations.Mapper
                         { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode })).ReverseMap(); ;
 
             CreateMap<UpdateDoctorDto, Doctor>();
+
+            CreateMap<CreateVisitDto, Visit>();
+
+            CreateMap<PutVisitDto, Visit>();
         }
     }
 }
