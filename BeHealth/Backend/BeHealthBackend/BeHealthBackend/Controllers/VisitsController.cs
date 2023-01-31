@@ -1,5 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs;
+﻿using BeHealthBackend.DTOs.Visit;
 using BeHealthBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
