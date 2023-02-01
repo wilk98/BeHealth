@@ -3,6 +3,7 @@ import { groupBy } from '../utils/arrays';
 import { BiMessageSquare, BiCheck, HiXMark } from "react-icons/all"
 import { useEffect, useState } from 'react';
 import { dateToHuman, getDate, getTimeSpan } from '../utils/calendar';
+import { api_path } from '../utils/api';
 
 interface Buttons {
   id: string,
@@ -13,7 +14,7 @@ interface Buttons {
 const Buttons = ({ id, confirmed, setConfirmationStatus }:Buttons) => {
   function handleVisitClick(id: string, status: boolean, setConfirmationStatus: (arg0: string, arg1: boolean) => void) {
     setConfirmationStatus(id, status);
-    fetch(`https://localhost:44319/api/visits/${id}/${status ? 'accept' : 'decline'}`, {
+    fetch(`${api_path}/api/visits/${id}/${status ? 'accept' : 'decline'}`, {
       method: "POST"
     });
   }
@@ -89,7 +90,7 @@ export const Visits = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await fetch(`https://localhost:44319/api/visits/${doctorId}`, {
+      const data = await fetch(`${api_path}/api/visits/${doctorId}`, {
         headers: {
           'Content-Type': 'application/json',
         }
