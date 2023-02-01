@@ -61,6 +61,12 @@ main.calendar section#body .calendar-day {
     padding: 14px;
     border-radius: 10px;
     border: 1px solid #EEEEEE;    
+    transition: background-color 300ms;
+}
+
+main.calendar section#body .calendar-day.no-visits {
+    --bh-bg-purple: white;
+    transition: none;
 }
 
 main.calendar section#body .calendar-day.disabled {

@@ -61,13 +61,9 @@ const CalendarDay = ({ day, visits, showVisit = true }: CalendarDay) => {
     }
 
     return (
-        <div className={`calendar-day ${showVisit ? '' : 'disabled'}`} style={{
-            backgroundColor: visits == 0
-                ? "white"
-                : ""
-        }}>
+        <div className={`calendar-day ${showVisit ? '' : 'disabled '} ${visits == 0 || visits == -1 ? 'no-visits ' : ''}`}>
             <p className='date'>{String(day).padStart(2, '0')}</p>
-            <p className='visits' style={{ opacity: showVisit ? 1 : 0 }}>{visits} wizyt{s(visits)}</p>
+            <p className={`visits ${visits === -1 ? 'loading' : ''}`}style={{ opacity: showVisit ? 1 : 0 }}>{visits} wizyt{s(visits)}</p>
         </div>
     )
 }
@@ -83,19 +79,29 @@ export const Calendar = () => {
 
     useEffect(() => {
         const abortController = new AbortController();
+        const delayLoadingAnimation = setTimeout(() => {
+            setVisits(undefined);
+        }, 20);
 
         (async () => {
             const date = new Date(currentYear, currentMonth)
             const year = date.getFullYear()
             const month = date.getUTCMonth() + 1
-            const data = await fetch(`${api_path}/api/visits/calendar/${doctorId}?year=${year}&month=${month}`, {
-                signal: abortController.signal
-            })
-            const visits:Array<VisitData> = await data.json()
-            setVisits(visits);
-        })();
+            
+
+            try {
+                const data = await fetch(`${api_path}/api/visits/calendar/${doctorId}?year=${year}&month=${month}`, {
+                    signal: abortController.signal
+                })
+                const visits:Array<VisitData> = await data.json()
+                clearTimeout(delayLoadingAnimation)
+                setVisits(visits);
+            } catch (error) { }
+        }
+        )();
     
       return () => {
+        clearTimeout(delayLoadingAnimation)
         abortController.abort()
       }
     }, [offset])
@@ -103,31 +109,33 @@ export const Calendar = () => {
     const daysOfWeek = getWeekDays('pl-PL', true).map(day => <p key={day}>{day}</p>);
     const calendarDays = (() => {
         const daysElements = Array<JSX.Element>();
-
         const daysInCurrentMonth = getDaysInMonth(currentYear, currentMonth)
         const daysInPreviousMonth = getDaysInMonth(currentYear, currentMonth - 1);
-
         const monthStartsWith = new Date(currentYear, currentMonth - 1, 1).getUTCDay();
 
         for (let i = daysInPreviousMonth - monthStartsWith + 1; i <= daysInPreviousMonth; i++) {
-            daysElements.push(<CalendarDay key={-i} day={i} visits={0} showVisit={false} />)
+            daysElements.push(<CalendarDay key={i*3} day={i} visits={0} showVisit={false} />)
         }
         for (let i = 1; i <= daysInCurrentMonth; i++) {
-            const visitsAtDay = visits?.find(v => v.day == i)?.visits ?? 0;
+            const visitsAtDay = visits === undefined ? -1 : (visits?.find(v => v.day == i)?.visits ?? 0)
             daysElements.push(<CalendarDay key={i} day={i} visits={visitsAtDay} />)
         }
         return daysElements;
     })();
 
 
-    const selectNextMonth = () => setOffset(prev => prev + 1);
-    const selectPrevMonth = () => setOffset(prev => prev - 1);
+    const selectMonth = (n: -1 | 1) => {
+        if (visits !== undefined) {
+            setVisits([])
+        }
+        setOffset(prev => prev + n);
+    }
 
     return (
         <main className='calendar'>
             <section className="body">
                 <section id='head'>
-                    <MonthSelector selectNextMonth={selectNextMonth} selectPrevMonth={selectPrevMonth} offset={offset} />
+                    <MonthSelector selectNextMonth={() => selectMonth(1)} selectPrevMonth={() => selectMonth(-1)} offset={offset} />
                     <hr />
                     <div className="days-of-week">{daysOfWeek}</div>
                 </section>
