@@ -22,7 +22,7 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
   const links: Array<Link> = [
     {
       name: "Kalendarz",
-      link: "/",
+      link: "/calendar",
       icon: <FaRegCalendar />,
     },
     {

@@ -97,7 +97,6 @@ export const Visits = () => {
       }
       );
       const json: Array<Visit> = await data.json();
-      console.log(json)
       setVisits(json);
     })();
   }, [])
