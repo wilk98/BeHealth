@@ -16,7 +16,7 @@ public class DoctorService : IDoctorService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<DoctorDto>> GetAll()
+    public async Task<IEnumerable<DoctorDto>> GetDoctorsAsync()
     {
         var doctors = await _unitOfWork.DoctorRepository
             .GetAllAsync(includeProperties: "Address");
@@ -26,7 +26,7 @@ public class DoctorService : IDoctorService
         return doctorsDto;
     }
 
-    public async Task<DoctorDto> GetById(int id)
+    public async Task<DoctorDto> GetIdAsync(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository
             .GetAsync(d => d.Id == id, includeProperties: "Address");
@@ -38,7 +38,7 @@ public class DoctorService : IDoctorService
         return doctorDto;
     }
 
-    public async Task<(int, CreateDoctorDto)> Create(CreateDoctorDto dto)
+    public async Task<(int, CreateDoctorDto)> CreateAsync(CreateDoctorDto dto)
     {
         var doctor = _mapper.Map<Doctor>(dto);
         await _unitOfWork.DoctorRepository.AddAsync(doctor);
@@ -46,7 +46,7 @@ public class DoctorService : IDoctorService
         return (doctor.Id, _mapper.Map<CreateDoctorDto>(doctor));
     }
 
-    public async Task Update(int id, UpdateDoctorDto dto)
+    public async Task UpdateAsync(int id, UpdateDoctorDto dto)
     {
         var doctor = await _unitOfWork.DoctorRepository
             .GetAsync(id);
@@ -58,7 +58,7 @@ public class DoctorService : IDoctorService
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task DeleteAsync(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository
             .GetAsync(id);

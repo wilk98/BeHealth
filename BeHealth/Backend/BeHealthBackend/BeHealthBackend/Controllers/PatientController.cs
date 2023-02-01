@@ -15,16 +15,16 @@ public class PatientController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<PatientDto>>> GetAllPatients()
+    public async Task<ActionResult<IEnumerable<PatientDto>>> GetAllPatientsAsync()
     {
-        var patients = await _patientService.GetAll();
+        var patients = await _patientService.GetPatientsAsync();
         return Ok(patients);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<PatientDto>> GetPatientById([FromRoute] int id)
+    public async Task<ActionResult<PatientDto>> GetPatientByIdAsync([FromRoute] int id)
     {
-        var patient = await _patientService.GetById(id);
+        var patient = await _patientService.GetIdAsync(id);
         return Ok(patient);
     }
 
@@ -32,22 +32,22 @@ public class PatientController : ControllerBase
     public async Task<IActionResult> AddPatientAsync([FromBody] CreatePatientDto dto)
     {
         if (!ModelState.IsValid) BadRequest(ModelState);
-        var (patientId, patient) = await _patientService.Create(dto);
+        var (patientId, patient) = await _patientService.CreateAsync(dto);
         return Created($"/api/patients/{patientId}", patient);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePatient([FromRoute] int id, [FromBody] UpdatePatientDto dto)
+    public async Task<IActionResult> UpdatePatientAsync([FromRoute] int id, [FromBody] UpdatePatientDto dto)
     {
         if (!ModelState.IsValid) BadRequest(ModelState);
-        await _patientService.Update(id, dto);
+        await _patientService.UpdateAsync(id, dto);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeletePatientById([FromRoute] int id)
+    public async Task<IActionResult> DeletePatientByIdAsync([FromRoute] int id)
     {
-        await _patientService.Delete(id);
+        await _patientService.DeleteAsync(id);
         return NoContent();
     }
 }

@@ -16,7 +16,7 @@ public class PatientService : IPatientService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<PatientDto>> GetAll()
+    public async Task<IEnumerable<PatientDto>> GetPatientsAsync()
     {
         var patients = await _unitOfWork.PatientRepository
             .GetAllAsync(includeProperties: "Address");
@@ -26,7 +26,7 @@ public class PatientService : IPatientService
         return patientsDto;
     }
 
-    public async Task<PatientDto> GetById(int id)
+    public async Task<PatientDto> GetIdAsync(int id)
     {
         var patient = await _unitOfWork.PatientRepository
             .GetAsync(p => p.Id == id, includeProperties: "Address");
@@ -35,7 +35,7 @@ public class PatientService : IPatientService
         return patientDto;
     }
 
-    public async Task<(int, CreatePatientDto)> Create(CreatePatientDto dto)
+    public async Task<(int, CreatePatientDto)> CreateAsync(CreatePatientDto dto)
     {
         var patient = _mapper.Map<Patient>(dto);
         await _unitOfWork.PatientRepository.AddAsync(patient);
@@ -43,7 +43,7 @@ public class PatientService : IPatientService
         return (patient.Id, _mapper.Map<CreatePatientDto>(patient));
     }
 
-    public async Task Update(int id, UpdatePatientDto dto)
+    public async Task UpdateAsync(int id, UpdatePatientDto dto)
     {
         var patient = await _unitOfWork.PatientRepository
             .GetAsync(id);
