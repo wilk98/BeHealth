@@ -44,7 +44,6 @@ public class DoctorController : ControllerBase
         return NoContent();
     }
 
-
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteDoctorById([FromRoute] int id)
     {
@@ -52,4 +51,3 @@ public class DoctorController : ControllerBase
         return NoContent();
     }
 }
-
