@@ -64,6 +64,121 @@ main.calendar section#body .calendar-day {
     transition: background-color 300ms;
 }
 
+main.calendar section#body .calendar-day:nth-child(1) {
+    transition-delay: 10ms;
+}
+main.calendar section#body .calendar-day:nth-child(2) {
+    transition-delay: 20ms;
+}
+main.calendar section#body .calendar-day:nth-child(3) {
+    transition-delay: 30ms;
+}
+main.calendar section#body .calendar-day:nth-child(4) {
+    transition-delay: 40ms;
+}
+main.calendar section#body .calendar-day:nth-child(5) {
+    transition-delay: 50ms;
+}
+main.calendar section#body .calendar-day:nth-child(6) {
+    transition-delay: 60ms;
+}
+main.calendar section#body .calendar-day:nth-child(7) {
+    transition-delay: 70ms;
+}
+main.calendar section#body .calendar-day:nth-child(8) {
+    transition-delay: 80ms;
+}
+main.calendar section#body .calendar-day:nth-child(9) {
+    transition-delay: 90ms;
+}
+main.calendar section#body .calendar-day:nth-child(10) {
+    transition-delay: 100ms;
+}
+main.calendar section#body .calendar-day:nth-child(11) {
+    transition-delay: 110ms;
+}
+main.calendar section#body .calendar-day:nth-child(12) {
+    transition-delay: 120ms;
+}
+main.calendar section#body .calendar-day:nth-child(13) {
+    transition-delay: 130ms;
+}
+main.calendar section#body .calendar-day:nth-child(14) {
+    transition-delay: 140ms;
+}
+main.calendar section#body .calendar-day:nth-child(15) {
+    transition-delay: 150ms;
+}
+main.calendar section#body .calendar-day:nth-child(16) {
+    transition-delay: 160ms;
+}
+main.calendar section#body .calendar-day:nth-child(17) {
+    transition-delay: 170ms;
+}
+main.calendar section#body .calendar-day:nth-child(18) {
+    transition-delay: 180ms;
+}
+main.calendar section#body .calendar-day:nth-child(19) {
+    transition-delay: 190ms;
+}
+main.calendar section#body .calendar-day:nth-child(20) {
+    transition-delay: 200ms;
+}
+main.calendar section#body .calendar-day:nth-child(21) {
+    transition-delay: 210ms;
+}
+main.calendar section#body .calendar-day:nth-child(22) {
+    transition-delay: 220ms;
+}
+main.calendar section#body .calendar-day:nth-child(23) {
+    transition-delay: 230ms;
+}
+main.calendar section#body .calendar-day:nth-child(24) {
+    transition-delay: 240ms;
+}
+main.calendar section#body .calendar-day:nth-child(25) {
+    transition-delay: 250ms;
+}
+main.calendar section#body .calendar-day:nth-child(26) {
+    transition-delay: 260ms;
+}
+main.calendar section#body .calendar-day:nth-child(27) {
+    transition-delay: 270ms;
+}
+main.calendar section#body .calendar-day:nth-child(28) {
+    transition-delay: 280ms;
+}
+main.calendar section#body .calendar-day:nth-child(29) {
+    transition-delay: 290ms;
+}
+main.calendar section#body .calendar-day:nth-child(30) {
+    transition-delay: 300ms;
+}
+main.calendar section#body .calendar-day:nth-child(31) {
+    transition-delay: 310ms;
+}
+main.calendar section#body .calendar-day:nth-child(32) {
+    transition-delay: 320ms;
+}
+main.calendar section#body .calendar-day:nth-child(33) {
+    transition-delay: 330ms;
+}
+main.calendar section#body .calendar-day:nth-child(34) {
+    transition-delay: 340ms;
+}
+main.calendar section#body .calendar-day:nth-child(35) {
+    transition-delay: 350ms;
+}
+main.calendar section#body .calendar-day:nth-child(36) {
+    transition-delay: 360ms;
+}
+main.calendar section#body .calendar-day:nth-child(37) {
+    transition-delay: 370ms;
+}
+main.calendar section#body .calendar-day:nth-child(38) {
+    transition-delay: 380ms;
+}
+
 main.calendar section#body .calendar-day.no-visits {
     --bh-bg-purple: white;
     transition: none;
