@@ -1,43 +1,29 @@
-﻿using System.Reflection;
-using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DataAccess.Repositories;
-using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using CityInfo.API.DataAccess.Repositories;
+﻿using BeHealthBackend.DataAccess.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using BeHealthBackend.Services.DoctorServices;
-using BeHealthBackend.Services.PatientServices;
-using BeHealthBackend.Services.VisitServices;
+using BeHealthBackend.Configurations.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.AddPersistence();
+builder.AddMapper();
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
-builder.Services.AddScoped<IVisitRepository, VisitRepository>();
-builder.Services.AddScoped<IVisitsService, VisitsService>();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddScoped<IDoctorService, DoctorService>();
-builder.Services.AddScoped<IPatientService, PatientService>();
 
-builder.Services.AddDbContext<BeHealthContext>(
-    option => option
-        .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
 builder.Services.AddCors(options =>
-        {
-            options.AddDefaultPolicy(policyBuilder =>
-            {
-                policyBuilder
-                    .WithOrigins("http://localhost:5173")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    .WithExposedHeaders("X-Pagination");
-            });
-        });
+{
+    options.AddDefaultPolicy(policyBuilder =>
+    {
+        policyBuilder
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()
+            .WithExposedHeaders("X-Pagination");
+    });
+});
 
 var app = builder.Build();
 
