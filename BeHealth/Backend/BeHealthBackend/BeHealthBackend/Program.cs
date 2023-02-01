@@ -5,12 +5,14 @@ using BeHealthBackend.Configurations.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddLogger();
+builder.AddPersistence();
+builder.AddMapper();
+builder.AddErrorHandler();
+
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.AddPersistence();
-builder.AddMapper();
-
 
 builder.Services.AddCors(options =>
 {
@@ -32,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseErrorHandler();
 
 app.UseHttpsRedirection();
 
