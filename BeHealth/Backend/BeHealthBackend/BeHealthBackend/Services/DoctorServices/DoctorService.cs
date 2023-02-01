@@ -21,15 +21,18 @@ public class DoctorService : IDoctorService
         var doctors = await _unitOfWork.DoctorRepository
             .GetAllAsync(includeProperties: "Address");
 
-        var doctorsDtos = _mapper.Map<List<DoctorDto>>(doctors);
+        var doctorsDto = _mapper.Map<List<DoctorDto>>(doctors);
 
-        return doctorsDtos;
+        return doctorsDto;
     }
 
     public async Task<DoctorDto> GetById(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository
             .GetAsync(d => d.Id == id, includeProperties: "Address");
+
+        if (doctor is null)
+            throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
 
         var doctorDto = _mapper.Map<DoctorDto>(doctor);
         return doctorDto;
@@ -49,9 +52,7 @@ public class DoctorService : IDoctorService
             .GetAsync(id);
 
         if (doctor is null)
-        {
             throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
-        }
 
         _mapper.Map(dto, doctor);
         await _unitOfWork.SaveAsync();
@@ -63,11 +64,9 @@ public class DoctorService : IDoctorService
             .GetAsync(id);
 
         if (doctor is null)
-        {
             throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
-        }
+        
         _unitOfWork.DoctorRepository.Remove(doctor);
         await _unitOfWork.SaveAsync();
     }
 }
-
