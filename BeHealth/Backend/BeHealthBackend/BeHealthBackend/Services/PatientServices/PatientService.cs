@@ -57,7 +57,7 @@ public class PatientService : IPatientService
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task DeleteAsync(int id)
     {
         var patient = await _unitOfWork.PatientRepository
             .GetAsync(id);
