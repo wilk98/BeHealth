@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace CityInfo.API.DataAccess.Repositories
+namespace BeHealthBackend.DataAccess.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {

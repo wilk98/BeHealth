@@ -4,7 +4,6 @@ using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.Services.DoctorServices;
 using BeHealthBackend.Services.PatientServices;
 using BeHealthBackend.Services.VisitServices;
-using CityInfo.API.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeHealthBackend.Configurations.Extensions;

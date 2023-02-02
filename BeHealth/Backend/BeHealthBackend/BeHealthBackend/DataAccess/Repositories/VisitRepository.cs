@@ -1,8 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs.Visit;
-using CityInfo.API.DataAccess.Repositories;
+using BeHealthBackend.DTOs.VisitDtoFolder;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeHealthBackend.DataAccess.Repositories;

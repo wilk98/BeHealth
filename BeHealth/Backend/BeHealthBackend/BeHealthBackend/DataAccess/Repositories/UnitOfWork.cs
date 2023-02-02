@@ -1,8 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 
-namespace CityInfo.API.DataAccess.Repositories
+namespace BeHealthBackend.DataAccess.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
