@@ -81,7 +81,7 @@ export const Calendar = () => {
         const abortController = new AbortController();
         const delayLoadingAnimation = setTimeout(() => {
             setVisits(undefined);
-        }, 20);
+        }, 50);
 
         (async () => {
             const date = new Date(currentYear, currentMonth)
