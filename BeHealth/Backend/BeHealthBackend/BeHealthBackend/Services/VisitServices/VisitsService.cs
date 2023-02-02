@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using BeHealthBackend.DTOs.Visit;
 using BeHealthBackend.DTOs.VisitDtoFolder;
 
 namespace BeHealthBackend.Services.VisitServices;
@@ -81,6 +82,11 @@ public class VisitsService : IVisitsService
         );
 
         return visitsDTO;
+    }
+
+    public async Task<IEnumerable<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)
+    {
+        return await _unitOfWork.VisitRepository.GetVisitsForMonth(doctorId, date);
     }
 
     public async Task<Visit?> PutVisit(int id, PutVisitDto visitDto)

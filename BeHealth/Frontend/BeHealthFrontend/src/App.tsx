@@ -7,6 +7,7 @@ import { Sidebar } from "./components/layout/Sidebar";
 import { useState } from "react";
 import CategoriesSearch from "./pages/CategoriesSearch";
 import { Visits } from "./pages/Visits";
+import { Calendar } from "./pages/Calendar";
 
 function App() {
 	const [openSidebar, setOpenSidebar] = useState(true)
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/arange-visit" element={<ArangeVisit />} />
 					<Route path="/categories-search" element={<CategoriesSearch />} />
 					<Route path="/visits" element={<Visits />} />
+					<Route path="/calendar" element={<Calendar />} />
 				</Routes>
 			</div>
 			<Footer />
