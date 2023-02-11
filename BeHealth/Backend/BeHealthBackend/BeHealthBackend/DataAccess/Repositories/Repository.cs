@@ -9,7 +9,7 @@ namespace BeHealthBackend.DataAccess.Repositories
         protected readonly DbContext _context;
         protected readonly DbSet<T> _dbSet;
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
