@@ -31,50 +31,50 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
         builder.Property(p => p.PasswordHash)
             .IsRequired();
 
-        builder.HasData(
-            new Patient
-        {
-            Id = 1,
-            AddressId = 1,
-            FirstName = "Adelajda",
-            LastName = "Zielinska",
-            Email = "AdelajdaZielinska@teleworm.us",
-            PhoneNumber = "692435107",
-            Pesel = "12345678901",
-            PasswordHash = "azxsdcvfrewqthb"
-            },
-            new Patient
-        {
-            Id = 2,
-            AddressId = 2,
-            FirstName = "Witołd",
-            LastName = "Kwiatkowski",
-            Email = "WitoldKwiatkowski@armyspy.com",
-            PhoneNumber = "784251125",
-            Pesel = "12345678901",
-            PasswordHash = "azxsdcvfrewq12"
-            }, 
-            new Patient 
-        {
-            Id = 3,
-            AddressId = 3,
-            FirstName = "Arni",
-            LastName = "Umbala",
-            Email = "Wolny23@armyspy.com",
-            PhoneNumber = "879654239",
-            Pesel = "12345678901",
-            PasswordHash = "azxsdcvfrewqfsa"
-            },
-            new Patient
-        {
-            Id = 4,
-            AddressId = 4,
-            FirstName = "Jakub",
-            LastName = "Grabowski",
-            Email = "JakubGrabowski@rhyta.com",
-            PhoneNumber = "531556254",
-            Pesel = "12345678901",
-            PasswordHash = "azxsdcvfavssw"
-            });
+        //builder.HasData(
+        //    new Patient
+        //    {
+        //        Id = 1,
+        //        AddressId = 1,
+        //        FirstName = "Adelajda",
+        //        LastName = "Zielinska",
+        //        Email = "AdelajdaZielinska@teleworm.us",
+        //        PhoneNumber = "692435107",
+        //        Pesel = "12345678901",
+        //        PasswordHash = "azxsdcvfrewqthb"
+        //    },
+        //    new Patient
+        //{
+        //    Id = 2,
+        //    AddressId = 2,
+        //    FirstName = "Witołd",
+        //    LastName = "Kwiatkowski",
+        //    Email = "WitoldKwiatkowski@armyspy.com",
+        //    PhoneNumber = "784251125",
+        //    Pesel = "12345678901",
+        //    PasswordHash = "azxsdcvfrewq12"
+        //    }, 
+        //    new Patient 
+        //{
+        //    Id = 3,
+        //    AddressId = 3,
+        //    FirstName = "Arni",
+        //    LastName = "Umbala",
+        //    Email = "Wolny23@armyspy.com",
+        //    PhoneNumber = "879654239",
+        //    Pesel = "12345678901",
+        //    PasswordHash = "azxsdcvfrewqfsa"
+        //    },
+        //    new Patient
+        //{
+        //    Id = 4,
+        //    AddressId = 4,
+        //    FirstName = "Jakub",
+        //    LastName = "Grabowski",
+        //    Email = "JakubGrabowski@rhyta.com",
+        //    PhoneNumber = "531556254",
+        //    Pesel = "12345678901",
+        //    PasswordHash = "azxsdcvfavssw"
+        //    });
     }
 }

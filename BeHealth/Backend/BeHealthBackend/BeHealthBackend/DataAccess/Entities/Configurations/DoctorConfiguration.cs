@@ -6,12 +6,12 @@ public class DoctorPatientConfiguration : IEntityTypeConfiguration<DoctorPatient
 {
     public void Configure(EntityTypeBuilder<DoctorPatient> builder)
     {
-        builder.HasData(
-            new DoctorPatient
-        {
-            DoctorId = 2,
-            PatientId = 4
-        });
+        //builder.HasData(
+        //    new DoctorPatient
+        //{
+        //    DoctorId = 2,
+        //    PatientId = 4
+        //});
     }
 }
 public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
@@ -69,28 +69,28 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
         builder.Property(p => p.PasswordHash)
             .IsRequired();
 
-        builder.HasData(
-            new Doctor
-        {
-            Id = 1,
-            AddressId = 1,
-            FirstName = "Eugeniusz",
-            LastName = "Kamiński",
-            Email = "EugeniuszKaminski@dayrep.com",
-            PhoneNumber = "519439105",
-            Specialist = "Oculist",
-            PasswordHash = "azxsdcvfrewq"
-        },
-            new Doctor
-        {
-            Id = 2,
-            AddressId = 2,
-            FirstName = "Sam",
-            LastName = "Kaczyński",
-            Email = "SamKaczyński@dayrep.com",
-            PhoneNumber = "123432567",
-            Specialist = "Cardiologist",
-            PasswordHash = "azxsdbfymhsrewq"
-            });
+        //builder.HasData(
+        //    new Doctor
+        //{
+        //    Id = 1,
+        //    AddressId = 5,
+        //    FirstName = "Eugeniusz",
+        //    LastName = "Kamiński",
+        //    Email = "EugeniuszKaminski@dayrep.com",
+        //    PhoneNumber = "519439105",
+        //    Specialist = "Oculist",
+        //    PasswordHash = "azxsdcvfrewq"
+        //},
+        //    new Doctor
+        //{
+        //    Id = 2,
+        //    AddressId = 6,
+        //    FirstName = "Sam",
+        //    LastName = "Kaczyński",
+        //    Email = "SamKaczyński@dayrep.com",
+        //    PhoneNumber = "123432567",
+        //    Specialist = "Cardiologist",
+        //    PasswordHash = "azxsdbfymhsrewq"
+        //    });
     }
 }
