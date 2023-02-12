@@ -6,8 +6,11 @@ using BeHealthBackend.Services.ClinicServices;
 using BeHealthBackend.Services.DoctorServices;
 using BeHealthBackend.Services.PatientServices;
 using BeHealthBackend.Services.VisitServices;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BeHealthBackend.DataAccess.Entities.Validators;
+using BeHealthBackend.DTOs.DoctorDtoFolder;
 
 namespace BeHealthBackend.Configurations.Extensions;
 public static class WebApplicationBuilderAddPersistenceExtension
@@ -27,6 +30,7 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddScoped<IClinicService, ClinicService>();
         builder.Services.AddScoped<IPasswordHasher<Doctor>, PasswordHasher<Doctor>>();
         builder.Services.AddScoped<IPasswordHasher<Patient>, PasswordHasher<Patient>>();
+        builder.Services.AddScoped<IValidator<CreateDoctorDto>, CreateDoctorDtoValidator>();
 
         return builder;
     }
