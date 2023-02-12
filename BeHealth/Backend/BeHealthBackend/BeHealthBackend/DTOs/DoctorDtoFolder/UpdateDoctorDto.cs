@@ -10,4 +10,3 @@ public class UpdateDoctorDto
     [EmailAddress]
     public string? Email { get; set; }
 }
-

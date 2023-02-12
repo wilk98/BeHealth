@@ -35,14 +35,17 @@ public class DoctorService : IDoctorService
             throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
 
         var doctorDto = _mapper.Map<DoctorDto>(doctor);
+
         return doctorDto;
     }
 
     public async Task<(int, CreateDoctorDto)> CreateAsync(CreateDoctorDto dto)
     {
         var doctor = _mapper.Map<Doctor>(dto);
+
         await _unitOfWork.DoctorRepository.AddAsync(doctor);
         await _unitOfWork.SaveAsync();
+
         return (doctor.Id, _mapper.Map<CreateDoctorDto>(doctor));
     }
 

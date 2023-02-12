@@ -31,7 +31,6 @@ public class DoctorController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddDoctorAsync([FromBody] CreateDoctorDto dto)
     {
-        if (!ModelState.IsValid) BadRequest(ModelState);
         var (doctorId, doctor) = await _doctorService.CreateAsync(dto);
         return Created($"/api/doctors/{doctorId}", doctor);
     }
@@ -39,7 +38,6 @@ public class DoctorController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateDoctorAsync([FromRoute] int id, [FromBody] UpdateDoctorDto dto)
     {
-        if (!ModelState.IsValid) BadRequest(ModelState);
         await _doctorService.UpdateAsync(id, dto);
         return NoContent();
     }

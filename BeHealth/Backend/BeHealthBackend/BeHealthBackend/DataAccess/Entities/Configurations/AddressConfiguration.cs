@@ -19,33 +19,53 @@ namespace BeHealthBackend.DataAccess.Entities.Configurations
                 .WithOne(a => a.Address)
                 .HasForeignKey<Patient>(p => p.AddressId);
 
-            builder.Property(a => a.PostalCode).HasColumnType("varchar(6)");
+            builder.Property(a => a.City)
+                .IsRequired()
+                .HasMaxLength(30);
 
-            builder.HasData(new Address
+            builder.Property(a => a.Street)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(a => a.PostalCode)
+                .IsRequired()
+                .HasColumnType("varchar(6)");
+
+            builder.HasData(
+                new Address
             {
-                Id = 1,
-                City = "Gdańsk",
-                PostalCode = "80-680",
-                Street = "ul. Nadwiślańska 112"
+                    Id = 1,
+                    City = "Gdańsk",
+                    PostalCode = "80-680",
+                    Street = "ul. Nadwiślańska 112"
+            },  
+                new Address
+            {
+                    Id = 2,
+                    City = "Gdynia",
+                    PostalCode = "81-515",
+                    Street = "ul. Kasztanowa 113"
+            },  
+                new Address
+            {
+                    Id = 3,
+                    City = "Warszawa",
+                    PostalCode = "01-401",
+                    Street = " ul. Górczewska 82"
+            }, 
+                new Address
+            {
+                    Id = 4,
+                    City = "Warszawa",
+                    PostalCode = "01-401",
+                    Street = " ul. Akacjowa 22"
             },
-            new Address
+                new Address
             {
-                Id = 2,
-                City = "Gdynia",
-                PostalCode = "81-515",
-                Street = "ul. Kasztanowa 113"
-            },new Address
-            {
-                Id = 3,
-                City = "Warszawa",
-                PostalCode = "01-401",
-                Street = " ul. Górczewska 82"
-            },new Address
-            {
-                Id= 4,
-                City = "Łódź",
-                PostalCode = "91-503",
-                Street = "ul. Górczewska 82"
+                    Id= 5,
+                    City = "Łódź",
+                    PostalCode = "91-503",
+                    Street = "ul. Górna 82"
             });
         }
     }

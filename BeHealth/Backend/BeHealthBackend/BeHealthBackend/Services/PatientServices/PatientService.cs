@@ -32,14 +32,17 @@ public class PatientService : IPatientService
             .GetAsync(p => p.Id == id, includeProperties: "Address");
 
         var patientDto = _mapper.Map<PatientDto>(patient);
+
         return patientDto;
     }
 
     public async Task<(int, CreatePatientDto)> CreateAsync(CreatePatientDto dto)
     {
         var patient = _mapper.Map<Patient>(dto);
+
         await _unitOfWork.PatientRepository.AddAsync(patient);
         await _unitOfWork.SaveAsync();
+
         return (patient.Id, _mapper.Map<CreatePatientDto>(patient));
     }
 

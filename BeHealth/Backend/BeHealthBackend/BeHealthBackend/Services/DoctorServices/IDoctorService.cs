@@ -9,4 +9,3 @@ public interface IDoctorService
     Task UpdateAsync(int id, UpdateDoctorDto dto);
     Task DeleteAsync(int id);
 }
-
