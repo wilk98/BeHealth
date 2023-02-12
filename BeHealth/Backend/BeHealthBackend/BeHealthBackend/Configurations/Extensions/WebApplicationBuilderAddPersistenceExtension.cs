@@ -1,6 +1,7 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DataAccess.Repositories;
+using BeHealthBackend.Services.ClinicServices;
 using BeHealthBackend.Services.DoctorServices;
 using BeHealthBackend.Services.PatientServices;
 using BeHealthBackend.Services.VisitServices;
@@ -21,6 +22,7 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddScoped<IVisitsService, VisitsService>();
         builder.Services.AddScoped<IDoctorService, DoctorService>();
         builder.Services.AddScoped<IPatientService, PatientService>();
+        builder.Services.AddScoped<IClinicService, ClinicService>();
 
         return builder;
     }
