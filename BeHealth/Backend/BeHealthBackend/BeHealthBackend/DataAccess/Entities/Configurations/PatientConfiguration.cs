@@ -28,6 +28,9 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
         builder.Property(p => p.Pesel)
             .HasColumnType("varchar(11)");
 
+        builder.Property(p => p.PasswordHash)
+            .IsRequired();
+
         builder.HasData(
             new Patient
         {

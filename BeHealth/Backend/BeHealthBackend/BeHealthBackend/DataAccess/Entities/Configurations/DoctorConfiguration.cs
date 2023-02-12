@@ -53,6 +53,10 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
         builder.Property(d => d.Created)
             .HasDefaultValueSql("getdate()");
 
+        builder.Property(d => d.Specialist)
+            .IsRequired()
+            .HasMaxLength(50);
+
         builder.Property(d => d.Description)
             .HasMaxLength(500);
 
@@ -61,6 +65,9 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
 
         builder.Property(d => d.Services)
             .HasMaxLength(500);
+
+        builder.Property(p => p.PasswordHash)
+            .IsRequired();
 
         builder.HasData(
             new Doctor
