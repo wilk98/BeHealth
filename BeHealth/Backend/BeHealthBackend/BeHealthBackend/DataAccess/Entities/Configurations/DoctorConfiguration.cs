@@ -78,7 +78,8 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
             LastName = "Kamiński",
             Email = "EugeniuszKaminski@dayrep.com",
             PhoneNumber = "519439105",
-            Specialist = "Oculist"
+            Specialist = "Oculist",
+            PasswordHash = "azxsdcvfrewq"
         },
             new Doctor
         {
@@ -88,7 +89,8 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
             LastName = "Kaczyński",
             Email = "SamKaczyński@dayrep.com",
             PhoneNumber = "123432567",
-            Specialist = "Cardiologist"
-        });
+            Specialist = "Cardiologist",
+            PasswordHash = "azxsdbfymhsrewq"
+            });
     }
 }

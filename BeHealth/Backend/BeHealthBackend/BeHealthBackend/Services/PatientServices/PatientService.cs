@@ -3,17 +3,21 @@ using BeHealthBackend.Configurations.Exceptions;
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.PatientDtoFolder;
+using Microsoft.AspNetCore.Identity;
+using System.Numerics;
 
 namespace BeHealthBackend.Services.PatientServices;
 public class PatientService : IPatientService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IPasswordHasher<Patient> _passwordHasher;
 
-    public PatientService(IUnitOfWork unitOfWork, IMapper mapper)
+    public PatientService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Patient> passwordHasher)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _passwordHasher = passwordHasher;
     }
 
     public async Task<IEnumerable<PatientDto>> GetPatientsAsync()
@@ -39,6 +43,8 @@ public class PatientService : IPatientService
     public async Task<(int, CreatePatientDto)> CreateAsync(CreatePatientDto dto)
     {
         var patient = _mapper.Map<Patient>(dto);
+        var hashedPassword = _passwordHasher.HashPassword(patient, dto.PasswordHash);
+        patient.PasswordHash = hashedPassword;
 
         await _unitOfWork.PatientRepository.AddAsync(patient);
         await _unitOfWork.SaveAsync();

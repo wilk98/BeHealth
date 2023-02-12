@@ -11,7 +11,7 @@ namespace BeHealthBackend.DataAccess.Entities.Configurations
                 .WithOne(a => a.Address)
                 .HasForeignKey<Clinic>(c => c.AddressId);
 
-            builder.HasOne(p => p.Doctor)
+            builder.HasOne(d => d.Doctor)
                 .WithOne(a => a.Address)
                 .HasForeignKey<Doctor>(p => p.AddressId);
 
