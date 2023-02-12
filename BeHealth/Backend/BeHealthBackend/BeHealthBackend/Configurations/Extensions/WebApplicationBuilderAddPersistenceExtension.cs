@@ -1,10 +1,12 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
+using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.Services.ClinicServices;
 using BeHealthBackend.Services.DoctorServices;
 using BeHealthBackend.Services.PatientServices;
 using BeHealthBackend.Services.VisitServices;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeHealthBackend.Configurations.Extensions;
@@ -23,6 +25,8 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddScoped<IDoctorService, DoctorService>();
         builder.Services.AddScoped<IPatientService, PatientService>();
         builder.Services.AddScoped<IClinicService, ClinicService>();
+        builder.Services.AddScoped<IPasswordHasher<Doctor>, PasswordHasher<Doctor>>();
+        builder.Services.AddScoped<IPasswordHasher<Patient>, PasswordHasher<Patient>>();
 
         return builder;
     }
