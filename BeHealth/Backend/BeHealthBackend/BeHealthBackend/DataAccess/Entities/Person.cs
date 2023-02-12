@@ -10,4 +10,5 @@ public abstract class Person
     public virtual Address? Address { get; set; }
     public DateTime Created { get; }
     public virtual List<Visit> Visits { get; set; } = new List<Visit>();
+    public string? PasswordHash { get; set; }
 }
