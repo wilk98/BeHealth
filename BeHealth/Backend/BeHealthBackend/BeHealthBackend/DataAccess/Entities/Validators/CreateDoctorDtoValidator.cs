@@ -1,5 +1,5 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DTOs.DoctorDtoFolder;
+using BeHealthBackend.DTOs.AccountDtoFolder;
 using FluentValidation;
 
 namespace BeHealthBackend.DataAccess.Entities.Validators;

@@ -3,6 +3,7 @@ using BeHealthBackend.Services.ClinicServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
+
 [ApiController, Route("/api/clinics")]
 public class ClinicController : ControllerBase
 {

@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DataAccess.DbContexts;
+﻿using System.Text;
+using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DataAccess.Repositories;
@@ -10,7 +11,8 @@ using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BeHealthBackend.DataAccess.Entities.Validators;
-using BeHealthBackend.DTOs.DoctorDtoFolder;
+using Microsoft.IdentityModel.Tokens;
+using BeHealthBackend.DTOs.AccountDtoFolder;
 
 namespace BeHealthBackend.Configurations.Extensions;
 public static class WebApplicationBuilderAddPersistenceExtension
@@ -20,6 +22,28 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddDbContext<BeHealthContext>(
             option => option
                 .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
+
+        var authenticationSettings = new AuthenticationSettings();
+
+        builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+        builder.Services.AddSingleton(authenticationSettings);
+        builder.Services.AddAuthentication(option =>
+        {
+            option.DefaultAuthenticateScheme = "Bearer";
+            option.DefaultScheme = "Bearer";
+            option.DefaultChallengeScheme = "Bearer";
+        }).AddJwtBearer(cfg =>
+        {
+            cfg.RequireHttpsMetadata = false;
+            cfg.SaveToken = true;
+            cfg.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidIssuer = authenticationSettings.JwtIssuer,
+                ValidAudience = authenticationSettings.JwtIssuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
+            };
+        });
 
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<BeHealthContext, BeHealthContext>();

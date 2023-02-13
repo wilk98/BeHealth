@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BeHealthBackend.DTOs.PatientDtoFolder;
+namespace BeHealthBackend.DTOs.AccountDtoFolder;
 public class UpdatePatientDto
 {
     public string? FirstName { get; set; }
