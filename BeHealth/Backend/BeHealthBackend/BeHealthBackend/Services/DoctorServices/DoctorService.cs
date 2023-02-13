@@ -1,9 +1,15 @@
-﻿using AutoMapper;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using AutoMapper;
 using BeHealthBackend.Configurations.Exceptions;
+using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.DoctorDtoFolder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BeHealthBackend.Services.DoctorServices;
 public class DoctorService : IDoctorService
@@ -11,12 +17,17 @@ public class DoctorService : IDoctorService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IPasswordHasher<Doctor> _passwordHasher;
+    private readonly BeHealthContext _context;
+    private readonly AuthenticationSettings _authenticationSettings;
 
-    public DoctorService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Doctor> passwordHasher)
+    public DoctorService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Doctor> passwordHasher,
+        BeHealthContext context, AuthenticationSettings authenticationSettings)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _passwordHasher = passwordHasher;
+        _context = context;
+        _authenticationSettings = authenticationSettings;
     }
 
     public async Task<IEnumerable<DoctorDto>> GetDoctorsAsync()
@@ -76,5 +87,40 @@ public class DoctorService : IDoctorService
         
         _unitOfWork.DoctorRepository.Remove(doctor);
         await _unitOfWork.SaveAsync();
+    }
+
+    public string GenerateJwt(LoginDto dto)
+    {
+        var user = _context.Doctors.FirstOrDefault(d => d.Email == dto.Email);
+
+        if (user is null)
+        {
+            throw new BadRequestException("Invalid username or password!");
+        }
+
+        var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
+
+        if (result == PasswordVerificationResult.Failed)
+        {
+            throw new BadRequestException("Invalid username or password!");
+        }
+
+        var claims = new List<Claim>()
+        {
+            new (ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new (ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new (ClaimTypes.Role, $"{user.Role}")
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
+        var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var expires = DateTime.Now.AddDays(_authenticationSettings.JwtExpireDays);
+
+        var token = new JwtSecurityToken(_authenticationSettings.JwtIssuer, _authenticationSettings.JwtIssuer, claims,
+            expires: expires, signingCredentials: cred);
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+
+        return tokenHandler.WriteToken(token);
     }
 }

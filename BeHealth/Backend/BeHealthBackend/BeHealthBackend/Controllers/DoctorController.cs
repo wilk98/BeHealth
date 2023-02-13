@@ -27,25 +27,4 @@ public class DoctorController : ControllerBase
         var doctor = await _doctorService.GetIdAsync(id);
         return Ok(doctor);
     }
-
-    [HttpPost]
-    public async Task<IActionResult> AddDoctorAsync([FromBody] CreateDoctorDto dto)
-    {
-        var (doctorId, doctor) = await _doctorService.CreateAsync(dto);
-        return Created($"/api/doctors/{doctorId}", doctor);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateDoctorAsync([FromRoute] int id, [FromBody] UpdateDoctorDto dto)
-    {
-        await _doctorService.UpdateAsync(id, dto);
-        return NoContent();
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteDoctorByIdAsync([FromRoute] int id)
-    {
-        await _doctorService.DeleteAsync(id);
-        return NoContent();
-    }
 }

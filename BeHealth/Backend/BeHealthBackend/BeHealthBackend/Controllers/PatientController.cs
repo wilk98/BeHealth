@@ -27,25 +27,4 @@ public class PatientController : ControllerBase
         var patient = await _patientService.GetIdAsync(id);
         return Ok(patient);
     }
-
-    [HttpPost]
-    public async Task<IActionResult> AddPatientAsync([FromBody] CreatePatientDto dto)
-    {
-        var (patientId, patient) = await _patientService.CreateAsync(dto);
-        return Created($"/api/patients/{patientId}", patient);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePatientAsync([FromRoute] int id, [FromBody] UpdatePatientDto dto)
-    {
-        await _patientService.UpdateAsync(id, dto);
-        return NoContent();
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeletePatientByIdAsync([FromRoute] int id)
-    {
-        await _patientService.DeleteAsync(id);
-        return NoContent();
-    }
 }
