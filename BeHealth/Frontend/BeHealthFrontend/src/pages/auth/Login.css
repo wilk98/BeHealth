@@ -1,0 +1,28 @@
+main.main--login {
+    background-image: url("../../assets/images/plus_pattern_background.png");
+    display: grid;
+    place-items: center;
+}
+
+main.main--login > div.login-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 30px;
+
+    padding: 60px 180px;
+    width: 720px;
+    height: 560px;
+
+    margin-block-end: 150px;
+}
+
+a.input--link {
+    all: unset;
+    font-weight: 600;
+}
+
+h1.main--login {
+    font-weight: 700;
+    font-size: 64px;
+}

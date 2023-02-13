@@ -1,8 +1,12 @@
 import React, { AnchorHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 import './PrimaryButton.css'
 
-export const PrimaryButton = ({ children }: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
+export const PrimaryButton = ({ children, style }: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
+  style = {
+    ...style,
+    cursor: 'pointer'
+  }
   return (
-    <button>{children}</button>
+    <button style={style}>{children}</button>
   )
 }

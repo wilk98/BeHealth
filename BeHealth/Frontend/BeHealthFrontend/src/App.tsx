@@ -8,6 +8,8 @@ import { useState } from "react";
 import CategoriesSearch from "./pages/CategoriesSearch";
 import { Visits } from "./pages/doctor/Visits";
 import { Calendar } from "./pages/doctor/Calendar";
+import { Login } from "./pages/auth/Login";
+import { Register } from "./pages/auth/Register";
 
 function App() {
 	const [openSidebar, setOpenSidebar] = useState(true)
@@ -23,6 +25,8 @@ function App() {
 					<Route path="/categories-search" element={<CategoriesSearch />} />
 					<Route path="/visits" element={<Visits />} />
 					<Route path="/calendar" element={<Calendar />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
 				</Routes>
 			</div>
 			<Footer />

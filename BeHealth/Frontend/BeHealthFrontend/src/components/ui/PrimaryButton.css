@@ -11,3 +11,7 @@ button {
 button a {
     color: var(--bh-text-white)
 }
+
+button {
+    color: var(--bh-text-white)
+}

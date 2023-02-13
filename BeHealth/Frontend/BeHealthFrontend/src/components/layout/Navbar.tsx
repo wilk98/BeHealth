@@ -3,6 +3,7 @@ import { PrimaryButton } from "../ui/PrimaryButton";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import "./Navbar.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
 	return (
@@ -37,9 +38,9 @@ export const Navbar = () => {
 			<div className="nav_container">
 				<Menu />
 				<div className="login-links">
-					<a href="">Login</a>
+					<Link to={"/login"}>Login</Link>
 					<PrimaryButton>
-						<a href="">Rejestracja</a>
+						<Link to={"/register"}>Rejestracja</Link>
 					</PrimaryButton>
 				</div>
 			</div>

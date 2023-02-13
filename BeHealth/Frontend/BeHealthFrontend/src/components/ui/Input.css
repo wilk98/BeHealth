@@ -1,0 +1,30 @@
+input, label {
+    display: block;
+}
+
+div.behealth--input-wrapper label.behealth--label {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+div.behealth--input-wrapper input.behealth--input {
+    all: unset;
+    background-color: #D9D9D9;
+    height: 50px;
+    width: calc(100% - 10px);
+    border-radius: 10px;
+    padding: 1.5px 10px;
+}
+
+
+div.behealth--input-wrapper input.behealth--input:hover {
+    filter: brightness(0.85)
+}
+
+
+div.behealth--input-wrapper input.behealth--input:focus {
+    height: 46px;
+    width: calc(100% - 10px);
+    padding: 1.5px 8px;
+    border: 2px grey solid;
+}

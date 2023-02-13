@@ -1,5 +1,4 @@
 import './Calendar.css'
-import './MonthSelector.css'
 
 import { useEffect, useState } from 'react';
 import { getCurrentMonth, getCurrentYear, getDaysInMonth, getMonthName, getWeekDays } from '../../utils/calendar';

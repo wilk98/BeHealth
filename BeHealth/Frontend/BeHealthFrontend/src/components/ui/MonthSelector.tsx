@@ -1,3 +1,5 @@
+import './MonthSelector.css'
+
 import { IoCaretBack, IoCaretForward } from "react-icons/io5"
 import { getCurrentMonth, getCurrentYear, getMonthName } from "../../utils/calendar"
 
