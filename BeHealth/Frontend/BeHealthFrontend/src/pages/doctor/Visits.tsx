@@ -1,9 +1,9 @@
 import './Visits.css'
-import { groupBy } from '../utils/arrays';
+import { groupBy } from '../../utils/arrays';
 import { BiMessageSquare, BiCheck, HiXMark } from "react-icons/all"
 import { useEffect, useState } from 'react';
-import { dateToHuman, getDate, getTimeSpan } from '../utils/calendar';
-import { api_path } from '../utils/api';
+import { dateToHuman, getDate, getTimeSpan } from '../../utils/calendar';
+import { api_path } from '../../utils/api';
 
 interface Buttons {
   id: string,

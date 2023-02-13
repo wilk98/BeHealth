@@ -1,15 +1,11 @@
 import './Calendar.css'
 import './MonthSelector.css'
-import { IoCaretBack, IoCaretForward } from "react-icons/all";
-import { useEffect, useState } from 'react';
-import { getCurrentMonth, getCurrentYear, getDaysInMonth, getMonthName, getWeekDays } from '../utils/calendar';
-import { api_path } from '../utils/api';
 
-interface MonthSelector {
-    selectPrevMonth: () => void,
-    selectNextMonth: () => void,
-    offset: number
-}
+import { useEffect, useState } from 'react';
+import { getCurrentMonth, getCurrentYear, getDaysInMonth, getMonthName, getWeekDays } from '../../utils/calendar';
+import { api_path } from '../../utils/api';
+import { MonthSelector } from './MonthSelector';
+
 interface CalendarDay {
     day: number,
     showVisit?: boolean,
@@ -19,33 +15,6 @@ interface VisitData {
     day: number,
     visits: number
 }
-
-const MonthSelector = ({ selectPrevMonth, selectNextMonth, offset }: MonthSelector) => {
-
-    const selectedMonth = getCurrentMonth() + offset - 1
-    const selectedMonthName = getMonthName(selectedMonth, 'pl-PL')
-    const selectedYear = new Date(getCurrentYear(), selectedMonth).getFullYear()
-
-    return (
-        <>
-            <div className="month-control">
-                <button onClick={selectPrevMonth}><IoCaretBack /></button>
-                <div className="spacer">
-                    <h3 style={{ textTransform: 'capitalize' }}>{selectedMonthName} {selectedYear}</h3>
-                </div>
-                <button onClick={selectNextMonth}><IoCaretForward /></button>
-            </div>
-            <div className="month-control-mobile">
-                <h3 style={{ textTransform: 'capitalize' }}>{selectedMonthName} {selectedYear}</h3>
-                <div className="buttons-row">
-                    <button onClick={selectPrevMonth}><IoCaretBack /></button>
-                    <button onClick={selectNextMonth}><IoCaretForward /></button>
-                </div>
-            </div>
-        </>
-    )
-}
-
 
 const CalendarDay = ({ day, visits, showVisit = true }: CalendarDay) => {
     const s = (n: number): string => {
@@ -79,6 +48,15 @@ export const Calendar = () => {
     const currentMonth = getCurrentMonth() + offset
     const doctorId = 1;
 
+    const fetchData = async (abortController: AbortController) => {
+        const date = new Date(currentYear, currentMonth)
+        const year = date.getFullYear()
+        const month = date.getUTCMonth() + 1
+
+        return await fetch(`${api_path}/api/visits/calendar/${doctorId}?year=${year}&month=${month}`, {
+                        signal: abortController.signal});
+    }
+
     useEffect(() => {
         const abortController = new AbortController();
         const delayLoadingAnimation = setTimeout(() => {
@@ -86,22 +64,14 @@ export const Calendar = () => {
         }, 50);
 
         (async () => {
-            const date = new Date(currentYear, currentMonth)
-            const year = date.getFullYear()
-            const month = date.getUTCMonth() + 1
-            
-
             try {
-                const data = await fetch(`${api_path}/api/visits/calendar/${doctorId}?year=${year}&month=${month}`, {
-                    signal: abortController.signal
-                })
+                const data = await fetchData(abortController)
                 const visits:Array<VisitData> = await data.json()
                 clearTimeout(delayLoadingAnimation)
                 setVisits(visits);
             } catch (error) { }
         }
         )();
-    
       return () => {
         clearTimeout(delayLoadingAnimation)
         abortController.abort()

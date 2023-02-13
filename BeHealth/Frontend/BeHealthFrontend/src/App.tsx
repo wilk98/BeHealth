@@ -1,13 +1,13 @@
 import "./App.css";
 import Footer from "./components/layout/Footer/Footer";
 import { Routes, Route } from "react-router-dom";
-import ArangeVisit from "./pages/ArangeVisit";
+import ArrangeVisit from "./pages/ArrangeVisit";
 import { Navbar } from "./components/layout/Navbar";
 import { Sidebar } from "./components/layout/Sidebar";
 import { useState } from "react";
 import CategoriesSearch from "./pages/CategoriesSearch";
-import { Visits } from "./pages/Visits";
-import { Calendar } from "./pages/Calendar";
+import { Visits } from "./pages/doctor/Visits";
+import { Calendar } from "./pages/doctor/Calendar";
 
 function App() {
 	const [openSidebar, setOpenSidebar] = useState(true)
@@ -19,7 +19,7 @@ function App() {
 			<div className="container">
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
 				<Routes>
-					<Route path="/arange-visit" element={<ArangeVisit />} />
+					<Route path="/arrange-visit" element={<ArrangeVisit />} />
 					<Route path="/categories-search" element={<CategoriesSearch />} />
 					<Route path="/visits" element={<Visits />} />
 					<Route path="/calendar" element={<Calendar />} />
