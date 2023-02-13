@@ -1,5 +1,3 @@
-import "./Categories.css";
-
 function Categories() {
 	return (
 		<div className="categories">
