@@ -51,7 +51,9 @@ const CalendarDay = ({ day, visits, showVisit = true }: CalendarDay) => {
     const s = (n: number): string => {
         const lastDigit = Number(String(n).slice(-1));
         switch (lastDigit) {
-            case 5 || 6 || 7 || 8 || 9:
+            case 2:
+            case 3:
+            case 4:
                 return 'y'
             case 1:
                 return 'a'
