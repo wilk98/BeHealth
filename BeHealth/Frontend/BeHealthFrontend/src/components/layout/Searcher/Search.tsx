@@ -1,8 +1,6 @@
-import "./Search.css";
-
 function Search() {
 	return (
-		<div >
+		<div className="s">
 			<input className="search" placeholder="Szukaj"/>
 		</div>
 	);
