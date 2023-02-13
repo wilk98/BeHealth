@@ -15,7 +15,7 @@ public class VisitRepository : Repository<Visit>, IVisitRepository
     public async Task<IReadOnlyList<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)
     {
 
-        var visitDates = await _dbSet
+        var visitDates = await DbSet
             .Where(visit => visit.DoctorId == doctorId)
             .Where(visit => visit.VisitDate.Month == date.Month && visit.VisitDate.Year == date.Year)
             .Select(visit => visit.VisitDate)

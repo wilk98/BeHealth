@@ -4,7 +4,7 @@ import './MonthSelector.css'
 import { useEffect, useState } from 'react';
 import { getCurrentMonth, getCurrentYear, getDaysInMonth, getMonthName, getWeekDays } from '../../utils/calendar';
 import { api_path } from '../../utils/api';
-import { MonthSelector } from './MonthSelector';
+import { MonthSelector } from '../../components/ui/MonthSelector';
 
 interface CalendarDay {
     day: number,

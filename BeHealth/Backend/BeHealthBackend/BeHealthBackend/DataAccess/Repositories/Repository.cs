@@ -7,12 +7,11 @@ namespace BeHealthBackend.DataAccess.Repositories
     public abstract class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext _context;
-        protected readonly DbSet<T> _dbSet;
+        protected DbSet<T> DbSet;
 
         protected Repository(DbContext context)
         {
             _context = context;
-            _dbSet = _context.Set<T>();
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync(
@@ -20,7 +19,7 @@ namespace BeHealthBackend.DataAccess.Repositories
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             string? includeProperties = null)
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query = DbSet;
 
             if (filter is not null)
             {
@@ -45,14 +44,14 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public async Task<T?> GetAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return await DbSet.FindAsync(id);
         }
 
         public async Task<T?> GetAsync(
             Expression<Func<T, bool>>? filter = null,
             string? includeProperties = null)
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query = DbSet;
 
             if (filter is not null)
             {
@@ -72,12 +71,12 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public async Task AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            await DbSet.AddAsync(entity);
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            await _dbSet.AddRangeAsync(entities);
+            await DbSet.AddRangeAsync(entities);
         }
 
         public void Modify(T entity)
@@ -87,12 +86,12 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public void Remove(T entity)
         {
-            _dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-            _dbSet.RemoveRange(entities);
+            DbSet.RemoveRange(entities);
         }
 
         public void SetModified(T entity)

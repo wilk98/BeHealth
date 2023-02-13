@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BeHealthBackend.DTOs.DoctorDtoFolder;
+﻿namespace BeHealthBackend.DTOs.DoctorDtoFolder;
 public class CreateDoctorDto
 {
     public string? FirstName { get; set; }

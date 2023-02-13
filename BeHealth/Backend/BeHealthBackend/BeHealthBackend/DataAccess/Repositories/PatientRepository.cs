@@ -8,5 +8,6 @@ public class PatientRepository : Repository<Patient>, IPatientRepository
 {
     public PatientRepository(BeHealthContext context) : base(context)
     {
+        DbSet = context.Patients;
     }
 }

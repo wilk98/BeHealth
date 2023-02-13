@@ -15,8 +15,6 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public IPatientRepository PatientRepository { get; }
 
-        public IPersonRepository PersonRepository { get; }
-
         public IVisitRepository VisitRepository { get; }
 
         public UnitOfWork(BeHealthContext context)
@@ -26,7 +24,6 @@ namespace BeHealthBackend.DataAccess.Repositories
             ClinicRepository = new ClinicRepository(_context);
             DoctorRepository = new DoctorRepository(_context);
             PatientRepository = new PatientRepository(_context);
-            PersonRepository = new PersonRepository(_context);
             VisitRepository = new VisitRepository(_context);
         }
 
