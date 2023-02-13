@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DTOs.DoctorDtoFolder;
+﻿using BeHealthBackend.DTOs.AccountDtoFolder;
+using BeHealthBackend.DTOs.DoctorDtoFolder;
 
 namespace BeHealthBackend.Services.DoctorServices;
 public interface IDoctorService
@@ -8,4 +9,5 @@ public interface IDoctorService
     Task<(int, CreateDoctorDto)> CreateAsync(CreateDoctorDto dto);
     Task UpdateAsync(int id, UpdateDoctorDto dto);
     Task DeleteAsync(int id);
+    string GenerateJwt(LoginDto dto);
 }

@@ -1,5 +1,5 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DTOs.DoctorDtoFolder;
+using BeHealthBackend.DTOs.AccountDtoFolder;
 using FluentValidation;
 
 namespace BeHealthBackend.DataAccess.Entities.Validators;
@@ -27,7 +27,7 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
                 var emailInUse = dbContext.Doctors.Any(d => d.Email == value);
                 if (emailInUse)
                 {
-                    context.AddFailure("Email", $"{context}");
+                    context.AddFailure("Email", "That email is taken.");
                 }
             });
 
