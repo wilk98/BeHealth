@@ -27,7 +27,7 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
                 var emailInUse = dbContext.Doctors.Any(d => d.Email == value);
                 if (emailInUse)
                 {
-                    context.AddFailure("Email", $"{context}");
+                    context.AddFailure("Email", "That email is taken.");
                 }
             });
 

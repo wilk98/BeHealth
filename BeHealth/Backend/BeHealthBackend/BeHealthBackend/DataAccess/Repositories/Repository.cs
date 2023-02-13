@@ -6,12 +6,12 @@ namespace BeHealthBackend.DataAccess.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly DbContext _context;
+        protected readonly DbContext Context;
         protected DbSet<T> DbSet;
 
         protected Repository(DbContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync(
@@ -81,7 +81,7 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public void Modify(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Remove(T entity)
@@ -96,7 +96,7 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public void SetModified(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
         }
     }
 }
