@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using BeHealthBackend.DataAccess.Entities.Validators;
 using Microsoft.IdentityModel.Tokens;
 using BeHealthBackend.DTOs.AccountDtoFolder;
+using Microsoft.AspNetCore.Authorization;
+using BeHealthBackend.Authorization;
 
 namespace BeHealthBackend.Configurations.Extensions;
 public static class WebApplicationBuilderAddPersistenceExtension
@@ -45,6 +47,7 @@ public static class WebApplicationBuilderAddPersistenceExtension
             };
         });
 
+        builder.Services.AddScoped<IAuthorizationHandler, DoctorResourceOperationRequirementHandler>();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<BeHealthContext, BeHealthContext>();
         builder.Services.AddScoped<IVisitRepository, VisitRepository>();

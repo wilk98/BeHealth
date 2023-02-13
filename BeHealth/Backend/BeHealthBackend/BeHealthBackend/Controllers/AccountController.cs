@@ -34,14 +34,14 @@ public class AccountController : ControllerBase
     [HttpPut("doctor/{id}")]
     public async Task<IActionResult> UpdateDoctorAsync([FromRoute] int id, [FromBody] UpdateDoctorDto dto)
     {
-        await _doctorService.UpdateAsync(id, dto);
+        await _doctorService.UpdateAsync(id, dto, User);
         return NoContent();
     }
 
     [HttpDelete("doctor/{id}")]
     public async Task<IActionResult> DeleteDoctorByIdAsync([FromRoute] int id)
     {
-        await _doctorService.DeleteAsync(id);
+        await _doctorService.DeleteAsync(id, User);
         return NoContent();
     }
 
@@ -50,6 +50,13 @@ public class AccountController : ControllerBase
     {
         var (patientId, patient) = await _patientService.CreateAsync(dto);
         return Created($"/api/patients/{patientId}", patient);
+    }
+
+    [HttpPost("patient/login")]
+    public IActionResult LoginPatient([FromBody] LoginDto dto)
+    {
+        var token = _patientService.GenerateJwt(dto);
+        return Ok(token);
     }
 
     [HttpPut("patient/{id}")]
@@ -64,12 +71,5 @@ public class AccountController : ControllerBase
     {
         await _patientService.DeleteAsync(id);
         return NoContent();
-    }
-
-    [HttpPost("patient/login")]
-    public IActionResult LoginPatient([FromBody] LoginDto dto)
-    {
-        var token = _patientService.GenerateJwt(dto);
-        return Ok(token);
     }
 }

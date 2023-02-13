@@ -1,10 +1,12 @@
 ﻿using BeHealthBackend.DTOs.PatientDtoFolder;
 using BeHealthBackend.Services.PatientServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
 [ApiController, Route("/api/patients")]
+[Authorize(Roles = "Doctor")]
 public class PatientController : ControllerBase
 {
     private readonly IPatientService _patientService;
