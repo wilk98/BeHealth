@@ -19,7 +19,12 @@ namespace BeHealthBackend.Configurations.Middleware
             {
                 await next.Invoke(context);
             }
-            catch (BadRequestException badRequestException)
+            catch (ForbidException forbidException)
+            {
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync(forbidException.Message);
+            }
+            catch (Exceptions.BadRequestException badRequestException)
             {
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsync(badRequestException.Message);

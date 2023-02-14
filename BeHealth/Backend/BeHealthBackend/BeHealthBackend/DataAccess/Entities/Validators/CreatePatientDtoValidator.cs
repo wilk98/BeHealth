@@ -3,9 +3,9 @@ using BeHealthBackend.DTOs.AccountDtoFolder;
 using FluentValidation;
 
 namespace BeHealthBackend.DataAccess.Entities.Validators;
-public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
+public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
 {
-    public CreateDoctorDtoValidator(BeHealthContext dbContext)
+    public CreatePatientDtoValidator(BeHealthContext dbContext)
     {
         RuleFor(x => x.FirstName)
             .NotEmpty()
@@ -17,7 +17,7 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
 
         RuleFor(x => x.PhoneNumber)
             .NotEmpty()
-            .Length(6,6);
+            .Length(6, 6);
 
         RuleFor(x => x.Email)
             .NotEmpty()
@@ -44,9 +44,8 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
             .NotEmpty()
             .Matches("\\d{2}-\\d{3}");
 
-        RuleFor(x => x.Specialist)
-            .NotEmpty()
-            .MaximumLength(50);
+        RuleFor(x => x.Pesel)
+            .Length(11, 11);
 
         RuleFor(x => x.ConfirmPassword).Equal(e => e.PasswordHash);
     }

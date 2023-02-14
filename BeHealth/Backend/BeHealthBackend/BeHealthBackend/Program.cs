@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddLogger();
 builder.AddPersistence();
+builder.AddAuthentication();
+builder.AddAuthorization();
 builder.AddMapper();
 builder.AddErrorHandler();
 
@@ -41,9 +43,8 @@ if (app.Environment.IsDevelopment())
 app.UseErrorHandler();
 app.UseAuthentication();
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
-
 app.UseCors();
 app.MapControllers();
 
