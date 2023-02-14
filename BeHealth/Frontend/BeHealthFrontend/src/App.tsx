@@ -9,7 +9,7 @@ import CategoriesSearch from "./pages/CategoriesSearch";
 import { Visits } from "./pages/doctor/Visits";
 import { Calendar } from "./pages/doctor/Calendar";
 import { Login } from "./pages/auth/Login";
-import { Register } from "./pages/auth/Register";
+import { Register } from "./pages/auth/register/Register";
 
 function App() {
 	const [openSidebar, setOpenSidebar] = useState(true)

@@ -1,12 +1,18 @@
-import React, { AnchorHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 import './PrimaryButton.css'
 
-export const PrimaryButton = ({ children, style }: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
+interface PrimaryButton {
+  children: React.ReactNode;
+  style: React.CSSProperties;
+  disabled?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export const PrimaryButton = ({ children, style, onClick, disabled = false }: PrimaryButton ) => {
   style = {
     ...style,
     cursor: 'pointer'
   }
   return (
-    <button style={style}>{children}</button>
+    <button className={disabled ? 'disabled' : ''} style={style} onClick={(event) => (onClick && !disabled) && onClick(event)}>{children}</button>
   )
 }

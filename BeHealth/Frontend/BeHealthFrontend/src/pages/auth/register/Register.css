@@ -47,3 +47,9 @@ main.main--register .split .registration-container fieldset > .split > div {
     display: flex;
     gap: 10px;
 }
+
+main.main--register .register--error {
+    color: red;
+    text-decoration: double;
+    margin-block-end: 1rem;
+}

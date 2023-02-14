@@ -10,6 +10,7 @@ public class VisitRepository : Repository<Visit>, IVisitRepository
 {
     public VisitRepository(BeHealthContext context) : base(context)
     {
+        DbSet = context.Visits;
     }
 
     public async Task<IReadOnlyList<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)

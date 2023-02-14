@@ -1,8 +1,8 @@
-import "./ArangeVisit.css";
+import "./ArrangeVisit.css";
 
-function ArangeVisit() {
+function ArrangeVisit() {
 	return (
-		<main className="ArangeVisit">
+		<main className="ArrangeVisit">
 			<h1>TEST</h1>
 			<h1>TEST</h1>
 			<h1>TEST</h1>
@@ -29,4 +29,4 @@ function ArangeVisit() {
 	);
 }
 
-export default ArangeVisit;
+export default ArrangeVisit;
