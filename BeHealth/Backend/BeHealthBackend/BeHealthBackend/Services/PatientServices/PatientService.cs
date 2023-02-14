@@ -5,11 +5,13 @@ using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.PatientDtoFolder;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BeHealthBackend.Authorization;
 
 namespace BeHealthBackend.Services.PatientServices;
 public class PatientService : IPatientService
@@ -19,15 +21,17 @@ public class PatientService : IPatientService
     private readonly IPasswordHasher<Patient> _passwordHasher;
     private readonly BeHealthContext _context;
     private readonly AuthenticationSettings _authenticationSettings;
+    private readonly IAuthorizationService _authorizationService;
 
     public PatientService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Patient> passwordHasher,
-        BeHealthContext context, AuthenticationSettings authenticationSettings)
+        BeHealthContext context, AuthenticationSettings authenticationSettings, IAuthorizationService authorizationService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _passwordHasher = passwordHasher;
         _context = context;
         _authenticationSettings = authenticationSettings;
+        _authorizationService = authorizationService;
     }
 
     public async Task<IEnumerable<PatientDto>> GetPatientsAsync()
@@ -44,6 +48,9 @@ public class PatientService : IPatientService
     {
         var patient = await _unitOfWork.PatientRepository
             .GetAsync(p => p.Id == id, includeProperties: "Address");
+
+        if (patient is null)
+            throw new NotFoundApiException(nameof(PatientDto), id.ToString());
 
         var patientDto = _mapper.Map<PatientDto>(patient);
 
@@ -62,29 +69,38 @@ public class PatientService : IPatientService
         return (patient.Id, _mapper.Map<CreatePatientDto>(patient));
     }
 
-    public async Task UpdateAsync(int id, UpdatePatientDto dto)
+    public async Task UpdateAsync(int id, UpdatePatientDto dto, ClaimsPrincipal user)
     {
         var patient = await _unitOfWork.PatientRepository
             .GetAsync(id);
 
         if (patient is null)
-        {
             throw new NotFoundApiException(nameof(PatientDto), id.ToString());
-        }
+
+        var authorizationResult = _authorizationService.AuthorizeAsync(user, patient,
+            new ResourceOperationRequirement(ResourceOperation.Update)).Result;
+
+        if (!authorizationResult.Succeeded)
+            throw new ForbidException("You are not a owner!");
 
         _mapper.Map(dto, patient);
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id, ClaimsPrincipal user)
     {
         var patient = await _unitOfWork.PatientRepository
             .GetAsync(id);
 
         if (patient is null)
-        {
             throw new NotFoundApiException(nameof(PatientDto), id.ToString());
-        }
+
+        var authorizationResult = _authorizationService.AuthorizeAsync(user, patient,
+            new ResourceOperationRequirement(ResourceOperation.Update)).Result;
+
+        if (!authorizationResult.Succeeded)
+            throw new ForbidException("You are not a owner!");
+
         _unitOfWork.PatientRepository.Remove(patient);
         await _unitOfWork.SaveAsync();
     }
@@ -94,16 +110,12 @@ public class PatientService : IPatientService
         var user = _context.Patients.FirstOrDefault(d => d.Email == dto.Email);
 
         if (user is null)
-        {
             throw new BadRequestException("Invalid username or password!");
-        }
 
         var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
 
         if (result == PasswordVerificationResult.Failed)
-        {
             throw new BadRequestException("Invalid username or password!");
-        }
 
         var claims = new List<Claim>()
         {

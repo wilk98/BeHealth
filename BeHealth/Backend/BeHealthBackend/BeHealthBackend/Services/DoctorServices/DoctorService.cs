@@ -78,12 +78,10 @@ public class DoctorService : IDoctorService
             throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
 
         var authorizationResult = _authorizationService.AuthorizeAsync(user, doctor,
-            new DoctorResourceOperationRequirement(ResourceOperation.Update)).Result;
+            new ResourceOperationRequirement(ResourceOperation.Update)).Result;
 
         if (!authorizationResult.Succeeded)
-        {
             throw new ForbidException("You are not a owner!");
-        }
 
         _mapper.Map(dto, doctor);
         await _unitOfWork.SaveAsync();
@@ -98,12 +96,10 @@ public class DoctorService : IDoctorService
             throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
 
         var authorizationResult = _authorizationService.AuthorizeAsync(user, doctor,
-            new DoctorResourceOperationRequirement(ResourceOperation.Delete)).Result;
+            new ResourceOperationRequirement(ResourceOperation.Delete)).Result;
 
         if (!authorizationResult.Succeeded)
-        {
             throw new ForbidException("You are not a owner!");
-        }
 
         _unitOfWork.DoctorRepository.Remove(doctor);
         await _unitOfWork.SaveAsync();
@@ -114,16 +110,12 @@ public class DoctorService : IDoctorService
         var user = _context.Doctors.FirstOrDefault(d => d.Email == dto.Email);
 
         if (user is null)
-        {
-            throw new BadRequestException("Invalid username or password!");
-        }
+            throw new BadRequestException("Invalid username or password");
 
         var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
 
         if (result == PasswordVerificationResult.Failed)
-        {
-            throw new BadRequestException("Invalid username or password!");
-        }
+            throw new BadRequestException("Invalid username or password");
 
         var claims = new List<Claim>()
         {

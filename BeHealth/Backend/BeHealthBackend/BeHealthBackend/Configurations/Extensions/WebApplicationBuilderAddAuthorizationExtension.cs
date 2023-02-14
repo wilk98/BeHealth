@@ -7,6 +7,7 @@ public static class WebApplicationBuilderAddAuthorizationExtension
     public static WebApplicationBuilder AddAuthorization(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IAuthorizationHandler, DoctorResourceOperationRequirementHandler>();
+        builder.Services.AddScoped<IAuthorizationHandler, PatientResourceOperationRequirementHandler>();
 
         return builder;
     }

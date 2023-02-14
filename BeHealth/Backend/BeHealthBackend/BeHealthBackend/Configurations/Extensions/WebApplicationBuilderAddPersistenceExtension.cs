@@ -31,6 +31,7 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddScoped<IPasswordHasher<Doctor>, PasswordHasher<Doctor>>();
         builder.Services.AddScoped<IPasswordHasher<Patient>, PasswordHasher<Patient>>();
         builder.Services.AddScoped<IValidator<CreateDoctorDto>, CreateDoctorDtoValidator>();
+        builder.Services.AddScoped<IValidator<CreatePatientDto>, CreatePatientDtoValidator>();
 
         return builder;
     }

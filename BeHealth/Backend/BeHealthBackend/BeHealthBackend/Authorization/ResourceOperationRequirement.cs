@@ -8,10 +8,10 @@ public enum ResourceOperation
     Update,
     Delete
 }
-public class DoctorResourceOperationRequirement : IAuthorizationRequirement
+public class ResourceOperationRequirement : IAuthorizationRequirement
 {
     public ResourceOperation ResourceOperation { get; }
-    public DoctorResourceOperationRequirement(ResourceOperation resourceOperation)
+    public ResourceOperationRequirement(ResourceOperation resourceOperation)
     {
         ResourceOperation = resourceOperation;
     }

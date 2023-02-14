@@ -3,10 +3,10 @@ using BeHealthBackend.DataAccess.Entities;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BeHealthBackend.Authorization;
-public class DoctorResourceOperationRequirementHandler : AuthorizationHandler<ResourceOperationRequirement, Doctor>
+public class PatientResourceOperationRequirementHandler : AuthorizationHandler<ResourceOperationRequirement, Patient>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ResourceOperationRequirement requirement,
-        Doctor doctor)
+        Patient patient)
     {
         if (requirement.ResourceOperation is ResourceOperation.Read or ResourceOperation.Create)
         {
@@ -14,7 +14,7 @@ public class DoctorResourceOperationRequirementHandler : AuthorizationHandler<Re
         }
 
         var userId = context.User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        if (doctor.Id == int.Parse(userId))
+        if (patient.Id == int.Parse(userId))
         {
             context.Succeed(requirement);
         }

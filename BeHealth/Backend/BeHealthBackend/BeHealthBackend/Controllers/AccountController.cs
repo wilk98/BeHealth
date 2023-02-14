@@ -62,14 +62,14 @@ public class AccountController : ControllerBase
     [HttpPut("patient/{id}")]
     public async Task<IActionResult> UpdatePatientAsync([FromRoute] int id, [FromBody] UpdatePatientDto dto)
     {
-        await _patientService.UpdateAsync(id, dto);
+        await _patientService.UpdateAsync(id, dto, User);
         return NoContent();
     }
 
     [HttpDelete("patient/{id}")]
     public async Task<IActionResult> DeletePatientByIdAsync([FromRoute] int id)
     {
-        await _patientService.DeleteAsync(id);
+        await _patientService.DeleteAsync(id, User);
         return NoContent();
     }
 }
