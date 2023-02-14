@@ -16,7 +16,8 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
             .MaximumLength(30);
 
         RuleFor(x => x.PhoneNumber)
-            .NotEmpty();
+            .NotEmpty()
+            .Length(6,6);
 
         RuleFor(x => x.Email)
             .NotEmpty()
@@ -41,7 +42,7 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
 
         RuleFor(x => x.PostalCode)
             .NotEmpty()
-            .MaximumLength(6);
+            .Matches("\\d{2}-\\d{3}");
 
         RuleFor(x => x.Specialist)
             .NotEmpty()

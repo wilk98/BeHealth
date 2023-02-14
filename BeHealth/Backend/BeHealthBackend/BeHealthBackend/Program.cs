@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddLogger();
 builder.AddPersistence();
+builder.AddAuthentication();
+builder.AddAuthorization();
 builder.AddMapper();
 builder.AddErrorHandler();
 
