@@ -17,7 +17,7 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
 
         RuleFor(x => x.PhoneNumber)
             .NotEmpty()
-            .Length(6,6);
+            .Matches("\\d{9}");
 
         RuleFor(x => x.Email)
             .NotEmpty()

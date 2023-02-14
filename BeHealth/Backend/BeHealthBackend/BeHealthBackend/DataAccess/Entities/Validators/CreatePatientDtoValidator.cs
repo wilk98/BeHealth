@@ -17,7 +17,7 @@ public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
 
         RuleFor(x => x.PhoneNumber)
             .NotEmpty()
-            .Length(6, 6);
+            .Matches("\\d{9}");
 
         RuleFor(x => x.Email)
             .NotEmpty()
@@ -45,7 +45,7 @@ public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
             .Matches("\\d{2}-\\d{3}");
 
         RuleFor(x => x.Pesel)
-            .Length(11, 11);
+            .Matches("\\d{11}");
 
         RuleFor(x => x.ConfirmPassword).Equal(e => e.PasswordHash);
     }
