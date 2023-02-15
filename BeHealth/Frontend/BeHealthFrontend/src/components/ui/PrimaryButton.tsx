@@ -3,6 +3,6 @@ import './PrimaryButton.css'
 
 export const PrimaryButton = ({ children }: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
   return (
-    <button>{children}</button>
+    <button className='primary-button'>{children}</button>
   )
 }

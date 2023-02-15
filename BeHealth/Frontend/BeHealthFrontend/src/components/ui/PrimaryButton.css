@@ -1,4 +1,4 @@
-button {
+.primary-button {
     font-weight: 600;
     background-color: var(--bh-purple);
 
