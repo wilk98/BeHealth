@@ -4,19 +4,25 @@ import { Routes, Route } from "react-router-dom";
 import ArrangeVisit from "./pages/ArrangeVisit";
 import { Navbar } from "./components/layout/Navbar";
 import { Sidebar } from "./components/layout/Sidebar";
-import { useState } from "react";
 import CategoriesSearch from "./pages/CategoriesSearch";
 import { Visits } from "./pages/doctor/Visits";
 import { Calendar } from "./pages/doctor/Calendar";
 import { Login } from "./pages/auth/Login";
 import { Register } from "./pages/auth/register/Register";
+import { BeHealthContext } from "./Context";
+import { useState } from "react";
+import { User } from "./utils/auth";
 
 function App() {
+
 	const [openSidebar, setOpenSidebar] = useState(true)
+	const [currentUser, setCurrentUser] = useState<User>()
+	const [token, setToken] = useState("")
 	const toggleSidebar = () => setOpenSidebar(prev => !prev);
 
 	return (
 		<>
+		<BeHealthContext.Provider value={{ user: currentUser, setUser: setCurrentUser, token: token, setToken: setToken }}>
 			<Navbar />
 			<div className="container">
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
@@ -30,6 +36,7 @@ function App() {
 				</Routes>
 			</div>
 			<Footer />
+		</BeHealthContext.Provider>
 		</>
 	);
 }
