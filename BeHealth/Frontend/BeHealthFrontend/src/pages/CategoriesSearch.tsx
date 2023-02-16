@@ -15,11 +15,110 @@ import pediatra from "../assets/images/specializacje/pediatra.png"
 import plastyczny from "../assets/images/specializacje/plastyczny.png"
 
 import './CategoriesSearch.css'
+import { useState } from "react"
 
 
 
 
 function CategoriesSearch() {
+	const [selected, setSelected] = useState(0)
+
+	interface Specjalizacja {
+		id: number,
+		name: string,
+		link: string,
+		icon: string,
+	  }
+	
+	  const specjalizacje: Array<Specjalizacja> = [
+		{
+			id: 1,
+		  	name: "dermatolog",
+		  	link: "/",
+		  	icon: dermatolog,
+		},
+		{
+			id: 2,
+		  	name: "gastrolog",
+		  	link: "/",
+		  	icon: gastrolog,
+		},
+		{
+			id: 3,
+		  	name: "ginekolog",
+		  	link: "/",
+		  	icon: ginekolog,
+		},
+		{
+			id: 4,
+		  	name: "hematolog",
+		  	link: "/",
+		  	icon: hematolog,
+		},
+		{
+			id: 5,
+		  	name: "hepatolog",
+		  	link: "/",
+		  	icon: hepatolog,
+		},
+		{
+			id: 6,
+		  	name: "kardiolog",
+		  	link: "/",
+		  	icon: kardiolog,
+		},
+		{
+			id: 7,
+		  	name: "laryngolog",
+		  	link: "/",
+		  	icon: laryngolog,
+		},
+		{
+			id: 8,
+		  	name: "neurolog",
+		  	link: "/",
+		  	icon: neurolog,
+		},
+		{
+			id: 9,
+		  	name: "ogolny",
+		  	link: "/",
+		  	icon: ogolny,
+		},
+		{
+			id: 10,
+		  	name: "okulista",
+		  	link: "/",
+		  	icon: okulista,
+		},
+		{
+			id: 11,
+		  	name: "ortopeda",
+		  	link: "/",
+		  	icon: ortopeda,
+		},
+		{
+			id: 12,
+		  	name: "pediatra",
+		  	link: "/",
+		  	icon: pediatra,
+		},
+		{
+			id: 13,
+		  	name: "plastyczny",
+		  	link: "/",
+		  	icon: plastyczny,
+		},
+	  ]
+
+	  const specElements = specjalizacje.map((specjalizacja, i) => (
+		<div onClick={() => setSelected(i)} className={selected === i ? 'selected ' : ''} style={{width:"150px"}}>
+			<img src={specjalizacja.icon}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
+		</div>
+		// <li key={specjalizacja.name} onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>
+		//   <Link to={link.link}>{link.icon} {link.name}</Link>
+		// </li>
+	  ))
 
 	return (
 		<main>
@@ -27,7 +126,8 @@ function CategoriesSearch() {
 				<Searcher />
 				<p className="text-specjalizacja">SPECJALIZACJA</p>
 				<Carousel show={11} infiniteLoop={true}>
-					<div className="picture" style={{width:"150px", border: "grey"}}>
+					{specElements}
+					{/* <div className="picture" style={{width:"150px"}}>
 						<img src={dermatolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
 					</div>
 					<div className="picture" style={{width:"150px"}}>
@@ -65,7 +165,7 @@ function CategoriesSearch() {
 					</div>
 					<div className="picture"style={{width:"150px"}}>
 						<img src={plastyczny}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
+					</div> */}
 				</Carousel>
 			</div>
 		</main>
