@@ -1,9 +1,10 @@
 import './Sidebar.css'
 import {  FaRegCalendar, FaRegClipboard, FaRegUser, IoSettingsSharp, FiMessageSquare, GiHealthNormal } from 'react-icons/all'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Logo } from './Logo';
 import { HamburgerButton } from '../ui/HamburgerButton';
 import { Link, LinkProps } from 'react-router-dom';
+import { BeHealthContext } from '../../Context';
 
 interface Sidebar {
   isOpen: boolean;
@@ -12,6 +13,8 @@ interface Sidebar {
 
 export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
   const [selected, setSelected] = useState(0)
+  const { user } = useContext(BeHealthContext)
+  const show = user !== undefined
 
   interface Link {
     name: string,
@@ -19,7 +22,15 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
     icon: JSX.Element,
   }
 
-  const links: Array<Link> = [
+  const patientLinks: Array<Link> = [
+    {
+      name: "Kalendarz",
+      link: "/calendar",
+      icon: <FaRegCalendar />,
+    }
+  ]
+
+  const doctorLinks: Array<Link> = [
     {
       name: "Kalendarz",
       link: "/calendar",
@@ -52,20 +63,34 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
     },
   ]
 
-  const linkElements = links.map((link, i) => (
-    <li key={link.name} onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>
-      <Link to={link.link}>{link.icon} {link.name}</Link>
-    </li>
-  ))
+  const LinksList = () => {
+
+    const { user } = useContext(BeHealthContext)
+    const links = user?.role === 'Doctor' ? doctorLinks : patientLinks
+
+    return (
+      <>
+        {
+        links.map((link, i) => (
+            <li key={link.name} onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>
+              <Link to={link.link}>{link.icon} {link.name}</Link>
+            </li>
+          ))
+        }
+      </>
+    )
+  }
 
   return (
-    <aside className={!isOpen ? 'hidden' : ''}>
+    <aside className={!isOpen ? 'hidden' : ''} style={{
+      transform: !show ? 'translateX(-370px) translateY(-135px)' : ''
+    }}>
       <div className='controls'>
         <Logo />
         <HamburgerButton isOpen={isOpen} onClick={toggle} />
       </div>
       <ul>
-        {linkElements}
+        <LinksList />
       </ul>
     </aside>
   )
