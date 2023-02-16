@@ -114,6 +114,10 @@ nav a {
 
 
 @media screen and (max-width: 750px) {
+    nav p.logo {
+        margin-inline-start: 4.25rem;
+        margin-inline-end: 0;
+    }
     nav {
         padding: 17px 17px;
     }

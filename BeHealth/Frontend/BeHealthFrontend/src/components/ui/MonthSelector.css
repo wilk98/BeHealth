@@ -1,0 +1,34 @@
+.month-control {
+    align-self: center;
+
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}
+
+.month-control-mobile {
+    display: none;
+}
+
+.month-control .spacer {
+    text-align: center;
+    min-width: 170px;
+}
+
+@media screen and (max-width: 550px) {
+    .month-control-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .month-control-mobile .buttons-row {
+        height: 50px;
+        gap: 100px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .month-control {
+        display: none;
+    }
+}

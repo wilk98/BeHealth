@@ -1,15 +1,34 @@
-using BeHealthBackend.Entities;
+﻿using BeHealthBackend.DataAccess.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using BeHealthBackend.Configurations.Extensions;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.AddLogger();
+builder.AddPersistence();
+builder.AddMapper();
+builder.AddErrorHandler();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddFluentValidation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<BeHealthContext>(
-    option => option
-        .UseSqlServer(builder.Configuration.GetConnectionString("BeHealthConnectionString")));
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policyBuilder =>
+    {
+        policyBuilder
+            .WithOrigins(builder.Configuration["AllowedOrigins"])
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()
+            .WithExposedHeaders("X-Pagination");
+    });
+});
 
 var app = builder.Build();
 
@@ -19,10 +38,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseErrorHandler();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors();
 app.MapControllers();
 
 using var scope = app.Services.CreateScope();
