@@ -1,9 +1,10 @@
 import './Calendar.css'
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getCurrentMonth, getCurrentYear, getDaysInMonth, getMonthName, getWeekDays } from '../../utils/calendar';
 import { api_path } from '../../utils/api';
 import { MonthSelector } from '../../components/ui/MonthSelector';
+import { BeHealthContext } from '../../Context';
 
 interface CalendarDay {
     day: number,
@@ -33,7 +34,7 @@ const CalendarDay = ({ day, visits, showVisit = true }: CalendarDay) => {
     return (
         <div className={`calendar-day ${showVisit ? '' : 'disabled '} ${visits == 0 || visits == -1 ? 'no-visits ' : ''}`}>
             <p className='date'>{String(day).padStart(2, '0')}</p>
-            <p className={`visits ${visits === -1 ? 'loading' : ''}`}style={{ opacity: showVisit ? 1 : 0 }}>{visits} wizyt{s(visits)}</p>
+            <p className={`visits ${visits === -1 ? 'loading' : ''}`} style={{ opacity: showVisit ? 1 : 0 }}>{visits} wizyt{s(visits)}</p>
         </div>
     )
 }
@@ -41,6 +42,7 @@ const CalendarDay = ({ day, visits, showVisit = true }: CalendarDay) => {
 export const Calendar = () => {
     const [offset, setOffset] = useState(0);
     const [visits, setVisits] = useState<Array<VisitData>>();
+    const { token } = useContext(BeHealthContext)
 
 
     const currentYear = getCurrentYear()
@@ -53,7 +55,12 @@ export const Calendar = () => {
         const month = date.getUTCMonth() + 1
 
         return await fetch(`${api_path}/api/visits/calendar/${doctorId}?year=${year}&month=${month}`, {
-                        signal: abortController.signal});
+            signal: abortController.signal,
+            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
     }
 
     useEffect(() => {
@@ -65,16 +72,16 @@ export const Calendar = () => {
         (async () => {
             try {
                 const data = await fetchData(abortController)
-                const visits:Array<VisitData> = await data.json()
+                const visits: Array<VisitData> = await data.json()
                 clearTimeout(delayLoadingAnimation)
                 setVisits(visits);
             } catch (error) { }
         }
         )();
-      return () => {
-        clearTimeout(delayLoadingAnimation)
-        abortController.abort()
-      }
+        return () => {
+            clearTimeout(delayLoadingAnimation)
+            abortController.abort()
+        }
     }, [offset])
 
     const daysOfWeek = getWeekDays('pl-PL', true).map(day => <p key={day}>{day}</p>);
@@ -85,7 +92,7 @@ export const Calendar = () => {
         const monthStartsWith = new Date(currentYear, currentMonth - 1, 1).getUTCDay();
 
         for (let i = daysInPreviousMonth - monthStartsWith + 1; i <= daysInPreviousMonth; i++) {
-            daysElements.push(<CalendarDay key={i*3} day={i} visits={0} showVisit={false} />)
+            daysElements.push(<CalendarDay key={i * 3} day={i} visits={0} showVisit={false} />)
         }
         for (let i = 1; i <= daysInCurrentMonth; i++) {
             const visitsAtDay = visits === undefined ? -1 : (visits?.find(v => v.day == i)?.visits ?? 0)

@@ -2,7 +2,7 @@ import './PrimaryButton.css'
 
 interface PrimaryButton {
   children: React.ReactNode;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

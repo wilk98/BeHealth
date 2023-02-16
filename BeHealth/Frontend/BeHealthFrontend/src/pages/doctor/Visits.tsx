@@ -1,9 +1,10 @@
 import './Visits.css'
 import { groupBy } from '../../utils/arrays';
 import { BiMessageSquare, BiCheck, HiXMark } from "react-icons/all"
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { dateToHuman, getDate, getTimeSpan } from '../../utils/calendar';
 import { api_path } from '../../utils/api';
+import { BeHealthContext } from '../../Context';
 
 interface Buttons {
   id: string,
@@ -12,10 +13,16 @@ interface Buttons {
 }
 
 const Buttons = ({ id, confirmed, setConfirmationStatus }:Buttons) => {
+  const { token } = useContext(BeHealthContext)
+
   function handleVisitClick(id: string, status: boolean, setConfirmationStatus: (arg0: string, arg1: boolean) => void) {
     setConfirmationStatus(id, status);
     fetch(`${api_path}/api/visits/${id}/${status ? 'accept' : 'decline'}`, {
-      method: "POST"
+      method: "POST",
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     });
   }
   return (
@@ -76,8 +83,9 @@ const VisitCard = ({ id, treatment, patient, time, confirmed, setConfirmationSta
 
 export const Visits = () => {
 
-  const doctorId = "1";
   const [visits, setVisits] = useState<Array<Visit>>([])
+  const { token, user } = useContext(BeHealthContext)
+  const doctorId = user?.id;
   const setVisitConfirmationStatus = (id: string, status: boolean) => {
     setVisits(prevVisits => prevVisits.map(visit => {
       return visit.id !== id ? visit : {
@@ -91,8 +99,10 @@ export const Visits = () => {
   useEffect(() => {
     (async () => {
       const data = await fetch(`${api_path}/api/visits/${doctorId}`, {
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
       );
