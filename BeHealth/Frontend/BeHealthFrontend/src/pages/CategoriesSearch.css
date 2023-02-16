@@ -89,6 +89,7 @@ main{
     margin-block-end: 1.25rem;
   }
 
-  .specjalizacja-click{
+  .selected{
     border: 2px solid var(--bh-purple);
+    border-radius: 20px;
   }
