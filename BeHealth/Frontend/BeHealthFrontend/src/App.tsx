@@ -15,10 +15,11 @@ import { User } from "./utils/auth";
 
 function App() {
 
-	const [openSidebar, setOpenSidebar] = useState(true)
+	const [openSidebar, setOpenSidebar] = useState(false)
+	const toggleSidebar = () => setOpenSidebar(prev => !prev);
+
 	const [currentUser, setCurrentUser] = useState<User>()
 	const [token, setToken] = useState("")
-	const toggleSidebar = () => setOpenSidebar(prev => !prev);
 
 	return (
 		<>

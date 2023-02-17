@@ -47,10 +47,10 @@ export const Login = () => {
     const token = await response.text();
     const parsedToken = getParsedJwt<Token>(token);
 
-    setToken(token)
-
     if (parsedToken === undefined)
       return;
+
+    setToken(token)
 
     const user: User = {
       id: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
