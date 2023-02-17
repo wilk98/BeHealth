@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ArrangeVisit from "./pages/ArrangeVisit";
 import { Navbar } from "./components/layout/Navbar";
 import { Sidebar } from "./components/layout/Sidebar";
-import CategoriesSearch from "./pages/CategoriesSearch";
+import {CategoriesSearch} from "./pages/CategoriesSearch";
 import { Visits } from "./pages/doctor/Visits";
 import { Calendar } from "./pages/doctor/Calendar";
 import { Login } from "./pages/auth/Login";
