@@ -13,15 +13,15 @@ import okulista from "../assets/images/specializacje/okulista.png"
 import ortopeda from "../assets/images/specializacje/ortopeda.png"
 import pediatra from "../assets/images/specializacje/pediatra.png"
 import plastyczny from "../assets/images/specializacje/plastyczny.png"
-
 import './CategoriesSearch.css'
 import { useState } from "react"
 
 
 
 
-function CategoriesSearch() {
+export const CategoriesSearch = () => {
 	const [selected, setSelected] = useState(0)
+	
 
 	interface Specjalizacja {
 		id: number,
@@ -30,6 +30,8 @@ function CategoriesSearch() {
 		icon: string,
 	  }
 	
+
+
 	  const specjalizacje: Array<Specjalizacja> = [
 		{
 			id: 1,
@@ -110,16 +112,22 @@ function CategoriesSearch() {
 		  	icon: plastyczny,
 		},
 	  ]
-
+		const specialization = document.getElementsByClassName('selected').item(1)?.id;
+		console.log(specialization)
+		
+		interface Doctor {
+			id: string,
+			specialist: string,
+			name: string
+		  }
+	
+		
 	  const specElements = specjalizacje.map((specjalizacja, i) => (
-		<div onClick={() => setSelected(i)} className={selected === i ? 'selected ' : ''} style={{width:"150px"}}>
+		<div onClick={() => setSelected(i)} className={selected === i ? 'selected ' : ''}  id={specjalizacja.name} style={{width:"150px"}}>
 			<img src={specjalizacja.icon}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
 		</div>
-		// <li key={specjalizacja.name} onClick={() => setSelected(i)}  className={selected === i ? 'selected ' : ''}>
-		//   <Link to={link.link}>{link.icon} {link.name}</Link>
-		// </li>
 	  ))
-
+	  
 	return (
 		<main>
 			<div className="p" style={{ marginLeft: 20 }}>
@@ -127,49 +135,9 @@ function CategoriesSearch() {
 				<p className="text-specjalizacja">SPECJALIZACJA</p>
 				<Carousel show={11} infiniteLoop={true}>
 					{specElements}
-					{/* <div className="picture" style={{width:"150px"}}>
-						<img src={dermatolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture" style={{width:"150px"}}>
-						<img src={gastrolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={ginekolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={hematolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={hepatolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={kardiolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={laryngolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={neurolog}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={ogolny}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={okulista}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={ortopeda}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={pediatra}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div>
-					<div className="picture"style={{width:"150px"}}>
-						<img src={plastyczny}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-					</div> */}
 				</Carousel>
 			</div>
 		</main>
 	)
-}
 
-export default CategoriesSearch
+}
