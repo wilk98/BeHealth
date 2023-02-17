@@ -5,7 +5,7 @@ import ArrangeVisit from "./pages/ArrangeVisit";
 import { Navbar } from "./components/layout/Navbar";
 import { Sidebar } from "./components/layout/Sidebar";
 import { useState } from "react";
-import CategoriesSearch from "./pages/CategoriesSearch";
+import {CategoriesSearch} from "./pages/CategoriesSearch";
 import { Visits } from "./pages/doctor/Visits";
 import { Calendar } from "./pages/doctor/Calendar";
 
@@ -20,7 +20,7 @@ function App() {
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
 				<Routes>
 					<Route path="/arrange-visit" element={<ArrangeVisit />} />
-					<Route path="/categories-search" element={<CategoriesSearch />} />
+					<Route path="/categories-search" element={<CategoriesSearch />}/>
 					<Route path="/visits" element={<Visits />} />
 					<Route path="/calendar" element={<Calendar />} />
 				</Routes>
