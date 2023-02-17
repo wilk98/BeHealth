@@ -44,6 +44,16 @@ public class DoctorService : IDoctorService
         return doctorsDto;
     }
 
+    public async Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationAsync(string specialization)
+    {
+        var doctors = await _unitOfWork.DoctorRepository
+            .GetAsync(d => d.Specialist == specialization, includeProperties: "Address");
+
+        var doctorsDto = _mapper.Map<List<DoctorDto>>(doctors);
+
+        return doctorsDto;
+    }
+
     public async Task<DoctorDto> GetIdAsync(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository

@@ -6,6 +6,7 @@ namespace BeHealthBackend.Services.DoctorServices;
 public interface IDoctorService
 {
     Task<IEnumerable<DoctorDto>> GetDoctorsAsync();
+    Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationAsync(string specialization);
     Task<DoctorDto> GetIdAsync(int id);
     Task<(int, CreateDoctorDto)> CreateAsync(CreateDoctorDto dto);
     Task UpdateAsync(int id, UpdateDoctorDto dto, ClaimsPrincipal user);

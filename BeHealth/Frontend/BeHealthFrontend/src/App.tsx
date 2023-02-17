@@ -28,7 +28,7 @@ function App() {
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
 				<Routes>
 					<Route path="/arrange-visit" element={<ArrangeVisit />} />
-					<Route path="/categories-search" element={<CategoriesSearch />} />
+					<Route path="/categories-search" element={<CategoriesSearch />}/>
 					<Route path="/visits" element={<Visits />} />
 					<Route path="/calendar" element={<Calendar />} />
 					<Route path="/login" element={<Login />} />
