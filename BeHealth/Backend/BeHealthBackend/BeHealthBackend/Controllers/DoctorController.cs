@@ -18,6 +18,14 @@ public class DoctorController : ControllerBase
     public async Task<ActionResult<IEnumerable<DoctorDto>>> GetAllDoctorsAsync()
     {
         var doctors = await _doctorService.GetDoctorsAsync();
+        Console.WriteLine(doctors.ToString());
+        return Ok(doctors);
+    }
+
+    [HttpGet("{specialization}/search")]
+    public async Task<ActionResult<IEnumerable<DoctorDto>>> GetDoctorsBySpecializationAsync([FromRoute] string specialization)
+    {
+        var doctors = await _doctorService.GetDoctorsBySpecializationAsync(specialization);
         return Ok(doctors);
     }
 
