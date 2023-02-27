@@ -14,14 +14,15 @@ import ortopeda from "../assets/images/specializacje/ortopeda.png"
 import pediatra from "../assets/images/specializacje/pediatra.png"
 import plastyczny from "../assets/images/specializacje/plastyczny.png"
 import './CategoriesSearch.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { api_path } from '../utils/api';
 
 
 
 
 export const CategoriesSearch = () => {
 	const [selected, setSelected] = useState(0)
-	
+	const [doctors, setDoctors] = useState<Array<Doctor>>([])
 
 	interface Specjalizacja {
 		id: number,
@@ -32,7 +33,7 @@ export const CategoriesSearch = () => {
 	
 
 
-	  const specjalizacje: Array<Specjalizacja> = [
+	const specjalizacje: Array<Specjalizacja> = [
 		{
 			id: 1,
 		  	name: "dermatolog",
@@ -112,21 +113,40 @@ export const CategoriesSearch = () => {
 		  	icon: plastyczny,
 		},
 	  ]
-		const specialization = document.getElementsByClassName('selected').item(1)?.id;
+	const specialization = document.getElementsByClassName('selected').item(1)?.id;
 		console.log(specialization)
 		
-		interface Doctor {
+	interface Doctor {
 			id: string,
 			specialist: string,
 			name: string
 		  }
-	
+		// useEffect(() => {
+		// 	(async () => {
+		// 		const doctors = await fetch(`${api_path}/api/visits/${specialization}/search`, {
+		// 			method: "GET"
+		// 		});
+		// 		const json: Array<Doctor> = await doctors.json();
+		// 		setDoctors(json);
+		// 	})();
+		// }, [])
+		const handleGetDoctors = async() => {
+			try {
+				const doctors = await(await fetch(`${api_path}/api/doctors/${specialization}/search`)).json()
+				setDoctors(doctors)
+				console.log(doctors.length)
+			} catch (err : any) {
+				console.log(err.message)
+			}
+		  }
 		
-	  const specElements = specjalizacje.map((specjalizacja, i) => (
+	const specElements = specjalizacje.map((specjalizacja, i) => (
 		<div onClick={() => setSelected(i)} className={selected === i ? 'selected ' : ''}  id={specjalizacja.name} style={{width:"150px"}}>
-			<img src={specjalizacja.icon}alt="placeholder" className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
+			<img src={specjalizacja.icon}alt="placeholder" onClick={handleGetDoctors} className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
 		</div>
 	  ))
+
+	
 	  
 	return (
 		<main>
