@@ -13,27 +13,33 @@ import okulista from "../assets/images/specializacje/okulista.png"
 import ortopeda from "../assets/images/specializacje/ortopeda.png"
 import pediatra from "../assets/images/specializacje/pediatra.png"
 import plastyczny from "../assets/images/specializacje/plastyczny.png"
+import doctorImage from "../assets/images/doctorExample.png"
 import './CategoriesSearch.css'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { api_path } from '../utils/api';
+import axios from "axios";
 
 
 
-
-export const CategoriesSearch = () => {
-	const [selected, setSelected] = useState(0)
-	const [doctors, setDoctors] = useState<Array<Doctor>>([])
-
-	interface Specjalizacja {
+interface Specialization {
 		id: number,
 		name: string,
 		link: string,
 		icon: string,
 	  }
-	
+interface Doctor {
+		id: string,
+		specialist: string,
+		firstName: string,
+		lastName: string
+	  }
 
+const CategoriesSearch = () => {
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [selectedSpecialization, setSelectedSpecialization] =
+    useState<Specialization | null>(null);
 
-	const specjalizacje: Array<Specjalizacja> = [
+  const specializations: Array<Specialization> = [
 		{
 			id: 1,
 		  	name: "dermatolog",
@@ -113,51 +119,66 @@ export const CategoriesSearch = () => {
 		  	icon: plastyczny,
 		},
 	  ]
-	const specialization = document.getElementsByClassName('selected').item(1)?.id;
-		console.log(specialization)
-		
-	interface Doctor {
-			id: string,
-			specialist: string,
-			name: string
-		  }
-		// useEffect(() => {
-		// 	(async () => {
-		// 		const doctors = await fetch(`${api_path}/api/visits/${specialization}/search`, {
-		// 			method: "GET"
-		// 		});
-		// 		const json: Array<Doctor> = await doctors.json();
-		// 		setDoctors(json);
-		// 	})();
-		// }, [])
-		const handleGetDoctors = async() => {
-			try {
-				const doctors = await(await fetch(`${api_path}/api/doctors/${specialization}/search`)).json()
-				setDoctors(doctors)
-				console.log(doctors.length)
-			} catch (err : any) {
-				console.log(err.message)
-			}
-		  }
-		
-	const specElements = specjalizacje.map((specjalizacja, i) => (
-		<div onClick={() => setSelected(i)} className={selected === i ? 'selected ' : ''}  id={specjalizacja.name} style={{width:"150px"}}>
-			<img src={specjalizacja.icon}alt="placeholder" onClick={handleGetDoctors} className="specjalizacja" style={{ width: '150px', height: "150px", padding: 8}} />
-		</div>
-	  ))
-
 	
-	  
-	return (
-		<main>
-			<div className="p" style={{ marginLeft: 20 }}>
-				<Searcher />
-				<p className="text-specjalizacja">SPECJALIZACJA</p>
-				<Carousel show={11} infiniteLoop={true}>
-					{specElements}
-				</Carousel>
-			</div>
-		</main>
-	)
+		
 
-}
+	  const getDoctorsBySpecialization = async (specialization: Specialization) => {
+		try {
+		  const response = await axios.get(
+			`${api_path}/api/doctors/search/${specialization.name}`
+		  );
+		  setDoctors(response.data);
+		} catch (error) {
+		  console.error(error);
+		}
+	  };
+	
+	  const onSpecializationClick = async (specialization: Specialization) => {
+		setSelectedSpecialization(specialization);
+		await getDoctorsBySpecialization(specialization);
+	  };
+	
+	  const specElements = specializations.map((specialization, i) => (
+		<div
+		  key={specialization.id}
+		  id={specialization.name}
+		  style={{ width: "150px" }}
+		  onClick={() => onSpecializationClick(specialization)}
+		>
+		  <img
+			src={specialization.icon}
+			alt="placeholder"
+			className={
+			  selectedSpecialization?.name === specialization.name
+				? "specjalizacja selected"
+				: "specjalizacja"
+			}
+			style={{ width: "150px", height: "150px", padding: 8 }}
+		  />
+		</div>
+	  ));
+	
+	  const doctorElements = doctors.map((doctor) => (
+		<div key={doctor.id} className="doctor-card">
+		  <img src={doctorImage} alt="Doctor" style={{ width: '150px', height: '200px' }} />
+		  <p>Specjalizacja: {doctor.specialist}</p>
+		  <p>Imię: {doctor.firstName}</p>
+		  <p>Nazwisko: {doctor.lastName}</p>
+		</div>
+	  ));
+	
+	  return (
+		<main>
+		  <div className="p" style={{ marginLeft: 20 }}>
+			<Searcher />
+			<p className="text-specjalizacja">SPECJALIZACJA</p>
+			<Carousel show={11} infiniteLoop={true}>
+			  {specElements}
+			</Carousel>
+		  </div>
+		  <div id="people-container" className="doctor-container">{doctorElements}</div>
+		</main>
+	  );
+	};
+	
+	export default CategoriesSearch;
