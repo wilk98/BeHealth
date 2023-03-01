@@ -22,7 +22,7 @@ public class DoctorController : ControllerBase
         return Ok(doctors);
     }
 
-    [HttpGet("{specialization}/search")]
+    [HttpGet("search/{specialization}")]
     public async Task<ActionResult<IEnumerable<DoctorDto>>> GetDoctorsBySpecializationAsync([FromRoute] string specialization)
     {
         var doctors = await _doctorService.GetDoctorsBySpecializationAsync(specialization);
