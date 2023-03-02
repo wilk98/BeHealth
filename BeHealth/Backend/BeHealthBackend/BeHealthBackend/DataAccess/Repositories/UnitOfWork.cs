@@ -17,6 +17,9 @@ namespace BeHealthBackend.DataAccess.Repositories
 
         public IVisitRepository VisitRepository { get; }
 
+        public IReferralRepository ReferralRepository { get; }
+        public IRecipeRepository RecipeRepository { get; }
+
         public UnitOfWork(BeHealthContext context)
         {
             _context = context;
@@ -25,6 +28,8 @@ namespace BeHealthBackend.DataAccess.Repositories
             DoctorRepository = new DoctorRepository(_context);
             PatientRepository = new PatientRepository(_context);
             VisitRepository = new VisitRepository(_context);
+            ReferralRepository = new ReferralRepository(_context);
+            RecipeRepository = new RecipeRepository(_context);
         }
 
         public void Dispose()
