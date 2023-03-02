@@ -7,5 +7,8 @@ public interface IUnitOfWork : IDisposable
     IDoctorRepository DoctorRepository { get; }
     IPatientRepository PatientRepository { get; }
     IVisitRepository VisitRepository { get; }
+    IReferralRepository ReferralRepository { get; }
+    IRecipeRepository RecipeRepository { get; }
+
     Task SaveAsync();
 }
