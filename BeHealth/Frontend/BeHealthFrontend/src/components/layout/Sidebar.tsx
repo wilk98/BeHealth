@@ -1,5 +1,5 @@
 import './Sidebar.css'
-import {  FaRegCalendar, FaRegClipboard, FaRegUser, IoSettingsSharp, FiMessageSquare, GiHealthNormal } from 'react-icons/all'
+import {  FaRegCalendar, FaRegClipboard, FaRegUser, IoSettingsSharp, FiMessageSquare, GiHealthNormal, BsCardList, TbNotes } from 'react-icons/all'
 import { useContext, useState } from 'react'
 import { Logo } from './Logo';
 import { HamburgerButton } from '../ui/HamburgerButton';
@@ -27,7 +27,32 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
       name: "Kalendarz",
       link: "/calendar",
       icon: <FaRegCalendar />,
-    }
+    },
+    {
+      name: "Profil",
+      link: "/",
+      icon: <FaRegUser />
+    },
+    {
+      name: "Wiadomości",
+      link: "/",
+      icon: <FiMessageSquare />,
+    },
+    {
+      name: "Recepty",
+      link: "/",
+      icon: <BsCardList />,
+    },
+    {
+      name: "Skierowania",
+      link: "/referrals",
+      icon: <TbNotes />,
+    },
+    {
+      name: "Wizyty",
+      link: "/",
+      icon: <FaRegClipboard />,
+    },
   ]
 
   const doctorLinks: Array<Link> = [
