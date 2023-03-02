@@ -12,6 +12,8 @@ namespace BeHealthBackend.DataAccess.DbContexts
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        public DbSet<Referral> Referrals { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
 
         public BeHealthContext(DbContextOptions<BeHealthContext> options) : base(options)
         {
