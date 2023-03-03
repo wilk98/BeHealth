@@ -1,85 +1,88 @@
 import { useEffect, useState,useContext } from "react";
 import { api_path } from '../../utils/api';
-import axios from "axios";
 import { BeHealthContext } from '../../Context';
-
-
+import "./Referrals.css";
+import { BsDownload } from "react-icons/bs";
 
 
 interface Referral {
-    id: number;
-    firstName: string;
-    lastName: string;
-  }
-  
-  const Referrals: React.FC = () => {
-    const [referrals, setReferrals] = useState<Referral[]>([]);
-    const { token, user } = useContext(BeHealthContext)
-    const userId = user?.id;
+  downloadLink: string | undefined;
+  patient: string;
+  date: string;
+  specialist: string;
+  description: string;
+  code: string;
+}
 
-    
+export function Referrals() {
+  const [referrals, setReferrals] = useState<Referral[]>([]);
+  const { token, user } = useContext(BeHealthContext)
+  const userId = user?.id;
 
+  useEffect(() => {
+    fetch(`${api_path}/api/referrals/${userId}`)
+      .then(response => response.json())
+      .then(data => setReferrals(data))
+      .catch(error => console.error(error));
+  }, []);
   
-    useEffect(() => {
-      (async () => {
-        const data = await fetch(`${api_path}/api/referrals/${userId}`, {
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        }
-        );
-        const json: Array<Referral> = await data.json();
-        setReferrals(json);
-      })();
-    }, [])
-  
-    const renderTables = () => {
-      const tableRows: JSX.Element[] = [];
-  
-      for (let i = 0; i < Math.ceil(referrals.length / 5); i++) {
-        const start = i * 5;
-        const end = start + 5;
-  
-        const tableData = referrals.slice(start, end);
-  
-        const tableRowsData = tableData.map((referral) => (
-          <tr key={referral.id}>
-            <td>{referral.firstName} {referral.lastName}</td>
-            <td>{new Date().toLocaleDateString()}</td>
-            <td>Specjalista</td>
-            <td>Opis</td>
-            <td>Kod</td>
-          </tr>
-        ));
-  
-        tableRows.push(
-          <table key={`table-${i}`}>
-            <thead>
-              <tr>
-                <th>Pacjent</th>
-                <th>Data wystawienia</th>
-                <th>Specjalista</th>
-                <th>Opis</th>
-                <th>Kod</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableRowsData}
-            </tbody>
-          </table>
-        );
-      }
-  
-      return tableRows;
-    };
-  
+  const createTable = (referral: Referral) => {
     return (
-      <div className="table-container">
-        {renderTables()}
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style={{ width: "130px", textAlign: "center" }}>Pacjent</th>
+            <th>Data wystawienia</th>
+            <th>Specjalista</th>
+            <th>Opis</th>
+            <th>Kod</th>
+            <th>Pobierz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style={{textAlign: "center"}}>{referral.patient}</td>
+            <td>{new Date(referral.date).toLocaleDateString()}</td>
+            <td>{referral.specialist}</td>
+            <td>{referral.description}</td>
+            <td>{referral.code}</td>
+            <td style={{ textAlign: "center" }}>
+                  <BsDownload />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     );
   };
-  
-  export default Referrals;
+
+  const createTables = () => {
+    const MAX_ROWS_PER_TABLE = 10;
+    const tables = [];
+    let tableRows = [];
+
+    for (let i = 0; i < referrals.length; i++) {
+      tableRows.push(createTable(referrals[i]));
+
+      if (tableRows.length === MAX_ROWS_PER_TABLE || i === referrals.length - 1) {
+        tables.push(<div className="table-container">{tableRows}</div>);
+        tableRows = [];
+      }
+    }
+
+    return tables;
+  };
+
+  return (
+    <div className="referrals">
+      {referrals.length > 0 ? (
+        createTables()
+      ) : (
+        <p>BRAK WYSTAWIONYCH SKIEROWAŃ</p>
+      )}
+    </div>
+  );
+}
+
+
+
+
