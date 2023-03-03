@@ -12,7 +12,8 @@ import { Register } from "./pages/auth/register/Register";
 import { BeHealthContext } from "./Context";
 import { useState } from "react";
 import { User } from "./utils/auth";
-import  Referrals  from "./pages/patient/Referrals";
+import {Referrals}  from "./pages/patient/Referrals";
+import {Recipes}  from "./pages/patient/Recipes";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/referrals" element={<Referrals />} />
+					<Route path="/recipes" element={<Recipes />} />
 				</Routes>
 			</div>
 			<Footer />
