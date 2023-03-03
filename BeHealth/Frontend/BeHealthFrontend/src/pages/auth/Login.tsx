@@ -40,15 +40,15 @@ export const Login = () => {
             <h3 className="login--error">{error}</h3>
             <Input label='email' type='email' style={{marginBlockEnd: 15}} onChange={(value) => loginRef.current = value} />
             <Input label='hasło' type='password' onChange={(value) => password.current = value} />
-            <div>
+            <div style={{ marginTop: 15}}>
                 <input type="radio" name="user-type" id="user-type-1" value="patient" onChange={() => isDoctor.current = false} />
                 <label htmlFor="user-type-1">Jako pacjent</label>
             </div>
-            <div>
+            <div style={{ marginTop: 5}}>
                 <input type="radio" name="user-type" id="user-type-2" value="doctor" onChange={() => isDoctor.current = true} />
                 <label htmlFor="user-type-2">Jako lekarz</label>
             </div>
-            <Link to={"/password-forgot"} className="input--link" style={{marginBlockStart: 50, cursor: 'pointer'}}>Przypomnij hasło</Link>
+            <Link to={"/password-forgot"} className="input--link" style={{marginBlockStart: 20, cursor: 'pointer'}}>Przypomnij hasło</Link>
             <PrimaryButton style={{height: 56, marginBlockStart: 15}} onClick={() => {
             login({ email: loginRef.current, password: password.current }, isDoctor.current);
             }}>Zaloguj się</PrimaryButton>
