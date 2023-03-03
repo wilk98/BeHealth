@@ -160,10 +160,27 @@ const CategoriesSearch = () => {
 	
 	  const doctorElements = doctors.map((doctor) => (
 		<div key={doctor.id} className="doctor-card">
-		  <img src={doctorImage} alt="Doctor" style={{ width: '150px', height: '200px' }} />
-		  <p>Specjalizacja: {doctor.specialist}</p>
-		  <p>Imię: {doctor.firstName}</p>
-		  <p>Nazwisko: {doctor.lastName}</p>
+		  <img
+			src={doctorImage}
+			alt="Doctor"
+			style={{ width: "150px", height: "200px" }}
+		  />
+		  <table>
+			<tbody>
+			  <tr>
+				<th>Specjalizacja:</th>
+				<td>{doctor.specialist}</td>
+			  </tr>
+			  <tr>
+				<th>Imię:</th>
+				<td>{doctor.firstName}</td>
+			  </tr>
+			  <tr>
+				<th>Nazwisko:</th>
+				<td>{doctor.lastName}</td>
+			  </tr>
+			</tbody>
+		  </table>
 		</div>
 	  ));
 	
@@ -176,9 +193,18 @@ const CategoriesSearch = () => {
 			  {specElements}
 			</Carousel>
 		  </div>
-		  <div id="people-container" className="doctor-container">{doctorElements}</div>
+		  <div className="w" style={{ marginLeft: 25 , marginTop: 10}}>
+			<p className="text-wyszukiwanie">WYSZUKIWANIE</p>
+		  </div>
+		  <div id="people-container" className="doctor-container">
+			{doctorElements.length === 0 ? (
+			  <p style={{ marginLeft: 500 , textAlign: 'center' }}>BRAK LEKARZY O PODANEJ SPECJALIZACJI</p>
+			) : (
+			  doctorElements
+			)}
+		  </div>
 		</main>
 	  );
-	};
+			}	  
 	
 	export default CategoriesSearch;
