@@ -40,7 +40,7 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
     },
     {
       name: "Recepty",
-      link: "/",
+      link: "/recipes",
       icon: <BsCardList />,
     },
     {
