@@ -7,7 +7,7 @@ interface useLogin {
     error: string,
     token: string,
     user?: User,
-    login: (loginForm: loginForm) => void,
+    login: (loginForm: loginForm, userType: boolean) => void,
 }
 
 export const useLogin = (): useLogin => {
@@ -15,9 +15,10 @@ export const useLogin = (): useLogin => {
     const [token, setToken] = useState('')
     const [user, setUser] = useState<User>()
 
-    const login = (loginForm: loginForm) => {
+    const login = (loginForm: loginForm, userType: boolean) => {
         (async () => {
-            const url = `${api_path}/api/account/doctor/login`
+            console.log(userType);
+            const url = `${api_path}/api/account/${userType ? 'doctor' : 'patient'}/login`
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
