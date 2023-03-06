@@ -12,12 +12,12 @@ builder.AddAuthentication();
 builder.AddAuthorization();
 builder.AddMapper();
 builder.AddErrorHandler();
+builder.AddSwaggerGen();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddFluentValidation();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
