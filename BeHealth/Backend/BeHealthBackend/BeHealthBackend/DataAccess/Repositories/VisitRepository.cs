@@ -13,6 +13,22 @@ public class VisitRepository : Repository<Visit>, IVisitRepository
         DbSet = context.Visits;
     }
 
+    public async Task<Visit?> GetDoctorVisitForDate(int doctorId, DateTime startDate, DateTime endDate)
+    {
+        var visit = await DbSet
+            .Where(visit => visit.DoctorId == doctorId)
+            .SingleOrDefaultAsync(visit => visit.VisitDate < endDate && startDate < visit.VisitDate.AddMinutes(visit.Duration));
+        return visit;
+    }
+
+    public async Task<Visit?> GetPatientVisitForDate(int patientId, DateTime startDate, DateTime endDate)
+    {
+        var visit = await DbSet
+            .Where(visit => visit.PatientId == patientId)
+            .SingleOrDefaultAsync(visit => visit.VisitDate < endDate && startDate < visit.VisitDate.AddMinutes(visit.Duration));
+        return visit;
+    }
+
     public async Task<IReadOnlyList<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)
     {
 

@@ -30,12 +30,15 @@ public class VisitsService : IVisitsService
     {
         var visit = _mapper.Map<Visit>(visitDto);
 
-        // TODO pull doctor's treatments and verify is treatment in visitDto one of availiable
-
         var patient = await _unitOfWork.PatientRepository.GetAsync(visit.PatientId);
         if (patient == null) return null;
-        var doctor = await _unitOfWork.PatientRepository.GetAsync(visit.DoctorId);
+        var doctor = await _unitOfWork.DoctorRepository.GetAsync(visit.DoctorId);
         if (doctor == null) return null;
+
+        var overlappingDoctorVisit = await _unitOfWork.VisitRepository.GetDoctorVisitForDate(doctor.Id, visit.VisitDate, visit.VisitDate.AddMinutes(visit.Duration));
+        var overlappingPatientVisit = await _unitOfWork.VisitRepository.GetPatientVisitForDate(patient.Id, visit.VisitDate, visit.VisitDate.AddMinutes(visit.Duration));
+        if (overlappingDoctorVisit != null || overlappingPatientVisit != null)
+            return null;
 
         await _unitOfWork.VisitRepository.AddAsync(visit);
         await _unitOfWork.SaveAsync();
