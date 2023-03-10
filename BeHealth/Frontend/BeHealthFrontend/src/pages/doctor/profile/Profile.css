@@ -1,0 +1,135 @@
+main.main--profile p.username {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+main.main--profile p.information {
+    color: #606060;
+    font-weight: 500;
+}
+main.main--profile img.profile--img {
+    border-radius: 50%;
+    border: 3px solid white;
+    width: 150px;
+}
+
+main.main--profile section.user > .row {
+    align-items: center;
+    gap: 50px;
+}
+
+main.main--profile section.user div.badge {
+    background-color: white;
+    color: #DCDCDC;
+    border: 1px solid #DCDCDC;
+
+    margin-block: 30px 45px;
+
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    padding: 10px 45px;
+    border-radius: 10px;
+    gap: 10px
+}
+
+main.main--profile section.user div.badge > svg {
+    transform: scale(1.5);
+    stroke: #606060;
+    color: #606060;
+}
+
+
+main.main--profile section.user div.badge > svg.filled {
+    fill: #606060;
+}
+
+
+main.main--profile section.user div.badge > p.badge--text {
+    color: #606060;
+    font-weight: 500;
+}
+
+main.main--profile section.user > div.badge-row {
+    display: flex;
+    gap: 33px;
+}
+
+main.main--profile hr {
+    border: 1px solid #DCDCDC;
+}
+
+main.main--profile section.clinics, main.main--profile section.certificates  {
+    margin-block: 32px;
+}
+
+main.main--profile section > .row > p.section-title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+main.main--profile section.clinics > .row, main.main--profile section.certificates > .row  {
+    align-items: center;
+    gap: 25px;
+}
+
+main.main--profile section.clinics > .clinics-row {
+    display: flex;
+    gap: 50px;
+    overflow-x: auto;
+}
+main.main--profile section.clinics .clinic {
+    background-color: white;
+    width: 288px;
+    height: 140px;
+    border: 1px solid #DCDCDC;
+    border-radius: 10px;
+    padding: 18px 30px 40px;
+
+    flex-shrink: 0;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main.main--profile section.clinics > .row {
+    margin-block-end: 40px;
+}
+
+main.main--profile section.clinics  .clinic > p.clinic--title {
+    font-weight: 500;
+}
+
+main.main--profile section.clinics  .clinic > p.clinic--address {
+    color: #606060;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+main.main--profile section.clinics  .clinic > svg.clinic--settings {
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    fill: #606060;
+    transform: scale(1.3);
+}
+
+main.main--profile section.certificates .certificate {
+    width: 270px;
+    height: 190px;
+    border-radius: 10px;
+}
+
+main.main--profile section.certificates > .row {
+    margin-block-end: 40px;
+}
+
+main.main--profile section.certificates > .certificates-row {
+    display: flex;
+    gap: 90px;
+    overflow-x: auto;
+    object-fit: cover;
+}

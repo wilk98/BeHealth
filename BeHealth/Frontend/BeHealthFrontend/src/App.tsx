@@ -12,8 +12,9 @@ import { Register } from "./pages/auth/register/Register";
 import { BeHealthContext } from "./Context";
 import { useState } from "react";
 import { User } from "./utils/auth";
-import {Referrals}  from "./pages/patient/Referrals";
-import {Recipes}  from "./pages/patient/Recipes";
+import { Referrals } from "./pages/patient/Referrals";
+import { Recipes } from "./pages/patient/Recipes";
+import { Profile } from "./pages/doctor/profile/Profile";
 
 
 function App() {
@@ -27,23 +28,24 @@ function App() {
 
 	return (
 		<>
-		<BeHealthContext.Provider value={{ user: currentUser, setUser: setCurrentUser, token: token, setToken: setToken, urlRedirect: urlRedirect, setUrlRedirect: setUrlRedirect }}>
-			<Navbar />
-			<div className="container">
-				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
-				<Routes>
-					<Route path="/arrange-visit" element={<ArrangeVisit />} />
-					<Route path="/categories-search" element={<CategoriesSearch />}/>
-					<Route path="/visits" element={<Visits />} />
-					<Route path="/calendar" element={<Calendar />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/referrals" element={<Referrals />} />
-					<Route path="/recipes" element={<Recipes />} />
-				</Routes>
-			</div>
-			<Footer />
-		</BeHealthContext.Provider>
+			<BeHealthContext.Provider value={{ user: currentUser, setUser: setCurrentUser, token: token, setToken: setToken, urlRedirect: urlRedirect, setUrlRedirect: setUrlRedirect }}>
+				<Navbar />
+				<div className="container">
+					<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
+					<Routes>
+						<Route path="/arrange-visit" element={<ArrangeVisit />} />
+						<Route path="/categories-search" element={<CategoriesSearch />} />
+						<Route path="/visits" element={<Visits />} />
+						<Route path="/calendar" element={<Calendar />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/referrals" element={<Referrals />} />
+						<Route path="/recipes" element={<Recipes />} />
+						<Route path="/profile" element={<Profile />} />
+					</Routes>
+				</div>
+				<Footer />
+			</BeHealthContext.Provider>
 		</>
 	);
 }

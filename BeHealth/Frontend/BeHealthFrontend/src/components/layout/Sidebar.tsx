@@ -68,7 +68,7 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
     },
     {
       name: "Profil",
-      link: "/",
+      link: "/profile",
       icon: <FaRegUser />,
     },
     {
