@@ -157,9 +157,13 @@ const CategoriesSearch = () => {
 		  />
 		</div>
 	  ));
+
+	  const handleCardClick = (doctorId: string) => {
+		window.location.href = `/doctor/profile/${doctorId}`;
+	  };
 	
 	  const doctorElements = doctors.map((doctor) => (
-		<div key={doctor.id} className="doctor-card">
+		<div key={doctor.id} className="doctor-card" onClick={() => handleCardClick(doctor.id)}>
 		  <img
 			src={doctorImage}
 			alt="Doctor"
