@@ -14,6 +14,7 @@ import { useState } from "react";
 import { User } from "./utils/auth";
 import {Referrals}  from "./pages/patient/Referrals";
 import {Recipes}  from "./pages/patient/Recipes";
+import { DoctorProfile } from "./pages/DoctorProfileForUser";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 					<Route path="/register" element={<Register />} />
 					<Route path="/referrals" element={<Referrals />} />
 					<Route path="/recipes" element={<Recipes />} />
+					<Route path="/doctor/profile/:doctorId" element={<DoctorProfile />} />
 				</Routes>
 			</div>
 			<Footer />
