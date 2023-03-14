@@ -1,0 +1,22 @@
+services:
+  frontend:
+    build:
+      context: ./BeHealth/Frontend/BeHealthFrontend
+    ports:
+      - 5173:5173
+  api:
+     build:
+       context: ./BeHealth/Backend/BeHealthBackend/BeHealthBackend
+     ports:
+       - 7060:7060
+     depends_on:
+       - db
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssword1
+    ports:
+      - 1433:1433
+    restart:
+      unless-stopped
