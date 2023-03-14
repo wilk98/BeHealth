@@ -24,3 +24,7 @@ button.disabled {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+button:hover {
+  filter: brightness(0.9);
+}
