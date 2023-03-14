@@ -25,3 +25,7 @@ button.secondary.disabled {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+button.secondary:hover {
+  filter: brightness(0.9);
+}
