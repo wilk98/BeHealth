@@ -54,10 +54,13 @@ export const DoctorProfile: React.FC = () => {
     <div className="doctor-profile">
       <div className="doctor-info">
         <img src={doctorImage} alt={`${firstName} ${lastName}'s profile picture`} />
-        <h2>{firstName} {lastName}</h2>
-        <p>{specialist}</p>
-        <p>{phone}</p>
-        <p>{email}</p>
+        <h2>{firstName} {lastName}</h2><br></br>
+        <p>Specjalizacja</p>
+        <h3>{specialist}</h3><br></br>
+        <p>Numer telefonu</p>
+        <h3>{phone}</h3><br></br>
+        <p>Adres e-mail</p>
+        <h3>{email}</h3><br></br>
         <button>Umów wizytę</button>
       </div>
       <div className="doctor-details">
