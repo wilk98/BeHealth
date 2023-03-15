@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./DoctorProfileForUser.css";
 import { api_path } from '../utils/api';
+import doctorImage from "../assets/images/doctorExample.png"
 
 enum ProfileSection {
   Experience,
@@ -20,14 +21,12 @@ interface Doctor {
   imageUrl: string;
 }
 
-export const DoctorProfile: React.FC = ({  }) => {
+export const DoctorProfile: React.FC = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
   const [selectedSection, setSelectedSection] = useState(ProfileSection.Experience);
   const [doctor, setDoctor] = useState<Doctor | null>(null);
 
   useEffect(() => {
-    // Pobranie danych z bazy na podstawie id z URL
-    // i zaktualizowanie stanu komponentu
     const fetchDoctor = async () => {
       try {
         const response = await fetch(`${api_path}/api/doctors/${doctorId}`);
@@ -49,12 +48,12 @@ export const DoctorProfile: React.FC = ({  }) => {
     return <div>Brak danych</div>;
   }
 
-  const { firstName, lastName, specialist, phone, email, imageUrl } = doctor;
+  const { firstName, lastName, specialist, phone, email } = doctor;
 
   return (
     <div className="doctor-profile">
       <div className="doctor-info">
-        <img src={imageUrl} alt={`${firstName} ${lastName}'s profile picture`} />
+        <img src={doctorImage} alt={`${firstName} ${lastName}'s profile picture`} />
         <h2>{firstName} {lastName}</h2>
         <p>{specialist}</p>
         <p>{phone}</p>
