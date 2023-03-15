@@ -1,6 +1,14 @@
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+
+ENV ASPNETCORE_URLS="http://*:7060"
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+EXPOSE 7060
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-WORKDIR /App
+WORKDIR /app
 
 COPY "BeHealthBackend.csproj" "./"
 # Restore as distinct layers
@@ -11,9 +19,9 @@ COPY . ./
 RUN dotnet publish -c Release -o out
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+FROM base AS runtime
 
-WORKDIR /App
+WORKDIR /app
 
-COPY --from=build /App/out ./
+COPY --from=build /app/out ./
 ENTRYPOINT ["dotnet", "BeHealthBackend.dll"]
