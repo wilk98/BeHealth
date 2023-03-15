@@ -2,15 +2,21 @@ services:
   frontend:
     build:
       context: ./BeHealth/Frontend/BeHealthFrontend
+    volumes:
+      - "./BeHealth/Frontend/BeHealthFrontend:/app"
+      - /app/node_modules
+
     ports:
       - 5173:5173
+    environment:
+      - CHOKIDAR_USEPOLLING=true
   api:
-     build:
-       context: ./BeHealth/Backend/BeHealthBackend/BeHealthBackend
-     ports:
-       - 7060:7060
-     depends_on:
-       - db
+    build:
+      context: ./BeHealth/Backend/BeHealthBackend/BeHealthBackend
+    depends_on:
+      - db
+    ports:
+      - 7060:7060
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
@@ -18,5 +24,4 @@ services:
       - SA_PASSWORD=P@ssword1
     ports:
       - 1433:1433
-    restart:
-      unless-stopped
+    restart: unless-stopped
