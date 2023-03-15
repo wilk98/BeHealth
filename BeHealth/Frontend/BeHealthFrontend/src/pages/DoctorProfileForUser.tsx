@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./DoctorProfileForUser.css";
 import { api_path } from '../utils/api';
 import doctorImage from "../assets/images/doctorExample.png"
+import axios from "axios";
 
 enum ProfileSection {
   Experience,
@@ -48,7 +49,10 @@ export const DoctorProfile: React.FC = () => {
     return <div>Brak danych</div>;
   }
 
-  const { firstName, lastName, specialist, phone, email } = doctor;
+  const handleVisitClick = (doctorId:string) => {
+  }
+
+  const { id, firstName, lastName, specialist, phone, email } = doctor;
 
   return (
     <div className="doctor-profile">
@@ -61,7 +65,7 @@ export const DoctorProfile: React.FC = () => {
         <h3>{phone}</h3><br></br>
         <p>Adres e-mail</p>
         <h3>{email}</h3><br></br>
-        <button>Umów wizytę</button>
+        <button onClick={() => handleVisitClick(id)}>Umów wizytę</button>
       </div>
       <div className="doctor-details">
         <ul className="doctor-tabs">
