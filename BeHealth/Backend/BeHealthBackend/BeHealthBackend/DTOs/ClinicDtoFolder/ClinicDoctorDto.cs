@@ -3,6 +3,6 @@
 namespace BeHealthBackend.DTOs.ClinicDtoFolder;
 public class ClinicDoctorDto
 {
-    public string? Name { get; set; }
-    public string? Specialist { get; set; }
+    public string Name { get; set; }
+    public string Specialist { get; set; }
 }
