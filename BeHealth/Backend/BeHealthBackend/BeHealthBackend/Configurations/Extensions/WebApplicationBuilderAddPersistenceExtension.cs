@@ -15,6 +15,7 @@ using BeHealthBackend.Services.ReferralService;
 using BeHealthBackend.Services.ReferralsServices;
 using BeHealthBackend.Services.RecipeService;
 using BeHealthBackend.Services.RecipeServices;
+using BeHealthBackend.Services.WorkHoursServices;
 
 namespace BeHealthBackend.Configurations.Extensions;
 public static class WebApplicationBuilderAddPersistenceExtension
@@ -34,6 +35,8 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddScoped<IClinicService, ClinicService>();
         builder.Services.AddScoped<IReferralService, ReferralService>();
         builder.Services.AddScoped<IRecipeService, RecipeService>();
+        builder.Services.AddScoped<IWorkHoursRepository, WorkHoursRepository>();
+        builder.Services.AddScoped<IWorkHoursService, WorkHoursService>();
         builder.Services.AddScoped<IPasswordHasher<Doctor>, PasswordHasher<Doctor>>();
         builder.Services.AddScoped<IPasswordHasher<Patient>, PasswordHasher<Patient>>();
         builder.Services.AddScoped<IValidator<CreateDoctorDto>, CreateDoctorDtoValidator>();
