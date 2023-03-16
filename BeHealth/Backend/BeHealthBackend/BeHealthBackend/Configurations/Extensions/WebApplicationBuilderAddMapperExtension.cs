@@ -10,4 +10,3 @@ public static class WebApplicationBuilderAddMapperExtension
         return builder;
     }
 }
-

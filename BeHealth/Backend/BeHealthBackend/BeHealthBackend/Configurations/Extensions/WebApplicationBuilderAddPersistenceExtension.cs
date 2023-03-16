@@ -42,4 +42,3 @@ public static class WebApplicationBuilderAddPersistenceExtension
         return builder;
     }
 }
-

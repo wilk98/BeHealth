@@ -19,18 +19,7 @@ builder.Services.AddControllers()
 builder.Services.AddFluentValidation();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policyBuilder =>
-    {
-        policyBuilder
-            .WithOrigins(builder.Configuration["AllowedOrigins"])
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials()
-            .WithExposedHeaders("X-Pagination");
-    });
-});
+builder.AddCors();
 
 var app = builder.Build();
 
