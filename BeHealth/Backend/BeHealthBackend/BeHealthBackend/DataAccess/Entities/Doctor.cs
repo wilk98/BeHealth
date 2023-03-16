@@ -8,4 +8,5 @@ public class Doctor : Person
     public virtual List<Clinic> Clinics { get; set; } = new List<Clinic>();
     public virtual List<Patient> Patients { get; set; } = new List<Patient>();
     public virtual Role Role { get; set; } = Entities.Role.Doctor;
+    public List<Certificate> Certificates { get; set; } = new List<Certificate>();
 }

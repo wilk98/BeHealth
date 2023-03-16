@@ -146,13 +146,31 @@ public class DoctorService : IDoctorService
         return tokenHandler.WriteToken(token);
     }
 
-    public Task<IEnumerable<string>> GetCertificates(int id)
+    public async Task<IEnumerable<string>?> GetCertificates(int id)
     {
-        throw new NotImplementedException();
+        var doctor = await _unitOfWork.DoctorRepository.GetAsync(d => d.Id == id, "Certificates");
+
+        if (doctor is null)
+            return null;
+
+        return doctor.Certificates.Select(c => c.Filename);
     }
 
-    public Task AddCertificate(string filename, int id)
+    public async Task<bool> AddCertificate(string filename, int id)
     {
-        throw new NotImplementedException();
+        var doctor = await _unitOfWork.DoctorRepository.GetAsync(id);
+
+        if (doctor is null)
+            return false;
+        var certificate = new Certificate
+        {
+            Doctor = doctor,
+            Filename = filename
+        };
+
+        doctor.Certificates.Add(certificate);
+        await _unitOfWork.SaveAsync();
+
+        return true;
     }
 }

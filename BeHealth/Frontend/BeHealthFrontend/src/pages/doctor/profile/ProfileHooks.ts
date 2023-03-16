@@ -14,13 +14,12 @@ export const useAddCertificate = (file: File, id: string) => {
     })();
 }
 
-export const useFetchCertificates = () => {
+export const useFetchCertificates = (id: string) => {
 
-    return new Promise<Array<string>>((resolve, reject) => {
-        const certificates = [
-                "https://img.freepik.com/free-vector/elegant-blue-gold-diploma-certificate-template_1017-17257.jpg?w=2000",
-                "https://m.media-amazon.com/images/I/71bpEJf8IEL.jpg",
-        ]
-        resolve(certificates)
-    })
+    return (async () => {
+        const response = await fetch(`${api_path}/api/doctors/${id}/certificates`);
+        let json:Array<string> = await response.json();
+        json = json.map(url => `${api_path}/Images/${url}`)
+        return json;
+    })();
 }
