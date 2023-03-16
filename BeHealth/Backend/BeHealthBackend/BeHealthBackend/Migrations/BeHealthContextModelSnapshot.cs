@@ -264,6 +264,36 @@ namespace BeHealthBackend.Migrations
                     b.ToTable("Visits");
                 });
 
+            modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.WorkHours", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Day")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EndHour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartHour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("WorkHours");
+                });
+
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Doctor", b =>
                 {
                     b.HasBaseType("BeHealthBackend.DataAccess.Entities.Person");
@@ -429,6 +459,17 @@ namespace BeHealthBackend.Migrations
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.WorkHours", b =>
+                {
+                    b.HasOne("BeHealthBackend.DataAccess.Entities.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Doctor", b =>
