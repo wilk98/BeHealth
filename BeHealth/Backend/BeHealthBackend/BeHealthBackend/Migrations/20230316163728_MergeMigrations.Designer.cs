@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeHealthBackend.Migrations
 {
     [DbContext(typeof(BeHealthContext))]
-    [Migration("20230316134557_Init")]
-    partial class Init
+    [Migration("20230316163728_MergeMigrations")]
+    partial class MergeMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,34 @@ namespace BeHealthBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Certificate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DoctorId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Filename")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("DoctorId1");
+
+                    b.ToTable("Certificate");
                 });
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Clinic", b =>
@@ -333,6 +361,21 @@ namespace BeHealthBackend.Migrations
                     b.HasDiscriminator().HasValue("Patient");
                 });
 
+            modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Certificate", b =>
+                {
+                    b.HasOne("BeHealthBackend.DataAccess.Entities.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeHealthBackend.DataAccess.Entities.Doctor", null)
+                        .WithMany("Certificates")
+                        .HasForeignKey("DoctorId1");
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Clinic", b =>
                 {
                     b.HasOne("BeHealthBackend.DataAccess.Entities.Address", "Address")
@@ -478,6 +521,8 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Doctor", b =>
                 {
+                    b.Navigation("Certificates");
+
                     b.Navigation("Visits");
                 });
 
