@@ -1,4 +1,6 @@
-﻿namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
+﻿using BeHealthBackend.DataAccess.Entities;
+
+namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
@@ -9,6 +11,7 @@ public interface IUnitOfWork : IDisposable
     IVisitRepository VisitRepository { get; }
     IReferralRepository ReferralRepository { get; }
     IRecipeRepository RecipeRepository { get; }
+    IWorkHoursRepository WorkHoursRepository { get; }
 
     Task SaveAsync();
 }
