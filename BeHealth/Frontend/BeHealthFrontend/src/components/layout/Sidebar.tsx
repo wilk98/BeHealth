@@ -62,6 +62,11 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
       icon: <FaRegCalendar />,
     },
     {
+      name: "Godziny pracy",
+      link: "/officehours",
+      icon: <FaRegClipboard />,
+    },
+    {
       name: "Nadchodzące wizyty",
       link: "/visits",
       icon: <FaRegClipboard />,
