@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using BeHealthBackend.Configurations.Extensions;
 using FluentValidation.AspNetCore;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,9 +42,16 @@ using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetService<BeHealthContext>();
 var pendingMigrations = dbContext.Database.GetPendingMigrations();
 
-if (pendingMigrations.Any())
+var policy = Policy
+    .Handle<Exception>()
+    .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
+
+policy.Execute(() =>
 {
-    dbContext.Database.Migrate();
-}
+    if (pendingMigrations.Any())
+    {
+        dbContext.Database.Migrate();
+    }
+});
 
 app.Run();
