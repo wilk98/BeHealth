@@ -37,6 +37,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseCors();
 app.MapControllers();
+app.UseStaticFiles();
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetService<BeHealthContext>();

@@ -145,4 +145,14 @@ public class DoctorService : IDoctorService
 
         return tokenHandler.WriteToken(token);
     }
+
+    public Task<IEnumerable<string>> GetCertificates(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task AddCertificate(string filename, int id)
+    {
+        throw new NotImplementedException();
+    }
 }

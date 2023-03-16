@@ -15,6 +15,8 @@ using BeHealthBackend.Services.ReferralService;
 using BeHealthBackend.Services.ReferralsServices;
 using BeHealthBackend.Services.RecipeService;
 using BeHealthBackend.Services.RecipeServices;
+using BeHealthBackend.DTOs.ImageDto;
+using BeHealthBackend.Services.FileServices;
 
 namespace BeHealthBackend.Configurations.Extensions;
 public static class WebApplicationBuilderAddPersistenceExtension
@@ -38,6 +40,8 @@ public static class WebApplicationBuilderAddPersistenceExtension
         builder.Services.AddScoped<IPasswordHasher<Patient>, PasswordHasher<Patient>>();
         builder.Services.AddScoped<IValidator<CreateDoctorDto>, CreateDoctorDtoValidator>();
         builder.Services.AddScoped<IValidator<CreatePatientDto>, CreatePatientDtoValidator>();
+        builder.Services.AddScoped<IValidator<CreateImageDto>, CreateImageDtoValidator>();
+        builder.Services.AddTransient<IFileService, FileService>();
 
         return builder;
     }

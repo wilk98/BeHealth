@@ -12,4 +12,6 @@ public interface IDoctorService
     Task UpdateAsync(int id, UpdateDoctorDto dto, ClaimsPrincipal user);
     Task DeleteAsync(int id, ClaimsPrincipal user);
     string GenerateJwt(LoginDto dto);
+    Task<IEnumerable<string>> GetCertificates(int id);
+    Task AddCertificate(string filename, int id);
 }

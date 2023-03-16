@@ -1,7 +1,17 @@
-import { Certificate } from "./CertificatesSection"
+import { api_path } from "../../../utils/api";
 
-export const useAddCertificate = (file: File) => {
-    return new Promise<string>(resolve => resolve("https://slm-assets.secondlife.com/assets/21289908/view_large/Missing_Texture.jpg?1533890698"))
+export const useAddCertificate = (file: File, id: string) => {
+    return (async () => {
+        const formData = new FormData()
+        formData.append("image", file)
+        const response = await fetch(`${api_path}/api/doctors/${id}/certificates`,
+        {
+            method: 'POST',
+            body: formData,
+        });
+        const body = await response.text();
+        return `${api_path}/Images/${body}`
+    })();
 }
 
 export const useFetchCertificates = () => {

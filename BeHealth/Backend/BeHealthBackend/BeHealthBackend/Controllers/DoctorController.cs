@@ -1,6 +1,8 @@
 ﻿using BeHealthBackend.DTOs.DoctorDtoFolder;
 using BeHealthBackend.Services.DoctorServices;
 using Microsoft.AspNetCore.Mvc;
+using BeHealthBackend.DTOs.ImageDto;
+using BeHealthBackend.Services.FileServices;
 
 namespace BeHealthBackend.Controllers;
 
@@ -8,10 +10,12 @@ namespace BeHealthBackend.Controllers;
 public class DoctorController : ControllerBase
 {
     private readonly IDoctorService _doctorService;
+    private readonly IFileService _fileService;
 
-    public DoctorController(IDoctorService doctorService)
+    public DoctorController(IDoctorService doctorService, IFileService fileService)
     {
         _doctorService = doctorService;
+        _fileService = fileService;
     }
 
     [HttpGet]
@@ -34,5 +38,18 @@ public class DoctorController : ControllerBase
     {
         var doctor = await _doctorService.GetIdAsync(id);
         return Ok(doctor);
+    }
+    [HttpPost("{id}/certificates")]
+    public async Task<ActionResult> UploadCertificate([FromRoute] int id, [FromForm] CreateImageDto file)
+    {
+        var filename = await _fileService.SaveFile(file);
+        // await _doctorService.AddCertificate(filename, id);
+        return Ok(filename);
+    }
+    [HttpGet("{id}/certificates/")]
+    public async Task<ActionResult> GetCertificates([FromRoute] int id)
+    {
+        var certificates = await _doctorService.GetCertificates(id);
+        return Ok(certificates);
     }
 }
