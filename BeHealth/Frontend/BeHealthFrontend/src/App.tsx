@@ -15,6 +15,7 @@ import { User } from "./utils/auth";
 import {Referrals}  from "./pages/patient/Referrals";
 import {Recipes}  from "./pages/patient/Recipes";
 import { DoctorProfile } from "./pages/DoctorProfileForUser";
+import OfficeHours from "./pages/doctor/OfficeHours";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
 					<Route path="/referrals" element={<Referrals />} />
 					<Route path="/recipes" element={<Recipes />} />
 					<Route path="/doctor/profile/:doctorId" element={<DoctorProfile />} />
+					<Route path="/officehours" element={<OfficeHours />} />
 				</Routes>
 			</div>
 			<Footer />
