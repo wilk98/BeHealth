@@ -61,6 +61,7 @@ namespace BeHealthBackend.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -176,18 +177,20 @@ namespace BeHealthBackend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Code")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Medicament")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -206,18 +209,21 @@ namespace BeHealthBackend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Code")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Specialist")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -274,18 +280,21 @@ namespace BeHealthBackend.Migrations
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Education")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("Role")
+                    b.Property<int>("Role")
                         .HasColumnType("int")
                         .HasColumnName("Doctor_Role");
 
                     b.Property<string>("Services")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -313,7 +322,7 @@ namespace BeHealthBackend.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(11)");
 
-                    b.Property<int?>("Role")
+                    b.Property<int>("Role")
                         .HasColumnType("int");
 
                     b.HasIndex("AddressId")
@@ -455,11 +464,14 @@ namespace BeHealthBackend.Migrations
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Address", b =>
                 {
-                    b.Navigation("Clinic");
+                    b.Navigation("Clinic")
+                        .IsRequired();
 
-                    b.Navigation("Doctor");
+                    b.Navigation("Doctor")
+                        .IsRequired();
 
-                    b.Navigation("Patient");
+                    b.Navigation("Patient")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeHealthBackend.DataAccess.Entities.Doctor", b =>
