@@ -1,0 +1,40 @@
+.footer {
+	background-color: var(--bh-bg-purple);
+	padding: 90px 0px 0px 100px;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 115px;
+}
+
+.footer p.logo {
+	color: initial;
+}
+
+.footer p, .footer a {
+	color: var(--bh-text-dark-gray);
+}
+
+.footer .title {
+	color: var(--bh-text-dark);
+	font-weight: 600;
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.footer .contact {
+	margin-inline-end: 240px;
+}
+
+.footer .contact .social-media {
+	margin-block-start: 15px;
+	display: flex;
+	gap: 10px;
+}
+
+.footer .copyright {
+	text-align: center;
+	margin-block-start: 20px;
+}

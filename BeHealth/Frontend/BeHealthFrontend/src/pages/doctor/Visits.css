@@ -1,0 +1,117 @@
+main.visits {
+    padding: 1rem 2rem;
+}
+
+main.visits .visits-hider {
+    font-weight: 500;
+}
+
+main.visits .day-group {
+    font-weight: 600;
+    font-size: 32px;
+    margin-block-start: 0.5rem;
+    margin-block-end: 1.5rem;
+}
+
+main.visits .card {
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 25px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    margin-block-end: 1.25rem;
+}
+
+main.visits .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+main.visits .title h4 {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+main.visits .title p {
+    font-size: 14px;
+}
+
+main.visits .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+main.visits .info .time {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+main.visits .info .buttons {
+    display: flex;
+    gap: 12px;
+}
+
+main.visits .info .buttons>div {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+main.visits .info .buttons .confirmation-status {
+    width: inherit;
+    animation-name: fade-in-left;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    animation-direction: forward;
+}
+
+@keyframes fade-in-left {
+    0% {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+main.visits .info .buttons>div:hover {
+    filter: brightness(0.8);
+}
+
+main.visits .info .buttons>div svg {
+    transform: scale(1.4);
+}
+
+main.visits .info .buttons>.message {
+    background-color: #BDC2F3;
+}
+
+main.visits .info .buttons>.accept {
+    background-color: #9CECBC;
+}
+
+main.visits .info .buttons>.decline {
+    background-color: #F3BDBD;
+}
+
+/* main.visits .info .buttons>.message svg {
+    fill: #5A67E0;
+} */
+
+/* main.visits .info .buttons>.accept svg {
+    fill: #48B373;
+} */
+
+main.visits .info .buttons>.decline svg {
+    /* fill: #B34848;
+    stroke: #B34848; */
+    stroke-width: 0.7px;
+}

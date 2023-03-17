@@ -1,0 +1,30 @@
+button {
+    font-weight: 600;
+    background-color: var(--bh-purple);
+
+    padding: 8px 22px;
+
+    border: none;
+    border-radius: 10px;
+}
+
+button a {
+    color: var(--bh-text-white)
+}
+
+button {
+    color: var(--bh-text-white)
+}
+
+button.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}

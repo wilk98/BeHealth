@@ -1,0 +1,53 @@
+.doctor-profile {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .doctor-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+  }
+  
+  .doctor-info img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .doctor-details {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .doctor-tabs {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .doctor-tabs li {
+    margin-right: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+  }
+  
+  .doctor-tabs li.active {
+    background-color: gray;
+    color: white;
+  }
+  
+  .doctor-details-content {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+  }
+  

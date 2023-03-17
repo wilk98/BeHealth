@@ -1,0 +1,31 @@
+button.secondary {
+    font-weight: 600;
+    background-color: #DDE0FF;
+;
+
+    padding: 8px 22px;
+
+    border: none;
+    border-radius: 10px;
+}
+
+button.secondary a {
+    color: #5A67E0
+}
+
+button.secondary {
+    color: #5A67E0
+}
+
+button.secondary.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+button.secondary:hover {
+  filter: brightness(0.9);
+}

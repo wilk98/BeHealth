@@ -1,0 +1,55 @@
+main.main--register .split {
+    display: flex;
+    justify-content: space-around;
+}
+
+main.main--register .split .doctor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main.main--register h1 {
+    font-size: 64px;
+    margin-block-end: 50px;
+}
+
+main.main--register .split .registration-container {
+    padding: 50px 170px;
+    width: 720px;
+    background-color: white;
+    border-radius: 30px;
+    margin-block-end: 75px;
+}
+
+
+main.main--register .split .registration-container .split-row {
+    display: flex;
+    gap: 30px;
+}
+
+
+main.main--register .split .registration-container fieldset {
+    border: none;
+}
+
+input[type='radio'] {
+    accent-color: var(--bh-purple);
+    width: 1.4rem;
+}
+
+main.main--register .split .registration-container fieldset > .split {
+    margin-block-start: 20px;
+    justify-content: space-between;
+}
+
+main.main--register .split .registration-container fieldset > .split > div {
+    display: flex;
+    gap: 10px;
+}
+
+main.main--register .register--error {
+    color: red;
+    text-decoration: double;
+    margin-block-end: 1rem;
+}
