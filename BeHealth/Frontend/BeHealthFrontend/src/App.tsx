@@ -34,7 +34,6 @@ function App() {
 			<div className="container">
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />
 				<Routes>
-					<Route path="/arrange-visit" element={<ArrangeVisit />} />
 					<Route path="/categories-search" element={<CategoriesSearch />}/>
 					<Route path="/visits" element={<Visits />} />
 					<Route path="/calendar" element={<Calendar />} />
@@ -44,6 +43,7 @@ function App() {
 					<Route path="/recipes" element={<Recipes />} />
 					<Route path="/doctor/profile/:doctorId" element={<DoctorProfile />} />
 					<Route path="/officehours" element={<OfficeHours />} />
+					<Route path="/doctor/profile/:doctorId/arrangevisit" element={<ArrangeVisit />} />
 				</Routes>
 			</div>
 			<Footer />
