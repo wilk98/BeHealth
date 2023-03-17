@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./DoctorProfileForUser.css";
 import { api_path } from '../utils/api';
 import doctorImage from "../assets/images/doctorExample.png"
@@ -17,7 +17,7 @@ interface Doctor {
   specialist: string,
   firstName: string,
   lastName: string
-  phone: string;
+  phoneNumber: string;
   email: string;
   imageUrl: string;
 }
@@ -49,10 +49,8 @@ export const DoctorProfile: React.FC = () => {
     return <div>Brak danych</div>;
   }
 
-  const handleVisitClick = (doctorId:string) => {
-  }
 
-  const { id, firstName, lastName, specialist, phone, email } = doctor;
+  const { id, firstName, lastName, specialist, phoneNumber, email } = doctor;
 
   return (
     <div className="doctor-profile">
@@ -62,10 +60,12 @@ export const DoctorProfile: React.FC = () => {
         <p>Specjalizacja</p>
         <h3>{specialist}</h3><br></br>
         <p>Numer telefonu</p>
-        <h3>{phone}</h3><br></br>
+        <h3>{phoneNumber}</h3><br></br>
         <p>Adres e-mail</p>
         <h3>{email}</h3><br></br>
-        <button onClick={() => handleVisitClick(id)}>Umów wizytę</button>
+        <Link to={`/doctor/profile/${doctorId}/arrangevisit`}>
+          <button>Umów wizytę</button>
+        </Link>
       </div>
       <div className="doctor-details">
         <ul className="doctor-tabs">
