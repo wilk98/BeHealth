@@ -50,7 +50,7 @@ export const Sidebar = ({ isOpen, toggle }: Sidebar) => {
     },
     {
       name: "Wizyty",
-      link: "/",
+      link: "/visitsuser",
       icon: <FaRegClipboard />,
     },
   ]
