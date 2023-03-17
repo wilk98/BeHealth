@@ -24,6 +24,13 @@ public class VisitsController : ControllerBase
         return await visits;
     }
 
+    [HttpGet("user/{patientId}")]
+    public async Task<IEnumerable<VisitUserDTO>> GetAllVisitsForUser([FromRoute] int patientId)
+    {
+        var visits = _visitsService.GetVisitsByUserIdAsync(patientId);
+        return await visits;
+    }
+
     [HttpGet("calendar/{doctorId}")]
     public async Task<IEnumerable<VisitCalendarDto>> GetVisitForMonth([FromRoute]int doctorId, [FromQuery]int year, int month)
     {
