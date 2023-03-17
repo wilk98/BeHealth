@@ -99,6 +99,27 @@ public class VisitsService : IVisitsService
         return visitsDTO;
     }
 
+    public async Task<IEnumerable<VisitUserDTO>> GetVisitsByUserIdAsync(int id)
+    {
+        var visits = await _unitOfWork.VisitRepository.GetAllAsync(
+            filter: v => v.PatientId.Equals(id),
+            orderBy: visits => visits.OrderBy(v => v.VisitDate),
+            includeProperties: "Doctor");
+
+        var visitsDTO = visits.Select(v => new VisitUserDTO
+        {
+            Id = v.Id,
+            Duration = v.Duration,
+            DoctorId = v.DoctorId,
+            Doctor = $"{v.Doctor.FirstName} {v.Doctor.LastName}",
+            Treatment = v.Name,
+            StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
+        }
+        );
+
+        return visitsDTO;
+    }
+
     public async Task<IEnumerable<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)
     {
         return await _unitOfWork.VisitRepository.GetVisitsForMonth(doctorId, date);
