@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DTOs.VisitDtoFolder;
+﻿using BeHealthBackend.DataAccess.Entities;
+using BeHealthBackend.DTOs.VisitDtoFolder;
 using BeHealthBackend.Services.VisitServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BeHealthBackend.Controllers;
 
 [ApiController, Route("/api/visits")]
-[Authorize]
+//[Authorize]
 public class VisitsController : ControllerBase
 {
     private readonly IVisitsService _visitsService;
@@ -31,10 +32,10 @@ public class VisitsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<int?> AddVisit([FromBody] CreateVisitDto visitDto)
+    public async Task<IActionResult> AddVisit([FromBody] CreateVisitDto visitDto)
     {
-        var visit = await _visitsService.AddVisit(visitDto);
-        return visit?.Id;
+        var (visitId, visit) = await _visitsService.CreateAsync(visitDto);
+        return Created($"/api/visits/{visit.DoctorId}", visit);
     }
 
     [HttpPut("{id}")]

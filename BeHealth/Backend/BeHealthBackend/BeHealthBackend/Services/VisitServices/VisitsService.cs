@@ -3,6 +3,7 @@ using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.VisitDtoFolder;
 
+
 namespace BeHealthBackend.Services.VisitServices;
 
 public class VisitsService : IVisitsService
@@ -26,23 +27,35 @@ public class VisitsService : IVisitsService
         return true;
     }
 
-    public async Task<Visit?> AddVisit(CreateVisitDto visitDto)
+    public async Task<(int, CreateVisitDto)> CreateAsync(CreateVisitDto visitDto)
     {
-        var visit = _mapper.Map<Visit>(visitDto);
-
-        var patient = await _unitOfWork.PatientRepository.GetAsync(visit.PatientId);
-        if (patient == null) return null;
-        var doctor = await _unitOfWork.DoctorRepository.GetAsync(visit.DoctorId);
-        if (doctor == null) return null;
-
-        var overlappingDoctorVisit = await _unitOfWork.VisitRepository.GetDoctorVisitForDate(doctor.Id, visit.VisitDate, visit.VisitDate.AddMinutes(visit.Duration));
-        var overlappingPatientVisit = await _unitOfWork.VisitRepository.GetPatientVisitForDate(patient.Id, visit.VisitDate, visit.VisitDate.AddMinutes(visit.Duration));
-        if (overlappingDoctorVisit != null || overlappingPatientVisit != null)
-            return null;
+        var visit = new Visit
+        {
+            Name = visitDto.Name,
+            DoctorId = visitDto.DoctorId,
+            PatientId = visitDto.PatientId,
+            VisitDate = visitDto.VisitDate,
+            Duration = visitDto.Duration,
+            Confirmed = false
+        };
 
         await _unitOfWork.VisitRepository.AddAsync(visit);
         await _unitOfWork.SaveAsync();
-        return visit;
+
+        var createdVisitDto = new CreateVisitDto
+        {
+            Name = visit.Name,
+            DoctorId = visit.DoctorId,
+            PatientId = visit.PatientId,
+            VisitDate = visit.VisitDate,
+            Duration = visit.Duration,
+        };
+
+
+
+        await _unitOfWork.VisitRepository.AddAsync(visit);
+        await _unitOfWork.SaveAsync();
+        return (visit.id, createdVisitDto);
     }
 
     public async Task<bool> DeclineVisit(int visitId)
