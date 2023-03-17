@@ -17,6 +17,7 @@ import {Recipes}  from "./pages/patient/Recipes";
 import { DoctorProfile } from "./pages/DoctorProfileForUser";
 import OfficeHours from "./pages/doctor/OfficeHours";
 import { Profile } from "./pages/doctor/profile/Profile";
+import { VisitsPatient } from "./pages/patient/VisitsPatient";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
 					<Route path="/officehours" element={<OfficeHours />} />
 					<Route path="/doctor/profile/:doctorId/arrangevisit" element={<ArrangeVisit />} />
 					<Route path="/profile" element={<Profile />} />
+					<Route path="/visitsuser" element={<VisitsPatient />} />
 
 				</Routes>
 			</div>
