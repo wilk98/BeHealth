@@ -18,6 +18,7 @@ import './CategoriesSearch.css'
 import { useState } from "react"
 import { api_path } from '../utils/api';
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 
 
@@ -158,12 +159,10 @@ const CategoriesSearch = () => {
 		</div>
 	  ));
 
-	  const handleCardClick = (doctorId: string) => {
-		window.location.href = `/doctor/profile/${doctorId}`;
-	  };
-	
+
 	  const doctorElements = doctors.map((doctor) => (
-		<div key={doctor.id} className="doctor-card" onClick={() => handleCardClick(doctor.id)}>
+		<div key={doctor.id} className="doctor-card">
+		  <Link to={`/doctor/profile/${doctor.id}`}>
 		  <img
 			src={doctorImage}
 			alt="Doctor"
@@ -185,6 +184,7 @@ const CategoriesSearch = () => {
 			  </tr>
 			</tbody>
 		  </table>
+		  </Link>
 		</div>
 	  ));
 	
