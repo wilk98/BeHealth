@@ -55,7 +55,7 @@ public class VisitsService : IVisitsService
 
         await _unitOfWork.VisitRepository.AddAsync(visit);
         await _unitOfWork.SaveAsync();
-        return (visit.id, createdVisitDto);
+        return (visit.Id, createdVisitDto);
     }
 
     public async Task<bool> DeclineVisit(int visitId)
