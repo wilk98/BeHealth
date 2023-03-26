@@ -37,13 +37,7 @@ export const CertificatesSection = () => {
     }
 
 
-    useEffect(() => {
-        (async () => {
-            const urls = await useFetchCertificates(id)
-            const certificates = urls.map(url => ({ url: url }))
-            setCertificates(certificates)
-        })()
-    }, [])
+    useFetchCertificates(id, setCertificates)
 
     return (
         <section className="certificates">
