@@ -81,4 +81,13 @@ public class ClinicService : IClinicService
         _unitOfWork.ClinicRepository.Remove(clinic);
         await _unitOfWork.SaveAsync();
     }
+
+    public async Task<List<Clinic>> GetByDoctorIdAsync(int doctorId)
+    {
+        var clinics = await _unitOfWork.ClinicRepository.GetByDoctorIdAsync(doctorId);
+
+        if (clinics is null)
+            throw new NotFoundApiException(nameof(ClinicDto), doctorId.ToString());
+        return clinics;
+    }
 }

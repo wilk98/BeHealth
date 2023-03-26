@@ -20,6 +20,14 @@ public class ClinicController : ControllerBase
         return Ok(clinics);
     }
 
+
+    [HttpGet("{doctorId}")]
+    public async Task<ActionResult<ClinicDto>> GetClinicsByDoctorIdAsync([FromRoute] int doctorId)
+    {
+        var clinic = await _clinicService.GetByDoctorIdAsync(doctorId);
+        return Ok(clinic);
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<ClinicDto>> GetClinicByIdAsync([FromRoute] int id)
     {

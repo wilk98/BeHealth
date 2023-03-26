@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DTOs.ClinicDtoFolder;
+﻿using BeHealthBackend.DataAccess.Entities;
+using BeHealthBackend.DTOs.ClinicDtoFolder;
 
 namespace BeHealthBackend.Services.ClinicServices;
 public interface IClinicService
@@ -9,4 +10,5 @@ public interface IClinicService
     Task<(int, CreateClinicDto)> CreateAsync(CreateClinicDto dto);
     Task UpdateAsync(int id, UpdateClinicDto dto);
     Task DeleteAsync(int id);
+    Task<List<Clinic>> GetByDoctorIdAsync(int doctorId);
 }
