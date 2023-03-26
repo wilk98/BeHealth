@@ -19,7 +19,7 @@ public class VisitServiceTest
     }
 
     [Fact]
-    public async Task AddVisit_ShouldAddVisit_WhenDoctorAndPatientExist()
+    public async Task CreateAsync_ShouldAddVisit_WhenDoctorAndPatientExist()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -66,7 +66,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
 
@@ -76,13 +76,10 @@ public class VisitServiceTest
         Assert.Equal(createVisitDto.PatientId, visit.PatientId);
         Assert.Equal(createVisitDto.DoctorId, visit.DoctorId);
         Assert.Equal(createVisitDto.Duration, visit.Duration);
-
-
     }
 
-
     [Fact]
-    public async Task AddVisit_ShouldReturnNull_WhenDoctorDoesntExist()
+    public async Task CreateAsync_ShouldReturnNull_WhenDoctorDoesntExist()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -123,7 +120,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
 
@@ -131,7 +128,7 @@ public class VisitServiceTest
     }
 
     [Fact]
-    public async Task AddVisit_ShouldReturnNull_WhenPatientDoesntExist()
+    public async Task CreateAsync_ShouldReturnNull_WhenPatientDoesntExist()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -173,7 +170,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
 
@@ -181,7 +178,7 @@ public class VisitServiceTest
     }
 
     [Fact]
-    public async Task AddVisit_ShouldAddVisit_When_NoOtherVisits()
+    public async Task CreateAsync_ShouldAddVisit_When_NoOtherVisits()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -239,7 +236,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
         //
@@ -247,7 +244,7 @@ public class VisitServiceTest
     }
 
     [Fact]
-    public async Task AddVisit_ShouldReturnNull_When_AnotherVisitHadBeenApointedAtThatTime()
+    public async Task CreateAsync_ShouldReturnNull_When_AnotherVisitHadBeenAppointedAtThatTime()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -306,7 +303,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
         //
@@ -314,7 +311,7 @@ public class VisitServiceTest
     }
 
     [Fact]
-    public async Task AddVisit_ShouldReturnNull_WhenVisitBeforeIsNotFinished()
+    public async Task CreateAsync_ShouldReturnNull_WhenVisitBeforeIsNotFinished()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -375,7 +372,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
         //
@@ -383,7 +380,7 @@ public class VisitServiceTest
     }
 
     [Fact]
-    public async Task AddVisit_ShouldReturnNull_WhenVisitVisitStartsAfterThatBeingAdded()
+    public async Task CreateAsync_ShouldReturnNull_WhenVisitVisitStartsAfterThatBeingAdded()
     {
         // Arrange
         var createVisitDto = new CreateVisitDto
@@ -444,7 +441,7 @@ public class VisitServiceTest
 
         // Act
 
-        var visit = await _sut.AddVisit(createVisitDto);
+        var (_, visit) = await _sut.CreateAsync(createVisitDto);
 
         // Assert
         //
