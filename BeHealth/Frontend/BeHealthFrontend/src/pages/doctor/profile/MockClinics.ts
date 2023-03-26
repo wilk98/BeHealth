@@ -1,14 +1,12 @@
-import { Clinic } from "./ClinicSection";
-
-export const ClinicsList: Array<Clinic> = [
+export const clinics = [
     {
-        id: 1,
-        name: "Podgórska Medical Clinic",
-        address: "Rynek Podgórski 14",
+        "id": 1,
+        "name": "Podgórska Medical Clinic",
+        "address": "Rynek Podgórski 14"
     },
     {
-        id: 2,
-        name: "Family Health Clinic NZOZ Sp. o.o.",
-        address: "aleja 29 Listopada 178 A"
-    },
+        "id": 2,
+        "name": "Family Health Clinic NZOZ Sp. o.o.",
+        "address": "aleja 29 Listopada 178 A"
+    }
 ]

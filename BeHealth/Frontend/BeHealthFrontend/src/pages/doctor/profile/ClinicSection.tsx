@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { IoMdSettings } from "react-icons/io";
+import { Modal } from "../../../components/ui/Modal";
 import { SecondaryButton } from "../../../components/ui/SecondaryButton"
-import { ClinicsList } from "./MockClinics"
+import { AddClinic } from "./AddClinic";
+import { useFetchClinics } from "./ProfileHooks";
 
 export interface Clinic {
     id: number,
@@ -8,7 +11,7 @@ export interface Clinic {
     address: string,
 }
 
-const Clinic = ({ name, address }: Clinic) => {
+export const Clinic = ({ name, address }: Clinic) => {
     return (
         <div className="clinic">
             <p className="clinic--title">
@@ -22,22 +25,31 @@ const Clinic = ({ name, address }: Clinic) => {
     )
 }
 
-// TODO Create custom hook for fetching real clinics
-const Clinics = ClinicsList.map((clinic) => <Clinic key={clinic.id} name={clinic.name} address={clinic.address} id={clinic.id} />);
-
 export const ClinicsSection = () => {
+    const [showModal, setShowModal] = useState(true);
+    const [clinics, setClinics] = useState<Clinic[]>([]);
+
+    const handleClose = () => setShowModal(false);
+    const handleOpen = () => setShowModal(true);
+    const addClinic = (name: string, address: string) => { setClinics(prevClinics => {
+        return [...prevClinics, { name: name, address: address, id: prevClinics.length + 1 }]
+    }) };
+
+    useFetchClinics(setClinics);
+
+    const Clinics = clinics?.map(clinic => <Clinic key={clinic.id} name={clinic.name} address={clinic.address} id={clinic.id} />);
     return (
         <section className="clinics">
             <div className="row">
                 <p className="section-title">Przychodnie</p>
-                {/* TODO Add callback that shows modal with work hour setting */}
-                <SecondaryButton>
+                <SecondaryButton onClick={handleOpen}>
                     Dodaj
                 </SecondaryButton>
             </div>
             <div className="clinics-row">
                 {Clinics}
             </div>
+            <Modal title="Dodaj przychodnie" content={<AddClinic closeModal={handleClose} addClinic={addClinic} />} show={showModal} close={handleClose} />
         </section>
     )
 }
