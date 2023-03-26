@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { UploadImageButton } from "../../../components/ui/UploadImageButton"
 import { BeHealthContext } from "../../../Context";
+import { useAuth } from "../../auth/hooks/useAuth";
 import { useAddCertificate, useFetchCertificates } from "./ProfileHooks";
-import { useNavigate } from 'react-router-dom';
 
 export interface Certificate {
     url: string
@@ -19,16 +19,8 @@ export const CertificatesSection = () => {
     const addCertificate = (url: string) => setCertificates(prev => [...prev, { url: url }])
     const certificateElements = certificates?.map(certificate => <Certificate key={certificate.url} url={certificate.url} />)
 
-    const { user, setUrlRedirect } = useContext(BeHealthContext)
+    const user = useAuth("/profile");
     const id = user?.id;
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (user === undefined) {
-            setUrlRedirect("/profile")
-            navigate("/login")
-        }
-    }, [])
 
     if (id === undefined) {
         return (

@@ -5,7 +5,7 @@ import { getCurrentMonth, getCurrentYear, getDaysInMonth, getMonthName, getWeekD
 import { api_path } from '../../utils/api';
 import { MonthSelector } from '../../components/ui/MonthSelector';
 import { BeHealthContext } from '../../Context';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/hooks/useAuth';
 
 interface CalendarDay {
     day: number,
@@ -45,15 +45,7 @@ export const Calendar = () => {
     const [visits, setVisits] = useState<Array<VisitData>>();
     const { token } = useContext(BeHealthContext)
 
-    const navigate = useNavigate()
-    const { setUrlRedirect } = useContext(BeHealthContext)
-
-    useEffect(() => {
-        if (token === "") {
-            setUrlRedirect("/calendar")
-            navigate("/login")
-        }
-    }, [])
+    useAuth("/calendar")
 
     const currentYear = getCurrentYear()
     const currentMonth = getCurrentMonth() + offset

@@ -1,11 +1,10 @@
 import './VisitsPatient.css'
 import { groupBy } from '../../utils/arrays';
-import { BiMessageSquare, BiCheck, HiXMark } from "react-icons/all"
 import { useContext, useEffect, useState } from 'react';
 import { dateToHuman, getDate, getTimeSpan } from '../../utils/calendar';
 import { api_path } from '../../utils/api';
 import { BeHealthContext } from '../../Context';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/hooks/useAuth';
 
 interface Buttons {
   id: string,
@@ -46,16 +45,7 @@ export const VisitsPatient = () => {
   const [visits, setVisits] = useState<Array<Visit>>([])
   const { token, user } = useContext(BeHealthContext)
 
-  const navigate = useNavigate()
-  const { setUrlRedirect } = useContext(BeHealthContext)
-
-  useEffect(() => {
-    if (user === undefined) {
-        setUrlRedirect("/visitsuser")
-        navigate("/login")
-    }
-  }, [])
-
+  useAuth('/visituser')
 
   const patientId = user?.id;
   const setVisitConfirmationStatus = (id: string, status: boolean) => {

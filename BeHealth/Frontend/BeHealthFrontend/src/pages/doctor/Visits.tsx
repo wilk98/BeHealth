@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { dateToHuman, getDate, getTimeSpan } from '../../utils/calendar';
 import { api_path } from '../../utils/api';
 import { BeHealthContext } from '../../Context';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/hooks/useAuth';
 
 interface Buttons {
   id: string,
@@ -87,15 +87,7 @@ export const Visits = () => {
   const [visits, setVisits] = useState<Array<Visit>>([])
   const { token, user } = useContext(BeHealthContext)
 
-  const navigate = useNavigate()
-  const { setUrlRedirect } = useContext(BeHealthContext)
-
-  useEffect(() => {
-    if (user === undefined) {
-        setUrlRedirect("/visits")
-        navigate("/login")
-    }
-  }, [])
+  useAuth('/visits')
 
 
   const doctorId = user?.id;
