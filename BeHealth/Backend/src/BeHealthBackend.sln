@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\BeHealthBackend.csproj", "{D9248425-5D75-4473-A118-6D0AD3EF58B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\BeHealthBackendTests.csproj", "{0AFEE9E9-8102-4628-ACFB-287FAEEE999D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "..\tests\BeHealthBackendTests.csproj", "{0AFEE9E9-8102-4628-ACFB-287FAEEE999D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application", "application\application.csproj", "{E98B6331-B687-4EC6-9904-53E1BB310755}"
 EndProject
