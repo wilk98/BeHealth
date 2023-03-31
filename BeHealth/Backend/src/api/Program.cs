@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using BeHealthBackend.Configurations.Extensions;
 using FluentValidation.AspNetCore;
 using Polly;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,9 @@ builder.AddAuthorization();
 builder.AddMapper();
 builder.AddErrorHandler();
 builder.AddSwaggerGen();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
