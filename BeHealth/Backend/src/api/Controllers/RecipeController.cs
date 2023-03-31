@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DTOs.RecipeDtoFolder;
+﻿using application.Dtos.RecipeDtoFolder;
 using BeHealthBackend.Services.RecipeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

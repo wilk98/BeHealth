@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs.VisitDtoFolder;
+using application.Dtos.VisitDtoFolder;
 using core;
 
 namespace BeHealthBackend.Services.VisitServices;

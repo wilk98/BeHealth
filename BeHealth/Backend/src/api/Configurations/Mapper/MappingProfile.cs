@@ -1,8 +1,8 @@
-﻿using BeHealthBackend.DTOs.AccountDtoFolder;
-using BeHealthBackend.DTOs.ClinicDtoFolder;
-using BeHealthBackend.DTOs.DoctorDtoFolder;
-using BeHealthBackend.DTOs.PatientDtoFolder;
-using BeHealthBackend.DTOs.VisitDtoFolder;
+﻿using application.Dtos.AccountDtoFolder;
+using application.Dtos.ClinicDtoFolder;
+using application.Dtos.DoctorDtoFolder;
+using application.Dtos.PatientDtoFolder;
+using application.Dtos.VisitDtoFolder;
 using core;
 
 namespace BeHealthBackend.Configurations.Mapper;

@@ -1,6 +1,5 @@
 ﻿using core;
-using BeHealthBackend.DTOs.WorkHoursDtoFolder;
-
+using application.Dtos.WorkHoursDtoFolder;
 
 namespace BeHealthBackend.Services.WorkHoursServices;
 

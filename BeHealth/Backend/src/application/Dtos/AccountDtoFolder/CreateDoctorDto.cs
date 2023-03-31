@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BeHealthBackend.DTOs.AccountDtoFolder;
-public class CreatePatientDto
+﻿namespace application.Dtos.AccountDtoFolder;
+public class CreateDoctorDto
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -10,7 +8,7 @@ public class CreatePatientDto
     public string City { get; set; }
     public string Street { get; set; }
     public string PostalCode { get; set; }
-    public string Pesel { get; set; }
+    public string Specialist { get; set; }
     public string PasswordHash { get; set; }
     public string ConfirmPassword { get; set; }
 }

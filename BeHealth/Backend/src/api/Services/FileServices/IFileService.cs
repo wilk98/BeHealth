@@ -1,4 +1,4 @@
-using BeHealthBackend.DTOs.ImageDto;
+using application.Dtos.ImageDtoFolder;
 
 namespace BeHealthBackend.Services.FileServices;
 public interface IFileService

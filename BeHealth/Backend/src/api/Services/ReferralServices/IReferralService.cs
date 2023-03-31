@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DTOs.ReferralDtoFolder;
+﻿using application.Dtos.ReferralDtoFolder;
 
 namespace BeHealthBackend.Services.ReferralService
 {

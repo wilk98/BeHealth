@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DTOs.VisitDtoFolder;
+﻿using application.Dtos.VisitDtoFolder;
 using core;
 
 namespace BeHealthBackend.DataAccess.Repositories.Interfaces;

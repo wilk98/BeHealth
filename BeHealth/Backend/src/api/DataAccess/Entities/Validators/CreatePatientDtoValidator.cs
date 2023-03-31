@@ -1,5 +1,5 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DTOs.AccountDtoFolder;
+using application.Dtos.AccountDtoFolder;
 using FluentValidation;
 using System.Text.RegularExpressions;
 

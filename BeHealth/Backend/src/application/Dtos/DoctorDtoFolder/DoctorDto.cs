@@ -1,6 +1,10 @@
-﻿namespace BeHealthBackend.DTOs.AccountDtoFolder;
-public class CreateDoctorDto
+﻿using System.ComponentModel.DataAnnotations;
+using core;
+
+namespace application.Dtos.DoctorDtoFolder;
+public class DoctorDto
 {
+    public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string PhoneNumber { get; set; }
@@ -9,6 +13,4 @@ public class CreateDoctorDto
     public string Street { get; set; }
     public string PostalCode { get; set; }
     public string Specialist { get; set; }
-    public string PasswordHash { get; set; }
-    public string ConfirmPassword { get; set; }
 }

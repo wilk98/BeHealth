@@ -2,8 +2,8 @@
 using BeHealthBackend.Configurations.Exceptions;
 using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs.AccountDtoFolder;
-using BeHealthBackend.DTOs.PatientDtoFolder;
+using application.Dtos.AccountDtoFolder;
+using application.Dtos.PatientDtoFolder;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;

@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DTOs.VisitDtoFolder
+﻿namespace application.Dtos.VisitDtoFolder
 {
     public class VisitCalendarDto
     {

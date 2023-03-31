@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DTOs.ClinicDtoFolder;
+﻿using application.Dtos.ClinicDtoFolder;
 
 namespace BeHealthBackend.Services.ClinicServices;
 public interface IClinicService

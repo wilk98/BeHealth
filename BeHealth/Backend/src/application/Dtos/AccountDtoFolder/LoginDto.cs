@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DTOs.AccountDtoFolder;
+﻿namespace application.Dtos.AccountDtoFolder;
 public class LoginDto
 {
     public string Email { get; set; }

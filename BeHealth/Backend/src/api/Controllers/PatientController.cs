@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DTOs.PatientDtoFolder;
+﻿using application.Dtos.PatientDtoFolder;
 using BeHealthBackend.Services.PatientServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

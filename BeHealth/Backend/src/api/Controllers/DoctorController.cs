@@ -1,7 +1,7 @@
-﻿using BeHealthBackend.DTOs.DoctorDtoFolder;
+﻿using application.Dtos.DoctorDtoFolder;
 using BeHealthBackend.Services.DoctorServices;
 using Microsoft.AspNetCore.Mvc;
-using BeHealthBackend.DTOs.ImageDto;
+using application.Dtos.ImageDtoFolder;
 using BeHealthBackend.Services.FileServices;
 
 namespace BeHealthBackend.Controllers;

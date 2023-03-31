@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using core;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs.ClinicDtoFolder;
-using BeHealthBackend.DTOs.PatientDtoFolder;
-using BeHealthBackend.DTOs.VisitDtoFolder;
-using BeHealthBackend.DTOs.WorkHoursDtoFolder;
+using application.Dtos.ClinicDtoFolder;
+using application.Dtos.PatientDtoFolder;
+using application.Dtos.VisitDtoFolder;
 using System.ComponentModel;
+using application.Dtos.WorkHoursDtoFolder;
 
 namespace BeHealthBackend.Services.WorkHoursServices
 {

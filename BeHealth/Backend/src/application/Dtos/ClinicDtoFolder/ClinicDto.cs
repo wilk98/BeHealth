@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DTOs.ClinicDtoFolder;
+﻿namespace application.Dtos.ClinicDtoFolder;
 public class ClinicDto
 {
     public string Name { get; set; }

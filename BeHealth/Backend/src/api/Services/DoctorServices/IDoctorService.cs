@@ -1,5 +1,5 @@
-﻿using BeHealthBackend.DTOs.AccountDtoFolder;
-using BeHealthBackend.DTOs.DoctorDtoFolder;
+﻿using application.Dtos.AccountDtoFolder;
+using application.Dtos.DoctorDtoFolder;
 using System.Security.Claims;
 
 namespace BeHealthBackend.Services.DoctorServices;

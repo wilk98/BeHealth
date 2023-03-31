@@ -1,5 +1,5 @@
 ﻿using core;
-using BeHealthBackend.DTOs.VisitDtoFolder;
+using application.Dtos.VisitDtoFolder;
 using BeHealthBackend.Services.VisitServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.Services.ReferralService;
-using BeHealthBackend.DTOs.ReferralDtoFolder;
+using application.Dtos.ReferralDtoFolder;
 
 namespace BeHealthBackend.Services.ReferralsServices;
 public class ReferralService : IReferralService

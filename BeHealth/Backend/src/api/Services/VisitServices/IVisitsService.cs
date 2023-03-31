@@ -1,5 +1,5 @@
-﻿using BeHealthBackend.DTOs.VisitDtoFolder;
-using BeHealthBackend.DTOs.WorkHoursDtoFolder;
+﻿using application.Dtos.VisitDtoFolder;
+using application.Dtos.WorkHoursDtoFolder;
 using core;
 
 namespace BeHealthBackend.Services.VisitServices;

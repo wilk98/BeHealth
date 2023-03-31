@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DTOs.RecipeDtoFolder;
+﻿using application.Dtos.RecipeDtoFolder;
 
 namespace BeHealthBackend.Services.RecipeService
 {

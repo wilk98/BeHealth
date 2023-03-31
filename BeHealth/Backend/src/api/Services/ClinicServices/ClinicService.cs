@@ -2,7 +2,7 @@
 using BeHealthBackend.Configurations.Exceptions;
 using core;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.DTOs.ClinicDtoFolder;
+using application.Dtos.ClinicDtoFolder;
 
 namespace BeHealthBackend.Services.ClinicServices;
 public class ClinicService : IClinicService

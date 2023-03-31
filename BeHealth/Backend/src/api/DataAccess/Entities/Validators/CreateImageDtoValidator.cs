@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using BeHealthBackend.DTOs.ImageDto;
+using application.Dtos.ImageDtoFolder;
 using FluentValidation;
 
 namespace BeHealthBackend.DataAccess.Entities.Validators;

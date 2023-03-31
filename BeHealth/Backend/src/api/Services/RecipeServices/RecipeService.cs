@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.Services.RecipeService;
-using BeHealthBackend.DTOs.RecipeDtoFolder;
+using application.Dtos.RecipeDtoFolder;
 
 namespace BeHealthBackend.Services.RecipeServices;
 public class RecipeService : IRecipeService
