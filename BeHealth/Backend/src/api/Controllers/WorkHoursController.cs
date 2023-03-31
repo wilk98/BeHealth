@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿using core;
 using BeHealthBackend.DTOs.VisitDtoFolder;
 using BeHealthBackend.DTOs.WorkHoursDtoFolder;
 using BeHealthBackend.Services.VisitServices;

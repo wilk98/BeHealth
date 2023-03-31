@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BeHealthBackend.Configurations.Exceptions;
 using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.PatientDtoFolder;
@@ -12,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BeHealthBackend.Authorization;
+using core;
 
 namespace BeHealthBackend.Services.PatientServices;
 public class PatientService : IPatientService

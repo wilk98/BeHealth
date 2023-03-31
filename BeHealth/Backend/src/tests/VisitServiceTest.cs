@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.VisitDtoFolder;
 using BeHealthBackend.Services.VisitServices;
+using core;
 using Moq;
 
 namespace BeHealthBackendTests;

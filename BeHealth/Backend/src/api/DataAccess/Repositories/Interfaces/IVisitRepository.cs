@@ -1,5 +1,5 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs.VisitDtoFolder;
+﻿using BeHealthBackend.DTOs.VisitDtoFolder;
+using core;
 
 namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
 

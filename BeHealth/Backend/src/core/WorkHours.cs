@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DataAccess.Entities
+﻿namespace core
 {
     public class WorkHours
     {

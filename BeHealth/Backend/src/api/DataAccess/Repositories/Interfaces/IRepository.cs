@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿using core;
 using System.Linq.Expressions;
 
 namespace BeHealthBackend.DataAccess.Repositories.Interfaces;

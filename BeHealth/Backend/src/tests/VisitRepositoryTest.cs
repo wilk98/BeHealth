@@ -1,5 +1,6 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Repositories;
+using core;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeHealthBackendTests;
@@ -46,7 +47,7 @@ public class VisitRepositoryTest
 
         using (var context = new BeHealthContext(options))
         {
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = visitName,
                 DoctorId = doctorId,
@@ -84,7 +85,7 @@ public class VisitRepositoryTest
 
         using (var context = new BeHealthContext(options))
         {
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = visitName,
                 DoctorId = doctorId,
@@ -127,14 +128,14 @@ public class VisitRepositoryTest
 
         using (var context = new BeHealthContext(options))
         {
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = visitName,
                 DoctorId = doctorId,
                 VisitDate = plannedVisitStartDate,
                 Duration = duration
             });
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = secondVisitName,
                 DoctorId = doctorId,
@@ -171,7 +172,7 @@ public class VisitRepositoryTest
 
         using (var context = new BeHealthContext(options))
         {
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = visitName,
                 DoctorId = doctorId,
@@ -207,7 +208,7 @@ public class VisitRepositoryTest
 
         using (var context = new BeHealthContext(options))
         {
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = visitName,
                 DoctorId = doctorId,
@@ -247,14 +248,14 @@ public class VisitRepositoryTest
 
         using (var context = new BeHealthContext(options))
         {
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = visitName,
                 DoctorId = doctorId,
                 VisitDate = plannedVisitStartDate,
                 Duration = duration
             });
-            context.Visits.Add(new BeHealthBackend.DataAccess.Entities.Visit
+            context.Visits.Add(new Visit
             {
                 Name = secondVisitName,
                 DoctorId = doctorId,

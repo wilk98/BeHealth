@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿using core;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 

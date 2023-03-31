@@ -1,9 +1,9 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs.AccountDtoFolder;
+﻿using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.ClinicDtoFolder;
 using BeHealthBackend.DTOs.DoctorDtoFolder;
 using BeHealthBackend.DTOs.PatientDtoFolder;
 using BeHealthBackend.DTOs.VisitDtoFolder;
+using core;
 
 namespace BeHealthBackend.Configurations.Mapper;
 public class MappingProfile : AutoMapper.Profile

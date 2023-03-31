@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DataAccess.Entities;
+﻿namespace core;
 public class Doctor : Person
 {
     public string Specialist { get; set; }
@@ -7,6 +7,6 @@ public class Doctor : Person
     public string Services { get; set; }
     public virtual List<Clinic> Clinics { get; set; } = new List<Clinic>();
     public virtual List<Patient> Patients { get; set; } = new List<Patient>();
-    public virtual Role Role { get; set; } = Entities.Role.Doctor;
+    public virtual Role Role { get; set; } = Role.Doctor;
     public List<Certificate> Certificates { get; set; } = new List<Certificate>();
 }

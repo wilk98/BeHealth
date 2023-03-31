@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using core;
 
 namespace BeHealthBackend.DataAccess.Entities.Configurations;
 public class PatientConfiguration : IEntityTypeConfiguration<Patient>

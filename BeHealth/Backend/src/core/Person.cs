@@ -1,4 +1,4 @@
-﻿namespace BeHealthBackend.DataAccess.Entities;
+﻿namespace core;
 public abstract class Person
 {
     public int Id { get; set; }

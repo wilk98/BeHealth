@@ -1,4 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿using core;
 
 namespace BeHealthBackend.DTOs.ClinicDtoFolder;
 public class ClinicDoctorDto

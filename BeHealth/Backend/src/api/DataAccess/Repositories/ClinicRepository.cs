@@ -1,5 +1,5 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DataAccess.Entities;
+using core;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 
 namespace BeHealthBackend.DataAccess.Repositories;

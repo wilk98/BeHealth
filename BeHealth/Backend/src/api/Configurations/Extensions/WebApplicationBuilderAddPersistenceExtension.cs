@@ -1,5 +1,4 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
-using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DataAccess.Repositories;
 using BeHealthBackend.Services.ClinicServices;
@@ -18,6 +17,7 @@ using BeHealthBackend.Services.RecipeServices;
 using BeHealthBackend.DTOs.ImageDto;
 using BeHealthBackend.Services.FileServices;
 using BeHealthBackend.Services.WorkHoursServices;
+using core;
 
 namespace BeHealthBackend.Configurations.Extensions;
 public static class WebApplicationBuilderAddPersistenceExtension

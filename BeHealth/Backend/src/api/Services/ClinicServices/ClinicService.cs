@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BeHealthBackend.Configurations.Exceptions;
-using BeHealthBackend.DataAccess.Entities;
+using core;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.ClinicDtoFolder;
 

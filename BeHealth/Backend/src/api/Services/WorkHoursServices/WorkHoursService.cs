@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BeHealthBackend.DataAccess.Entities;
+using core;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.ClinicDtoFolder;
 using BeHealthBackend.DTOs.PatientDtoFolder;

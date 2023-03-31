@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using BeHealthBackend.DataAccess.Entities;
+using core;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BeHealthBackend.Authorization;
